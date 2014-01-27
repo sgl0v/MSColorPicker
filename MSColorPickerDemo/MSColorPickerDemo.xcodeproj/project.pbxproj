@@ -13,7 +13,6 @@
 		5E642D9F191AE3BA0054742A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5E642D9D191AE3BA0054742A /* InfoPlist.strings */; };
 		5E642DA1191AE3BA0054742A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DA0191AE3BA0054742A /* main.m */; };
 		5E642DA5191AE3BA0054742A /* MSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DA4191AE3BA0054742A /* MSAppDelegate.m */; };
-		5E642DA8191AE3BA0054742A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E642DA6191AE3BA0054742A /* Main.storyboard */; };
 		5E642DAB191AE3BA0054742A /* MSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DAA191AE3BA0054742A /* MSViewController.m */; };
 		5E642DAD191AE3BA0054742A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E642DAC191AE3BA0054742A /* Images.xcassets */; };
 		5E642DB4191AE3BA0054742A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E642DB3191AE3BA0054742A /* XCTest.framework */; };
@@ -44,7 +43,6 @@
 		5E642DA2191AE3BA0054742A /* MSColorPickerDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MSColorPickerDemo-Prefix.pch"; sourceTree = "<group>"; };
 		5E642DA3191AE3BA0054742A /* MSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSAppDelegate.h; sourceTree = "<group>"; };
 		5E642DA4191AE3BA0054742A /* MSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSAppDelegate.m; sourceTree = "<group>"; };
-		5E642DA7191AE3BA0054742A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5E642DA9191AE3BA0054742A /* MSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MSViewController.h; sourceTree = "<group>"; };
 		5E642DAA191AE3BA0054742A /* MSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSViewController.m; sourceTree = "<group>"; };
 		5E642DAC191AE3BA0054742A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -112,13 +110,11 @@
 		5E642D9A191AE3BA0054742A /* MSColorPickerDemo */ = {
 			isa = PBXGroup;
 			children = (
-				5E642DA3191AE3BA0054742A /* MSAppDelegate.h */,
-				5E642DA4191AE3BA0054742A /* MSAppDelegate.m */,
-				5E642DA6191AE3BA0054742A /* Main.storyboard */,
-				5E642DA9191AE3BA0054742A /* MSViewController.h */,
-				5E642DAA191AE3BA0054742A /* MSViewController.m */,
-				5E642DAC191AE3BA0054742A /* Images.xcassets */,
+				5E642DCB191AE9690054742A /* Views */,
+				5E642DC9191AE87B0054742A /* Controllers */,
+				5E642DCA191AE8C30054742A /* Delegate */,
 				5E642D9B191AE3BA0054742A /* Supporting Files */,
+				5E642DAC191AE3BA0054742A /* Images.xcassets */,
 			);
 			path = MSColorPickerDemo;
 			sourceTree = "<group>";
@@ -150,6 +146,31 @@
 				5E642DBC191AE3BA0054742A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5E642DC9191AE87B0054742A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5E642DA9191AE3BA0054742A /* MSViewController.h */,
+				5E642DAA191AE3BA0054742A /* MSViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		5E642DCA191AE8C30054742A /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				5E642DA3191AE3BA0054742A /* MSAppDelegate.h */,
+				5E642DA4191AE3BA0054742A /* MSAppDelegate.m */,
+			);
+			name = Delegate;
+			sourceTree = "<group>";
+		};
+		5E642DCB191AE9690054742A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,7 +252,6 @@
 			files = (
 				5E642DAD191AE3BA0054742A /* Images.xcassets in Resources */,
 				5E642D9F191AE3BA0054742A /* InfoPlist.strings in Resources */,
-				5E642DA8191AE3BA0054742A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,14 +301,6 @@
 				5E642D9E191AE3BA0054742A /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		5E642DA6191AE3BA0054742A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5E642DA7191AE3BA0054742A /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		5E642DBC191AE3BA0054742A /* InfoPlist.strings */ = {
@@ -461,6 +473,7 @@
 				5E642DC5191AE3BA0054742A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5E642DC6191AE3BA0054742A /* Build configuration list for PBXNativeTarget "MSColorPickerDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +482,7 @@
 				5E642DC8191AE3BA0054742A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
