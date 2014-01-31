@@ -20,6 +20,8 @@
 		5E642DB6191AE3BA0054742A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E642D98191AE3BA0054742A /* UIKit.framework */; };
 		5E642DBE191AE3BA0054742A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5E642DBC191AE3BA0054742A /* InfoPlist.strings */; };
 		5E642DC0191AE3BA0054742A /* MSColorPickerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DBF191AE3BA0054742A /* MSColorPickerDemoTests.m */; };
+		5E642DCE191AEC990054742A /* MSSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DCC191AEC990054742A /* MSSliderView.m */; };
+		5E642DCF191AEC990054742A /* MSSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DCC191AEC990054742A /* MSSliderView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		5E642DBB191AE3BA0054742A /* MSColorPickerDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MSColorPickerDemoTests-Info.plist"; sourceTree = "<group>"; };
 		5E642DBD191AE3BA0054742A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5E642DBF191AE3BA0054742A /* MSColorPickerDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSColorPickerDemoTests.m; sourceTree = "<group>"; };
+		5E642DCC191AEC990054742A /* MSSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSSliderView.m; path = ../../MSColorPicker/MSSliderView.m; sourceTree = "<group>"; };
+		5E642DCD191AEC990054742A /* MSSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSSliderView.h; path = ../../MSColorPicker/MSSliderView.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +173,8 @@
 		5E642DCB191AE9690054742A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5E642DCD191AEC990054742A /* MSSliderView.h */,
+				5E642DCC191AEC990054742A /* MSSliderView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -273,6 +279,7 @@
 				5E642DA5191AE3BA0054742A /* MSAppDelegate.m in Sources */,
 				5E642DAB191AE3BA0054742A /* MSViewController.m in Sources */,
 				5E642DA1191AE3BA0054742A /* main.m in Sources */,
+				5E642DCE191AEC990054742A /* MSSliderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E642DC0191AE3BA0054742A /* MSColorPickerDemoTests.m in Sources */,
+				5E642DCF191AEC990054742A /* MSSliderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
