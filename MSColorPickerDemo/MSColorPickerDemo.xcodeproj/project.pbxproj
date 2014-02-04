@@ -22,6 +22,8 @@
 		5E642DC0191AE3BA0054742A /* MSColorPickerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DBF191AE3BA0054742A /* MSColorPickerDemoTests.m */; };
 		5E642DCE191AEC990054742A /* MSSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DCC191AEC990054742A /* MSSliderView.m */; };
 		5E642DCF191AEC990054742A /* MSSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DCC191AEC990054742A /* MSSliderView.m */; };
+		5E642DD2191AEEC80054742A /* MSColorWheelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DD1191AEEC80054742A /* MSColorWheelView.m */; };
+		5E642DD3191AEEC80054742A /* MSColorWheelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DD1191AEEC80054742A /* MSColorWheelView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		5E642DBF191AE3BA0054742A /* MSColorPickerDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSColorPickerDemoTests.m; sourceTree = "<group>"; };
 		5E642DCC191AEC990054742A /* MSSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSSliderView.m; path = ../../MSColorPicker/MSSliderView.m; sourceTree = "<group>"; };
 		5E642DCD191AEC990054742A /* MSSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSSliderView.h; path = ../../MSColorPicker/MSSliderView.h; sourceTree = "<group>"; };
+		5E642DD0191AEEC80054742A /* MSColorWheelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSColorWheelView.h; path = ../../MSColorPicker/MSColorWheelView.h; sourceTree = "<group>"; };
+		5E642DD1191AEEC80054742A /* MSColorWheelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSColorWheelView.m; path = ../../MSColorPicker/MSColorWheelView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +179,8 @@
 			children = (
 				5E642DCD191AEC990054742A /* MSSliderView.h */,
 				5E642DCC191AEC990054742A /* MSSliderView.m */,
+				5E642DD0191AEEC80054742A /* MSColorWheelView.h */,
+				5E642DD1191AEEC80054742A /* MSColorWheelView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -277,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E642DA5191AE3BA0054742A /* MSAppDelegate.m in Sources */,
+				5E642DD2191AEEC80054742A /* MSColorWheelView.m in Sources */,
 				5E642DAB191AE3BA0054742A /* MSViewController.m in Sources */,
 				5E642DA1191AE3BA0054742A /* main.m in Sources */,
 				5E642DCE191AEC990054742A /* MSSliderView.m in Sources */,
@@ -288,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E642DC0191AE3BA0054742A /* MSColorPickerDemoTests.m in Sources */,
+				5E642DD3191AEEC80054742A /* MSColorWheelView.m in Sources */,
 				5E642DCF191AEC990054742A /* MSSliderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
