@@ -35,4 +35,3 @@
 @property(nonatomic, readonly, strong) CALayer* indicatorLayer;
 
 @end
-
