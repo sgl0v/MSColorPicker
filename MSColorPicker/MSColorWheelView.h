@@ -29,9 +29,7 @@
 
 @interface MSColorWheelView : UIControl
 
-@property(nonatomic, readonly, assign) CGFloat luminance;
-@property(nonatomic, readonly, assign) CGFloat hue;
-@property(nonatomic, readonly, assign) CGFloat saturation;
-@property(nonatomic, readonly, strong) CALayer* indicatorLayer;
+@property(nonatomic, assign) CGFloat hue;
+@property(nonatomic, assign) CGFloat saturation;
 
 @end

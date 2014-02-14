@@ -26,6 +26,8 @@
 		5E642DD3191AEEC80054742A /* MSColorWheelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DD1191AEEC80054742A /* MSColorWheelView.m */; };
 		5E642DD6191AF15D0054742A /* MSColorComponentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DD4191AF15D0054742A /* MSColorComponentView.m */; };
 		5E642DD7191AF15D0054742A /* MSColorComponentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DD4191AF15D0054742A /* MSColorComponentView.m */; };
+		5E642DDB191AF2C80054742A /* MSColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DD9191AF2C80054742A /* MSColorUtils.m */; };
+		5E642DDC191AF2C80054742A /* MSColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DD9191AF2C80054742A /* MSColorUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +65,8 @@
 		5E642DD1191AEEC80054742A /* MSColorWheelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSColorWheelView.m; path = ../../MSColorPicker/MSColorWheelView.m; sourceTree = "<group>"; };
 		5E642DD4191AF15D0054742A /* MSColorComponentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSColorComponentView.m; path = ../../MSColorPicker/MSColorComponentView.m; sourceTree = "<group>"; };
 		5E642DD5191AF15D0054742A /* MSColorComponentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSColorComponentView.h; path = ../../MSColorPicker/MSColorComponentView.h; sourceTree = "<group>"; };
+		5E642DD9191AF2C80054742A /* MSColorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSColorUtils.m; path = ../../MSColorPicker/MSColorUtils.m; sourceTree = "<group>"; };
+		5E642DDA191AF2C80054742A /* MSColorUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSColorUtils.h; path = ../../MSColorPicker/MSColorUtils.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +126,7 @@
 		5E642D9A191AE3BA0054742A /* MSColorPickerDemo */ = {
 			isa = PBXGroup;
 			children = (
+				5E642DD8191AF29C0054742A /* Utils */,
 				5E642DCB191AE9690054742A /* Views */,
 				5E642DC9191AE87B0054742A /* Controllers */,
 				5E642DCA191AE8C30054742A /* Delegate */,
@@ -189,6 +194,15 @@
 				5E642DCC191AEC990054742A /* MSSliderView.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		5E642DD8191AF29C0054742A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				5E642DDA191AF2C80054742A /* MSColorUtils.h */,
+				5E642DD9191AF2C80054742A /* MSColorUtils.m */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,6 +304,7 @@
 			files = (
 				5E642DD6191AF15D0054742A /* MSColorComponentView.m in Sources */,
 				5E642DA5191AE3BA0054742A /* MSAppDelegate.m in Sources */,
+				5E642DDB191AF2C80054742A /* MSColorUtils.m in Sources */,
 				5E642DD2191AEEC80054742A /* MSColorWheelView.m in Sources */,
 				5E642DAB191AE3BA0054742A /* MSViewController.m in Sources */,
 				5E642DA1191AE3BA0054742A /* main.m in Sources */,
@@ -303,6 +318,7 @@
 			files = (
 				5E642DC0191AE3BA0054742A /* MSColorPickerDemoTests.m in Sources */,
 				5E642DD3191AEEC80054742A /* MSColorWheelView.m in Sources */,
+				5E642DDC191AF2C80054742A /* MSColorUtils.m in Sources */,
 				5E642DD7191AF15D0054742A /* MSColorComponentView.m in Sources */,
 				5E642DCF191AEC990054742A /* MSSliderView.m in Sources */,
 			);
