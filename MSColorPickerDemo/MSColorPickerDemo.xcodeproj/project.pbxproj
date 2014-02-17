@@ -30,6 +30,8 @@
 		5E642DDC191AF2C80054742A /* MSColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DD9191AF2C80054742A /* MSColorUtils.m */; };
 		5E642DDF191AF59F0054742A /* MSRGBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DDD191AF59F0054742A /* MSRGBView.m */; };
 		5E642DE0191AF59F0054742A /* MSRGBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DDD191AF59F0054742A /* MSRGBView.m */; };
+		5E642DE4191C26A20054742A /* MSHSBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DE3191C26A20054742A /* MSHSBView.m */; };
+		5E642DE5191C26A20054742A /* MSHSBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DE3191C26A20054742A /* MSHSBView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,8 @@
 		5E642DDD191AF59F0054742A /* MSRGBView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSRGBView.m; path = ../../MSColorPicker/MSRGBView.m; sourceTree = "<group>"; };
 		5E642DDE191AF59F0054742A /* MSRGBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSRGBView.h; path = ../../MSColorPicker/MSRGBView.h; sourceTree = "<group>"; };
 		5E642DE1191AF61E0054742A /* MSColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSColorView.h; path = ../../MSColorPicker/MSColorView.h; sourceTree = "<group>"; };
+		5E642DE2191C26A20054742A /* MSHSBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSHSBView.h; path = ../../MSColorPicker/MSHSBView.h; sourceTree = "<group>"; };
+		5E642DE3191C26A20054742A /* MSHSBView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSHSBView.m; path = ../../MSColorPicker/MSHSBView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +200,8 @@
 				5E642DD4191AF15D0054742A /* MSColorComponentView.m */,
 				5E642DD0191AEEC80054742A /* MSColorWheelView.h */,
 				5E642DD1191AEEC80054742A /* MSColorWheelView.m */,
+				5E642DE2191C26A20054742A /* MSHSBView.h */,
+				5E642DE3191C26A20054742A /* MSHSBView.m */,
 				5E642DDE191AF59F0054742A /* MSRGBView.h */,
 				5E642DDD191AF59F0054742A /* MSRGBView.m */,
 				5E642DCD191AEC990054742A /* MSSliderView.h */,
@@ -315,6 +321,7 @@
 				5E642DDB191AF2C80054742A /* MSColorUtils.m in Sources */,
 				5E642DD2191AEEC80054742A /* MSColorWheelView.m in Sources */,
 				5E642DDF191AF59F0054742A /* MSRGBView.m in Sources */,
+				5E642DE4191C26A20054742A /* MSHSBView.m in Sources */,
 				5E642DAB191AE3BA0054742A /* MSViewController.m in Sources */,
 				5E642DA1191AE3BA0054742A /* main.m in Sources */,
 				5E642DCE191AEC990054742A /* MSSliderView.m in Sources */,
@@ -331,6 +338,7 @@
 				5E642DDC191AF2C80054742A /* MSColorUtils.m in Sources */,
 				5E642DD7191AF15D0054742A /* MSColorComponentView.m in Sources */,
 				5E642DCF191AEC990054742A /* MSSliderView.m in Sources */,
+				5E642DE5191C26A20054742A /* MSHSBView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
