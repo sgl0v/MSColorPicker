@@ -30,7 +30,7 @@ CGFloat const MSRGBColorComponentMaxValue = 255.0f;
 CGFloat const MSAlphaComponentMaxValue = 100.0f;
 CGFloat const MSHSBColorComponentMaxValue = 1.0f;
 
-extern void MSBRGB2HSB(RGB rgb, HSB* outHSB)
+extern void MSRGB2HSB(RGB rgb, HSB* outHSB)
 {
   double rd = (double) rgb.red;
   double gd = (double) rgb.green;
