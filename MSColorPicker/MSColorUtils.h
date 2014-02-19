@@ -39,9 +39,9 @@ extern CGFloat const MSHSBColorComponentMaxValue;
  * returns h, s, and b in the set [0, 1].
  *
  *  @param rgb   The rgb color values
- *  @param outHSB The hsb color values
+ *  @return The hsb color values
  */
-extern void MSRGB2HSB(RGB rgb, HSB* outHSB);
+extern HSB MSRGB2HSB(RGB rgb);
 
 /**
  * Converts an HSB color value to RGB.
@@ -49,9 +49,9 @@ extern void MSRGB2HSB(RGB rgb, HSB* outHSB);
  * returns r, g, and b in the set [0, 255].
  *
  *  @param outRGB   The rgb color values
- *  @param hsb The hsb color values
+ *  @return The hsb color values
  */
-extern void MSHSB2RGB(HSB hsb, RGB* outRGB);
+extern RGB MSHSB2RGB(HSB hsb);
 
 /**
  *  Returns the rgb values of the color components.

@@ -30,126 +30,130 @@ CGFloat const MSRGBColorComponentMaxValue = 255.0f;
 CGFloat const MSAlphaComponentMaxValue = 100.0f;
 CGFloat const MSHSBColorComponentMaxValue = 1.0f;
 
-extern void MSRGB2HSB(RGB rgb, HSB* outHSB)
+extern HSB MSRGB2HSB(RGB rgb)
 {
-  double rd = (double) rgb.red;
-  double gd = (double) rgb.green;
-  double bd = (double) rgb.blue;
-  double max = fmax(rd, fmax(gd, bd));
-  double min = fmin(rd, fmin(gd, bd));
-  double h = 0, s, b = max;
+    HSB hsb = {0.0f, 0.0f, 0.0f, 0.0f};
+    double rd = (double) rgb.red;
+    double gd = (double) rgb.green;
+    double bd = (double) rgb.blue;
+    double max = fmax(rd, fmax(gd, bd));
+    double min = fmin(rd, fmin(gd, bd));
+    double h = 0, s, b = max;
 
-  double d = max - min;
-  s = max == 0 ? 0 : d / max;
+    double d = max - min;
+    s = max == 0 ? 0 : d / max;
 
-  if (max == min) {
-    h = 0; // achromatic
-  } else {
-    if (max == rd) {
-      h = (gd - bd) / d + (gd < bd ? 6 : 0);
-    } else if (max == gd) {
-      h = (bd - rd) / d + 2;
-    } else if (max == bd) {
-      h = (rd - gd) / d + 4;
+    if (max == min) {
+        h = 0; // achromatic
+    } else {
+        if (max == rd) {
+            h = (gd - bd) / d + (gd < bd ? 6 : 0);
+        } else if (max == gd) {
+            h = (bd - rd) / d + 2;
+        } else if (max == bd) {
+            h = (rd - gd) / d + 4;
+        }
+        h /= 6;
     }
-    h /= 6;
-  }
 
-  outHSB->hue = h;
-  outHSB->saturation = s;
-  outHSB->brightness = b;
-  outHSB->alpha = rgb.alpha;
+    hsb.hue = h;
+    hsb.saturation = s;
+    hsb.brightness = b;
+    hsb.alpha = rgb.alpha;
+    return hsb;
 }
 
-extern void MSHSB2RGB(HSB hsb, RGB* outRGB)
+extern RGB MSHSB2RGB(HSB hsb)
 {
-  double r, g, b;
+    RGB rgb = {0.0f, 0.0f, 0.0f, 0.0f};
+    double r, g, b;
 
-  int i = hsb.hue * 6;
-  double f = hsb.hue * 6 - i;
-  double p = hsb.brightness * (1 - hsb.saturation);
-  double q = hsb.brightness * (1 - f * hsb.saturation);
-  double t = hsb.brightness * (1 - (1 - f) * hsb.saturation);
+    int i = hsb.hue * 6;
+    double f = hsb.hue * 6 - i;
+    double p = hsb.brightness * (1 - hsb.saturation);
+    double q = hsb.brightness * (1 - f * hsb.saturation);
+    double t = hsb.brightness * (1 - (1 - f) * hsb.saturation);
 
-  switch(i % 6){
-    case 0: r = hsb.brightness, g = t, b = p; break;
-    case 1: r = q, g = hsb.brightness, b = p; break;
-    case 2: r = p, g = hsb.brightness, b = t; break;
-    case 3: r = p, g = q, b = hsb.brightness; break;
-    case 4: r = t, g = p, b = hsb.brightness; break;
-    case 5: r = hsb.brightness, g = p, b = q; break;
-  }
+    switch(i % 6){
+        case 0: r = hsb.brightness, g = t, b = p; break;
+        case 1: r = q, g = hsb.brightness, b = p; break;
+        case 2: r = p, g = hsb.brightness, b = t; break;
+        case 3: r = p, g = q, b = hsb.brightness; break;
+        case 4: r = t, g = p, b = hsb.brightness; break;
+        case 5: r = hsb.brightness, g = p, b = q; break;
+    }
 
-  outRGB->red = r;
-  outRGB->green = g;
-  outRGB->blue = b;
-  outRGB->alpha = hsb.alpha;
+    rgb.red = r;
+    rgb.green = g;
+    rgb.blue = b;
+    rgb.alpha = hsb.alpha;
+    return rgb;
 }
 
 extern RGB MSRGBColorComponents(UIColor* color)
 {
-  RGB result;
-  CGColorSpaceModel colorSpaceModel = CGColorSpaceGetModel(CGColorGetColorSpace(color.CGColor));
-  if (colorSpaceModel != kCGColorSpaceModelRGB && colorSpaceModel != kCGColorSpaceModelMonochrome) {
+    RGB result;
+    CGColorSpaceModel colorSpaceModel = CGColorSpaceGetModel(CGColorGetColorSpace(color.CGColor));
+    if (colorSpaceModel != kCGColorSpaceModelRGB && colorSpaceModel != kCGColorSpaceModelMonochrome) {
+        return result;
+    }
+    const CGFloat *components = CGColorGetComponents(color.CGColor);
+    if (colorSpaceModel == kCGColorSpaceModelMonochrome) {
+        result.red = result.green = result.blue = components[0];
+        result.alpha = components[1];
+    } else {
+        result.red = components[0];
+        result.green = components[1];
+        result.blue = components[2];
+        result.alpha = components[3];
+    }
     return result;
-  }
-  const CGFloat *components = CGColorGetComponents(color.CGColor);
-  if (colorSpaceModel == kCGColorSpaceModelMonochrome) {
-    result.red = result.green = result.blue = components[0];
-    result.alpha = components[1];
-  } else {
-    result.red = components[0];
-    result.green = components[1];
-    result.blue = components[2];
-    result.alpha = components[3];
-  }
-  return result;
 }
 
 extern NSString* MSHexStringFromColor(UIColor* color)
 {
-  CGColorSpaceModel colorSpaceModel = CGColorSpaceGetModel(CGColorGetColorSpace(color.CGColor));
-  if (colorSpaceModel != kCGColorSpaceModelRGB && colorSpaceModel != kCGColorSpaceModelMonochrome) {
-    return nil;
-  }
-  const CGFloat *components = CGColorGetComponents(color.CGColor);
-  CGFloat red, green, blue, alpha;
-  if (colorSpaceModel == kCGColorSpaceModelMonochrome) {
-    red = green = blue = components[0];
-    alpha = components[1];
-  } else {
-    red = components[0];
-    green = components[1];
-    blue = components[2];
-    alpha = components[3];
-  }
-  NSString *hexColorString = [NSString stringWithFormat:@"#%02X%02X%02X%02X",
-                              (NSUInteger)(red * MSRGBColorComponentMaxValue),
-                              (NSUInteger)(green * MSRGBColorComponentMaxValue),
-                              (NSUInteger)(blue * MSRGBColorComponentMaxValue),
-                              (NSUInteger)(alpha * MSRGBColorComponentMaxValue)];
-  return hexColorString;
+    CGColorSpaceModel colorSpaceModel = CGColorSpaceGetModel(CGColorGetColorSpace(color.CGColor));
+    if (colorSpaceModel != kCGColorSpaceModelRGB && colorSpaceModel != kCGColorSpaceModelMonochrome) {
+        return nil;
+    }
+    const CGFloat *components = CGColorGetComponents(color.CGColor);
+    CGFloat red, green, blue, alpha;
+    if (colorSpaceModel == kCGColorSpaceModelMonochrome) {
+        red = green = blue = components[0];
+        alpha = components[1];
+    } else {
+        red = components[0];
+        green = components[1];
+        blue = components[2];
+        alpha = components[3];
+    }
+    NSString *hexColorString = [NSString stringWithFormat:@"#%02X%02X%02X%02X",
+                                (NSUInteger)(red * MSRGBColorComponentMaxValue),
+                                (NSUInteger)(green * MSRGBColorComponentMaxValue),
+                                (NSUInteger)(blue * MSRGBColorComponentMaxValue),
+                                (NSUInteger)(alpha * MSRGBColorComponentMaxValue)];
+    return hexColorString;
 }
 
 extern UIColor* MSColorFromHexString(NSString* hexColor)
 {
-  if (![hexColor hasPrefix:@"#"]) {
-    return nil;
-  }
+    if (![hexColor hasPrefix:@"#"]) {
+        return nil;
+    }
 
-  NSScanner *scanner = [NSScanner scannerWithString:hexColor];
-  [scanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@"#"]];
+    NSScanner *scanner = [NSScanner scannerWithString:hexColor];
+    [scanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@"#"]];
 
-  unsigned hexNum;
-  if (![scanner scanHexInt: &hexNum]) return nil;
+    unsigned hexNum;
+    if (![scanner scanHexInt: &hexNum]) return nil;
 
-  int r = (hexNum >> 24) & 0xFF;
-  int g = (hexNum >> 16) & 0xFF;
-  int b = (hexNum >> 8) & 0xFF;
-  int a = (hexNum) & 0xFF;
-
-  return [UIColor colorWithRed:r / MSRGBColorComponentMaxValue
-                         green:g / MSRGBColorComponentMaxValue
-                          blue:b / MSRGBColorComponentMaxValue
-                         alpha:a / MSRGBColorComponentMaxValue];
+    int r = (hexNum >> 24) & 0xFF;
+    int g = (hexNum >> 16) & 0xFF;
+    int b = (hexNum >> 8) & 0xFF;
+    int a = (hexNum) & 0xFF;
+    
+    return [UIColor colorWithRed:r / MSRGBColorComponentMaxValue
+                           green:g / MSRGBColorComponentMaxValue
+                            blue:b / MSRGBColorComponentMaxValue
+                           alpha:a / MSRGBColorComponentMaxValue];
 }
