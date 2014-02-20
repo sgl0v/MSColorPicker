@@ -179,7 +179,7 @@
                 if (saturation > 0.99) a = (1.0 - saturation) * 100;
                 else a = 1.0;
                 HSB hsb = {hue, saturation, 1.0f, a};
-                MSHSB2RGB(hsb, &rgb);
+                rgb = MSHSB2RGB(hsb);
             }
 
             int i = 4 * (x + y * size.width);
