@@ -1,8 +1,9 @@
 //
 // MSColorPicker.h
 //
-// The MIT License (MIT)
+// Created by Maksym Shcheglov on 2015-03-06.
 //
+// The MIT License (MIT)
 // Copyright (c) 2015 Maksym Shcheglov
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy

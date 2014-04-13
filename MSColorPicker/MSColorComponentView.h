@@ -1,8 +1,9 @@
 //
 // MSColorComponentView.h
 //
-// The MIT License (MIT)
+// Created by Maksym Shcheglov on 2014-02-12.
 //
+// The MIT License (MIT)
 // Copyright (c) 2015 Maksym Shcheglov
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
