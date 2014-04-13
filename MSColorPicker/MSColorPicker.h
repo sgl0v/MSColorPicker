@@ -25,3 +25,4 @@
 // THE SOFTWARE.
 
 #import <MSColorPicker/MSColorSelectionViewController.h>
+#import <MSColorPicker/MSColorUtils.h>

@@ -100,7 +100,7 @@ static NSUInteger const MSRGBColorComponentsSize = 3;
     [self addSubview:_colorSample];
 
     NSMutableArray *tmp = [NSMutableArray array];
-    NSArray *titles = @[NSLocalizedString(@"Red",), NSLocalizedString(@"Green",), NSLocalizedString(@"Blue",)];
+    NSArray *titles = @[NSLocalizedString(@"Red", ), NSLocalizedString(@"Green", ), NSLocalizedString(@"Blue", )];
     NSArray *maxValues = @[@(MSRGBColorComponentMaxValue), @(MSRGBColorComponentMaxValue), @(MSRGBColorComponentMaxValue)];
 
     for (NSUInteger i = 0; i < MSRGBColorComponentsSize; ++i) {

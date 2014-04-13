@@ -39,8 +39,8 @@
 @property (nonatomic, weak) id<MSColorViewDelegate> delegate;
 
 //! @abstract The current color's value setter and getter.
-- (void)setColor:(UIColor*)color;
-- (UIColor*)color;
+- (void)setColor:(UIColor *)color;
+- (UIColor *)color;
 
 @end
 

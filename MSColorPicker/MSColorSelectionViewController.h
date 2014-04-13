@@ -42,15 +42,15 @@
  *  @param colorViewCntroller The color view.
  *  @param color The new color value.
  */
-- (void)colorViewController:(MSColorSelectionViewController*)colorViewCntroller didChangeColor:(UIColor *)color;
+- (void)colorViewController:(MSColorSelectionViewController *)colorViewCntroller didChangeColor:(UIColor *)color;
 
 @end
 
 @interface MSColorSelectionViewController : UIViewController
 
 //! @abstract The controller's delegate. Controller notifies a delegate on color change.
-@property(nonatomic, weak) id<MSColorSelectionViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<MSColorSelectionViewControllerDelegate> delegate;
 //! @abstract The current color value.
-@property(nonatomic, strong) UIColor* color;
+@property (nonatomic, strong) UIColor *color;
 
 @end

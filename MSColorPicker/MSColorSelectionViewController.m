@@ -31,7 +31,7 @@
 
 @interface MSColorSelectionViewController () <MSColorViewDelegate>
 
-@property (nonatomic, strong) MSColorSelectionView* colorSelectionView;
+@property (nonatomic, strong) MSColorSelectionView *colorSelectionView;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *segmentedControl;
 
 @end
@@ -58,12 +58,12 @@
     [self.colorSelectionView setSelectedIndex:self.segmentedControl.selectedSegmentIndex animated:YES];
 }
 
-- (void) setColor:(UIColor*)color
+- (void)setColor:(UIColor *)color
 {
     self.colorSelectionView.color = color;
 }
 
-- (UIColor*) color
+- (UIColor *)color
 {
     return self.colorSelectionView.color;
 }

@@ -29,8 +29,8 @@
 #import "MSColorView.h"
 
 typedef NS_ENUM (NSUInteger, MSSelectedColorView) {
-	MSSelectedColorViewRGB,
-	MSSelectedColorViewHSB
+    MSSelectedColorViewRGB,
+    MSSelectedColorViewHSB
 };
 
 /**
