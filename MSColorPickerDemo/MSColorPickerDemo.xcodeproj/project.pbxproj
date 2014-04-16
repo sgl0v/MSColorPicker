@@ -32,6 +32,8 @@
 		5E642DE0191AF59F0054742A /* MSRGBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DDD191AF59F0054742A /* MSRGBView.m */; };
 		5E642DE4191C26A20054742A /* MSHSBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DE3191C26A20054742A /* MSHSBView.m */; };
 		5E642DE5191C26A20054742A /* MSHSBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DE3191C26A20054742A /* MSHSBView.m */; };
+		5E642DE8191C2B490054742A /* MSKeyboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DE7191C2B480054742A /* MSKeyboardManager.m */; };
+		5E642DE9191C2B490054742A /* MSKeyboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DE7191C2B480054742A /* MSKeyboardManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,8 @@
 		5E642DE1191AF61E0054742A /* MSColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSColorView.h; path = ../../MSColorPicker/MSColorView.h; sourceTree = "<group>"; };
 		5E642DE2191C26A20054742A /* MSHSBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSHSBView.h; path = ../../MSColorPicker/MSHSBView.h; sourceTree = "<group>"; };
 		5E642DE3191C26A20054742A /* MSHSBView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSHSBView.m; path = ../../MSColorPicker/MSHSBView.m; sourceTree = "<group>"; };
+		5E642DE6191C2B480054742A /* MSKeyboardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSKeyboardManager.h; sourceTree = "<group>"; };
+		5E642DE7191C2B480054742A /* MSKeyboardManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSKeyboardManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +183,8 @@
 			children = (
 				5E642DA9191AE3BA0054742A /* MSViewController.h */,
 				5E642DAA191AE3BA0054742A /* MSViewController.m */,
+				5E642DE6191C2B480054742A /* MSKeyboardManager.h */,
+				5E642DE7191C2B480054742A /* MSKeyboardManager.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -318,6 +324,7 @@
 			files = (
 				5E642DD6191AF15D0054742A /* MSColorComponentView.m in Sources */,
 				5E642DA5191AE3BA0054742A /* MSAppDelegate.m in Sources */,
+				5E642DE8191C2B490054742A /* MSKeyboardManager.m in Sources */,
 				5E642DDB191AF2C80054742A /* MSColorUtils.m in Sources */,
 				5E642DD2191AEEC80054742A /* MSColorWheelView.m in Sources */,
 				5E642DDF191AF59F0054742A /* MSRGBView.m in Sources */,
@@ -334,6 +341,7 @@
 			files = (
 				5E642DE0191AF59F0054742A /* MSRGBView.m in Sources */,
 				5E642DC0191AE3BA0054742A /* MSColorPickerDemoTests.m in Sources */,
+				5E642DE9191C2B490054742A /* MSKeyboardManager.m in Sources */,
 				5E642DD3191AEEC80054742A /* MSColorWheelView.m in Sources */,
 				5E642DDC191AF2C80054742A /* MSColorUtils.m in Sources */,
 				5E642DD7191AF15D0054742A /* MSColorComponentView.m in Sources */,
