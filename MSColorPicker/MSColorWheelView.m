@@ -169,20 +169,23 @@
 
 - (void)colorWheelBitmap:(out UInt8 *)bitmap withSize:(CGSize)size
 {
-    for (int y = 0; y < size.width; y++) {
-        for (int x = 0; x < size.height; x++) {
+    for (NSUInteger y = 0; y < size.width; y++) {
+        for (NSUInteger x = 0; x < size.height; x++) {
             float hue, saturation, a = 0.0f;
             [self colorWheelValueWithPosition:CGPointMake(x, y) hue:&hue saturation:&saturation];
             RGB rgb = {0.0f, 0.0f, 0.0f, 0.0f};
             if (saturation < 1.0) {
                 // Antialias the edge of the circle.
-                if (saturation > 0.99) a = (1.0 - saturation) * 100;
-                else a = 1.0;
+                if (saturation > 0.99) {
+                    a = (1.0 - saturation) * 100;
+                } else {
+                    a = 1.0;
+                }
                 HSB hsb = {hue, saturation, 1.0f, a};
                 rgb = MSHSB2RGB(hsb);
             }
 
-            int i = 4 * (x + y * size.width);
+            NSInteger i = 4 * (x + y * size.width);
             bitmap[i] = rgb.red * 0xff;
             bitmap[i+1] = rgb.green * 0xff;
             bitmap[i+2] = rgb.blue * 0xff;
@@ -193,16 +196,18 @@
 
 - (void)colorWheelValueWithPosition:(CGPoint)position hue:(out CGFloat*)hue saturation:(out CGFloat*)saturation
 {
-    int c = CGRectGetWidth(self.bounds) / 2;
-    float dx = (float)(position.x - c) / c;
-    float dy = (float)(position.y - c) / c;
-    float d = sqrtf((float)(dx*dx + dy*dy));
+    NSInteger c = CGRectGetWidth(self.bounds) / 2;
+    CGFloat dx = (float)(position.x - c) / c;
+    CGFloat dy = (float)(position.y - c) / c;
+    CGFloat d = sqrtf((float)(dx*dx + dy*dy));
     *saturation = d;
     if (d == 0) {
         *hue = 0;
     } else {
         *hue = acosf((float)dx / d) / M_PI / 2.0f;
-        if (dy < 0) *hue = 1.0 - *hue;
+        if (dy < 0) {
+            *hue = 1.0 - *hue;
+        }
     }
 }
 

@@ -122,7 +122,7 @@ static NSUInteger const MSRGBAColorComponentsSize = 4;
     NSArray* titles = @[@"Red", @"Green", @"Blue", @"Alpha"];
     NSArray* maxValues = @[@(MSRGBColorComponentMaxValue), @(MSRGBColorComponentMaxValue), @(MSRGBColorComponentMaxValue),
                            @(MSAlphaComponentMaxValue)];
-    for(int i = 0; i < MSRGBAColorComponentsSize; ++i) {
+    for(NSUInteger i = 0; i < MSRGBAColorComponentsSize; ++i) {
         UIControl* colorComponentView = [self _colorComponentViewWithTitle:titles[i] tag:i maxValue:[maxValues[i] floatValue]];
         [_contentView addSubview:colorComponentView];
         [colorComponentView addTarget:self action:@selector(_colorComponentDidChangeValue:) forControlEvents:UIControlEventValueChanged];
