@@ -32,6 +32,6 @@
 /**
  @abstract A view to edit RGBA color components.
  */
-@interface MSRGBColorView : UIView <MSColorView>
+@interface MSRGBView : UIView <MSColorView>
 
 @end

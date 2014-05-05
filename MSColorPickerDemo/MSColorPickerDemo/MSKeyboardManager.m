@@ -80,7 +80,7 @@ static CGFloat const MSDistanceBetweenKeyboardAndTextfield = 10.0f;
 
 @implementation MSKeyboardManager
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     if (self) {

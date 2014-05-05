@@ -37,7 +37,7 @@ static CGFloat const MSViewSpacing = 20.0f;
 static CGFloat const MSContentViewMargin = 10.0f;
 static NSUInteger const MSRGBAColorComponentsSize = 4;
 
-@interface MSRGBColorView ()
+@interface MSRGBView ()
 {
 
 @private
@@ -52,7 +52,7 @@ static NSUInteger const MSRGBAColorComponentsSize = 4;
 
 @end
 
-@implementation MSRGBColorView
+@implementation MSRGBView
 
 @synthesize delegate = _delegate, scrollView = _scrollView;
 
