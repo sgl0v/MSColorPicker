@@ -27,8 +27,8 @@
 #import "MSSliderView.h"
 
 static const CGFloat MSSliderViewHeight = 28.0f;
-static const CGFloat MSSliderViewMargin = MSSliderViewHeight / 2.0f;
-static const CGFloat MSSliderViewHeightTrackHeight = 3.0f;
+static const CGFloat MSSliderViewThumbDimension = 28.0f;
+static const CGFloat MSSliderViewTrackHeight = 3.0f;
 
 @interface MSSliderView () {
 
@@ -58,13 +58,13 @@ static const CGFloat MSSliderViewHeightTrackHeight = 3.0f;
         self.layer.delegate = self;
 
         _trackLayer = [CAGradientLayer layer];
-        _trackLayer.cornerRadius = MSSliderViewHeightTrackHeight / 2.0f;
+        _trackLayer.cornerRadius = MSSliderViewTrackHeight / 2.0f;
         _trackLayer.startPoint = CGPointMake(0.0f, 0.5f);
         _trackLayer.endPoint = CGPointMake(1.0f, 0.5f);
         [self.layer addSublayer:_trackLayer];
 
         _thumbLayer = [CALayer layer];
-        _thumbLayer.cornerRadius = MSSliderViewHeight / 2;
+        _thumbLayer.cornerRadius = MSSliderViewThumbDimension / 2;
         _thumbLayer.backgroundColor = [UIColor whiteColor].CGColor;
         _thumbLayer.shadowColor = [UIColor blackColor].CGColor;
         _thumbLayer.shadowOffset = CGSizeZero;
@@ -92,19 +92,13 @@ static const CGFloat MSSliderViewHeightTrackHeight = 3.0f;
     } else {
         _value = value;
     }
-    CGFloat width = CGRectGetWidth(self.bounds) - 2 * MSSliderViewMargin;
-    CGFloat percentage = (_value - _minimumValue) / (_maximumValue - _minimumValue);
-    [CATransaction begin];
-    [CATransaction setValue:(id)kCFBooleanTrue
-                     forKey:kCATransactionDisableActions];
-    _thumbLayer.position = CGPointMake(width * percentage + MSSliderViewMargin, MSSliderViewHeight / 2);
-    [CATransaction commit];
+    [self ms_updateThumbPositionWithValue:_value];
 }
 
 - (void)setColors:(NSArray*)colors
 {
     _trackLayer.colors = colors;
-    [self _updateLocations];
+    [self ms_updateLocations];
 }
 
 #pragma mark - UIControl touch tracking events
@@ -113,7 +107,7 @@ static const CGFloat MSSliderViewHeightTrackHeight = 3.0f;
 {
     CGPoint touchPoint = [touch locationInView:self];
     if (CGRectContainsPoint(CGRectInset(_thumbLayer.frame, -10.0, -10.0), touchPoint)) {
-        [self _setValueWithPosition:touchPoint.x];
+        [self ms_setValueWithPosition:touchPoint.x];
         return YES;
     }
     return NO;
@@ -122,14 +116,14 @@ static const CGFloat MSSliderViewHeightTrackHeight = 3.0f;
 - (BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
     CGPoint touchPoint = [touch locationInView:self];
-    [self _setValueWithPosition:touchPoint.x];
+    [self ms_setValueWithPosition:touchPoint.x];
     return YES;
 }
 
 - (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
     CGPoint touchPoint = [touch locationInView:self];
-    [self _setValueWithPosition:touchPoint.x];
+    [self ms_setValueWithPosition:touchPoint.x];
 }
 
 - (void)layoutSublayersOfLayer:(CALayer *)layer
@@ -137,21 +131,18 @@ static const CGFloat MSSliderViewHeightTrackHeight = 3.0f;
     if (layer == self.layer) {
         CGFloat height = MSSliderViewHeight;
         CGFloat width = CGRectGetWidth(self.bounds);
-        _trackLayer.bounds = CGRectMake(0, 0, width , MSSliderViewHeightTrackHeight);
+        _trackLayer.bounds = CGRectMake(0, 0, width , MSSliderViewTrackHeight);
         _trackLayer.position = CGPointMake(CGRectGetWidth(self.bounds) / 2, height / 2);
-        CGFloat dimension = MSSliderViewHeight;
-        CGFloat percentage = (_value - _minimumValue) / (_maximumValue - _minimumValue);
-        _thumbLayer.bounds = CGRectMake(0, 0, dimension, dimension);
-        _thumbLayer.position = CGPointMake((width - 2 * MSSliderViewMargin)  * percentage + MSSliderViewMargin, MSSliderViewHeight / 2);
+        _thumbLayer.bounds = CGRectMake(0, 0, MSSliderViewThumbDimension, MSSliderViewThumbDimension);
+        [self ms_updateThumbPositionWithValue:_value];
     }
 }
 
 #pragma mark - Private methods
 
-- (void)_setValueWithPosition:(CGFloat)position
+- (void)ms_setValueWithPosition:(CGFloat)position
 {
-    CGFloat width = CGRectGetWidth(self.bounds) - 2 * MSSliderViewMargin;
-    position -= MSSliderViewMargin;
+    CGFloat width = CGRectGetWidth(self.bounds);
     if (position < 0) {
         position = 0;
     } else if (position > width) {
@@ -163,7 +154,7 @@ static const CGFloat MSSliderViewHeightTrackHeight = 3.0f;
     [self sendActionsForControlEvents:UIControlEventValueChanged];
 }
 
-- (void)_updateLocations
+- (void)ms_updateLocations
 {
     NSUInteger size = [_trackLayer.colors count];
     if (size == [_trackLayer.locations count]) {
@@ -177,6 +168,21 @@ static const CGFloat MSSliderViewHeightTrackHeight = 3.0f;
     }
     [locations addObject:@(1.0f)];
     _trackLayer.locations = [locations copy];
+}
+
+- (void)ms_updateThumbPositionWithValue:(CGFloat)value
+{
+    CGFloat width = CGRectGetWidth(self.bounds);
+    if (width == 0) {
+        return;
+    }
+    CGFloat percentage = (_value - _minimumValue) / (_maximumValue - _minimumValue);
+    CGFloat position = width * percentage;
+    [CATransaction begin];
+    [CATransaction setValue:(id)kCFBooleanTrue
+                     forKey:kCATransactionDisableActions];
+    _thumbLayer.position = CGPointMake(position - ((position - width / 2) / (width / 2)) * MSSliderViewThumbDimension / 2, MSSliderViewHeight / 2);
+    [CATransaction commit];
 }
 
 @end

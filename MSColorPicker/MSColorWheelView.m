@@ -171,7 +171,7 @@
 {
     for (NSUInteger y = 0; y < size.width; y++) {
         for (NSUInteger x = 0; x < size.height; x++) {
-            float hue, saturation, a = 0.0f;
+            CGFloat hue, saturation, a = 0.0f;
             [self colorWheelValueWithPosition:CGPointMake(x, y) hue:&hue saturation:&saturation];
             RGB rgb = {0.0f, 0.0f, 0.0f, 0.0f};
             if (saturation < 1.0) {

@@ -127,7 +127,7 @@ extern NSString* MSHexStringFromColor(UIColor* color)
         blue = components[2];
         alpha = components[3];
     }
-    NSString *hexColorString = [NSString stringWithFormat:@"#%02X%02X%02X%02X",
+    NSString *hexColorString = [NSString stringWithFormat:@"#%02lX%02lX%02lX%02lX",
                                 (NSUInteger)(red * MSRGBColorComponentMaxValue),
                                 (NSUInteger)(green * MSRGBColorComponentMaxValue),
                                 (NSUInteger)(blue * MSRGBColorComponentMaxValue),
