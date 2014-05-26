@@ -57,7 +57,7 @@ static CGFloat const MSColorComponentTextFieldWidth = 50.0f;
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self _baseInit];
+        [self ms_baseInit];
     }
     return self;
 }
@@ -66,7 +66,7 @@ static CGFloat const MSColorComponentTextFieldWidth = 50.0f;
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        [self _baseInit];
+        [self ms_baseInit];
     }
     return self;
 }
@@ -122,7 +122,7 @@ static CGFloat const MSColorComponentTextFieldWidth = 50.0f;
 - (void)updateConstraints
 {
     if (_didSetupConstraints == NO){
-        [self _setupConstraints];
+        [self ms_setupConstraints];
         _didSetupConstraints = YES;
     }
     [super updateConstraints];
@@ -157,7 +157,7 @@ static CGFloat const MSColorComponentTextFieldWidth = 50.0f;
 
 #pragma mark - Private methods
 
-- (void)_baseInit
+- (void)ms_baseInit
 {
     _format = @"%.f";
 
@@ -178,17 +178,17 @@ static CGFloat const MSColorComponentTextFieldWidth = 50.0f;
     [self addSubview:_textField];
 
     [self setValue:0.0f];
-    [_slider addTarget:self action:@selector(_didChangeSliderValue:) forControlEvents:UIControlEventValueChanged];
+    [_slider addTarget:self action:@selector(ms_didChangeSliderValue:) forControlEvents:UIControlEventValueChanged];
     [_textField setDelegate:self];
 }
 
-- (void)_didChangeSliderValue:(MSSliderView*)sender
+- (void)ms_didChangeSliderValue:(MSSliderView*)sender
 {
     [self setValue:sender.value];
     [self sendActionsForControlEvents:UIControlEventValueChanged];
 }
 
-- (void)_setupConstraints
+- (void)ms_setupConstraints
 {
     NSDictionary *views = @{ @"label" : _label, @"slider" : _slider, @"textField" : _textField };
     NSDictionary* metrics = @{ @"spacing" : @(MSColorComponentViewSpacing),

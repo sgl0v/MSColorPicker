@@ -104,7 +104,7 @@
     CGFloat dist = sqrtf((radius - point.x) * (radius - point.x) + (radius - point.y) * (radius - point.y));
 
     if (dist <= radius) {
-        [self colorWheelValueWithPosition:point hue:&_hue saturation:&_saturation];
+        [self ms_colorWheelValueWithPosition:point hue:&_hue saturation:&_saturation];
         [self setSelectedPoint:point];
         [self sendActionsForControlEvents:UIControlEventValueChanged];
     }
@@ -124,14 +124,14 @@
 - (void)setHue:(CGFloat)hue
 {
     _hue = hue;
-    [self setSelectedPoint:[self _selectedPoint]];
+    [self setSelectedPoint:[self ms_selectedPoint]];
     [self setNeedsDisplay];
 }
 
 - (void)setSaturation:(CGFloat)saturation
 {
     _saturation = saturation;
-    [self setSelectedPoint:[self _selectedPoint]];
+    [self setSelectedPoint:[self ms_selectedPoint]];
     [self setNeedsDisplay];
 }
 
@@ -142,8 +142,8 @@
     CGFloat dimension = MIN(CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
     CFMutableDataRef bitmapData = CFDataCreateMutable(NULL, 0);
     CFDataSetLength(bitmapData, dimension * dimension * 4);
-    [self colorWheelBitmap:CFDataGetMutableBytePtr(bitmapData) withSize:CGSizeMake(dimension, dimension)];
-    id image = [self imageWithRGBAData:bitmapData width:dimension height:dimension];
+    [self ms_colorWheelBitmap:CFDataGetMutableBytePtr(bitmapData) withSize:CGSizeMake(dimension, dimension)];
+    id image = [self ms_imageWithRGBAData:bitmapData width:dimension height:dimension];
     CFRelease(bitmapData);
     self.layer.contents = image;
 }
@@ -151,14 +151,14 @@
 - (void)layoutSublayersOfLayer:(CALayer *)layer
 {
     if (layer == self.layer) {
-        [self setSelectedPoint:[self _selectedPoint]];
+        [self setSelectedPoint:[self ms_selectedPoint]];
         [self.layer setNeedsDisplay];
     }
 }
 
 #pragma mark - Private methods
 
-- (CGPoint)_selectedPoint
+- (CGPoint)ms_selectedPoint
 {
     CGFloat dimension = MIN(CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
     CGFloat radius = _saturation * dimension / 2;
@@ -167,12 +167,12 @@
     return CGPointMake(x, y);
 }
 
-- (void)colorWheelBitmap:(out UInt8 *)bitmap withSize:(CGSize)size
+- (void)ms_colorWheelBitmap:(out UInt8 *)bitmap withSize:(CGSize)size
 {
     for (NSUInteger y = 0; y < size.width; y++) {
         for (NSUInteger x = 0; x < size.height; x++) {
             CGFloat hue, saturation, a = 0.0f;
-            [self colorWheelValueWithPosition:CGPointMake(x, y) hue:&hue saturation:&saturation];
+            [self ms_colorWheelValueWithPosition:CGPointMake(x, y) hue:&hue saturation:&saturation];
             RGB rgb = {0.0f, 0.0f, 0.0f, 0.0f};
             if (saturation < 1.0) {
                 // Antialias the edge of the circle.
@@ -194,7 +194,7 @@
     }
 }
 
-- (void)colorWheelValueWithPosition:(CGPoint)position hue:(out CGFloat*)hue saturation:(out CGFloat*)saturation
+- (void)ms_colorWheelValueWithPosition:(CGPoint)position hue:(out CGFloat*)hue saturation:(out CGFloat*)saturation
 {
     NSInteger c = CGRectGetWidth(self.bounds) / 2;
     CGFloat dx = (float)(position.x - c) / c;
@@ -211,7 +211,7 @@
     }
 }
 
-- (id)imageWithRGBAData:(CFDataRef)data width:(NSUInteger)width  height:(NSUInteger)height
+- (id)ms_imageWithRGBAData:(CFDataRef)data width:(NSUInteger)width  height:(NSUInteger)height
 {
     CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData(data);
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();

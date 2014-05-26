@@ -72,7 +72,7 @@ static CGFloat const MSColorWheelHeight = 200.0f;
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self _baseInit];
+        [self ms_baseInit];
     }
     return self;
 }
@@ -81,7 +81,7 @@ static CGFloat const MSColorWheelHeight = 200.0f;
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        [self _baseInit];
+        [self ms_baseInit];
     }
     return self;
 }
@@ -89,7 +89,7 @@ static CGFloat const MSColorWheelHeight = 200.0f;
 - (void)updateConstraints
 {
     if (_didSetupConstraints == NO){
-        [self _setupConstraints];
+        [self ms_setupConstraints];
         _didSetupConstraints = YES;
     }
     [super updateConstraints];
@@ -98,7 +98,7 @@ static CGFloat const MSColorWheelHeight = 200.0f;
 - (void)reloadData
 {
     [_colorSample setBackgroundColor:self.value];
-    [self _reloadViewsWithColorComponents:_colorComponents];
+    [self ms_reloadViewsWithColorComponents:_colorComponents];
 }
 
 - (void)setValue:(UIColor *)value
@@ -146,7 +146,7 @@ static CGFloat const MSColorWheelHeight = 200.0f;
 
 #pragma mark - Private methods
 
-- (void)_baseInit
+- (void)ms_baseInit
 {
     _scrollView = [[UIScrollView alloc] init];
     _scrollView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -210,14 +210,14 @@ static CGFloat const MSColorWheelHeight = 200.0f;
     _alphaView.maximumValue = MSAlphaComponentMaxValue;
     [_contentView addSubview:_alphaView];
 
-    [_colorWheel addTarget:self action:@selector(_colorDidChangeValue:) forControlEvents:UIControlEventValueChanged];
-    [_brightnessView addTarget:self action:@selector(_brightnessDidChangeValue:) forControlEvents:UIControlEventValueChanged];
-    [_alphaView addTarget:self action:@selector(_alphaDidChangeValue:) forControlEvents:UIControlEventValueChanged];
+    [_colorWheel addTarget:self action:@selector(ms_colorDidChangeValue:) forControlEvents:UIControlEventValueChanged];
+    [_brightnessView addTarget:self action:@selector(ms_brightnessDidChangeValue:) forControlEvents:UIControlEventValueChanged];
+    [_alphaView addTarget:self action:@selector(ms_alphaDidChangeValue:) forControlEvents:UIControlEventValueChanged];
     _hueTextField.delegate = self;
     _saturationTextField.delegate = self;
 }
 
-- (void)_setupConstraints
+- (void)ms_setupConstraints
 {
     NSDictionary *views = NSDictionaryOfVariableBindings(_scrollView);
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_scrollView]|" options:0 metrics:nil views:views]];
@@ -274,15 +274,15 @@ static CGFloat const MSColorWheelHeight = 200.0f;
     [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_brightnessView]-spacing-[_alphaView]-|" options:0 metrics:metrics views:views]];
 }
 
-- (void)_reloadViewsWithColorComponents:(HSB)colorComponents
+- (void)ms_reloadViewsWithColorComponents:(HSB)colorComponents
 {
     _colorWheel.hue = colorComponents.hue;
     _colorWheel.saturation = colorComponents.saturation;
-    [self _updateSlidersWithColorComponents:colorComponents];
-    [self _updateTextFieldsWithColorComponents:colorComponents];
+    [self ms_updateSlidersWithColorComponents:colorComponents];
+    [self ms_updateTextFieldsWithColorComponents:colorComponents];
 }
 
-- (void)_updateSlidersWithColorComponents:(HSB)colorComponents
+- (void)ms_updateSlidersWithColorComponents:(HSB)colorComponents
 {
     [_alphaView setValue:colorComponents.alpha * MSAlphaComponentMaxValue];
     [_brightnessView setValue:colorComponents.brightness];
@@ -290,13 +290,13 @@ static CGFloat const MSColorWheelHeight = 200.0f;
     [_brightnessView.slider setColors:@[(id)[UIColor blackColor].CGColor, (id)tmp.CGColor]];
 }
 
-- (void)_updateTextFieldsWithColorComponents:(HSB)colorComponents
+- (void)ms_updateTextFieldsWithColorComponents:(HSB)colorComponents
 {
     _hueTextField.text = [NSString stringWithFormat:@"%.2f", colorComponents.hue];
     _saturationTextField.text = [NSString stringWithFormat:@"%.2f", colorComponents.saturation];
 }
 
-- (void)_colorDidChangeValue:(MSColorWheelView*)sender
+- (void)ms_colorDidChangeValue:(MSColorWheelView*)sender
 {
     _colorComponents.hue = sender.hue;
     _colorComponents.saturation = sender.saturation;
@@ -304,14 +304,14 @@ static CGFloat const MSColorWheelHeight = 200.0f;
     [self reloadData];
 }
 
-- (void)_brightnessDidChangeValue:(MSColorComponentView*)sender
+- (void)ms_brightnessDidChangeValue:(MSColorComponentView*)sender
 {
     _colorComponents.brightness = sender.value;
     [self.delegate colorView:self didChangeValue:[self value]];
     [self reloadData];
 }
 
-- (void)_alphaDidChangeValue:(MSColorComponentView*)sender
+- (void)ms_alphaDidChangeValue:(MSColorComponentView*)sender
 {
     _colorComponents.alpha = sender.value / MSAlphaComponentMaxValue;
     [self.delegate colorView:self didChangeValue:[self value]];

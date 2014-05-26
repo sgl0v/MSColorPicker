@@ -60,7 +60,7 @@ static NSUInteger const MSRGBAColorComponentsSize = 4;
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self _baseInit];
+        [self ms_baseInit];
     }
     return self;
 }
@@ -69,7 +69,7 @@ static NSUInteger const MSRGBAColorComponentsSize = 4;
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        [self _baseInit];
+        [self ms_baseInit];
     }
     return self;
 }
@@ -77,7 +77,7 @@ static NSUInteger const MSRGBAColorComponentsSize = 4;
 - (void)updateConstraints
 {
     if (_didSetupConstraints == NO){
-        [self _setupConstraints];
+        [self ms_setupConstraints];
         _didSetupConstraints = YES;
     }
     [super updateConstraints];
@@ -86,7 +86,7 @@ static NSUInteger const MSRGBAColorComponentsSize = 4;
 - (void)reloadData
 {
     [_colorSample setBackgroundColor:self.value];
-    [self _reloadColorComponentViews:_colorComponents];
+    [self ms_reloadColorComponentViews:_colorComponents];
 }
 
 - (void)setValue:(UIColor *)value
@@ -102,7 +102,7 @@ static NSUInteger const MSRGBAColorComponentsSize = 4;
 
 #pragma mark - Private methods
 
-- (void)_baseInit
+- (void)ms_baseInit
 {
     _scrollView = [[UIScrollView alloc] init];
     _scrollView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -123,22 +123,22 @@ static NSUInteger const MSRGBAColorComponentsSize = 4;
     NSArray* maxValues = @[@(MSRGBColorComponentMaxValue), @(MSRGBColorComponentMaxValue), @(MSRGBColorComponentMaxValue),
                            @(MSAlphaComponentMaxValue)];
     for(NSUInteger i = 0; i < MSRGBAColorComponentsSize; ++i) {
-        UIControl* colorComponentView = [self _colorComponentViewWithTitle:titles[i] tag:i maxValue:[maxValues[i] floatValue]];
+        UIControl* colorComponentView = [self ms_colorComponentViewWithTitle:titles[i] tag:i maxValue:[maxValues[i] floatValue]];
         [_contentView addSubview:colorComponentView];
-        [colorComponentView addTarget:self action:@selector(_colorComponentDidChangeValue:) forControlEvents:UIControlEventValueChanged];
+        [colorComponentView addTarget:self action:@selector(ms_colorComponentDidChangeValue:) forControlEvents:UIControlEventValueChanged];
         [tmp addObject:colorComponentView];
     }
     _colorComponentViews = [tmp copy];
 }
 
-- (IBAction)_colorComponentDidChangeValue:(MSColorComponentView*)sender
+- (IBAction)ms_colorComponentDidChangeValue:(MSColorComponentView*)sender
 {
-    [self _setColorComponentValue:sender.value / sender.maximumValue atIndex:sender.tag];
+    [self ms_setColorComponentValue:sender.value / sender.maximumValue atIndex:sender.tag];
     [self.delegate colorView:self didChangeValue:[self value]];
     [self reloadData];
 }
 
-- (void)_setColorComponentValue:(CGFloat)value atIndex:(NSUInteger)index
+- (void)ms_setColorComponentValue:(CGFloat)value atIndex:(NSUInteger)index
 {
     switch (index) {
         case 0:
@@ -156,7 +156,7 @@ static NSUInteger const MSRGBAColorComponentsSize = 4;
     }
 }
 
-- (UIControl*)_colorComponentViewWithTitle:(NSString*)title tag:(NSUInteger)tag maxValue:(CGFloat)maxValue
+- (UIControl*)ms_colorComponentViewWithTitle:(NSString*)title tag:(NSUInteger)tag maxValue:(CGFloat)maxValue
 {
     MSColorComponentView* colorComponentView = [[MSColorComponentView alloc] init];
     colorComponentView.title = title;
@@ -166,7 +166,7 @@ static NSUInteger const MSRGBAColorComponentsSize = 4;
     return colorComponentView;
 }
 
-- (void)_setupConstraints
+- (void)ms_setupConstraints
 {
     __block NSDictionary *views = NSDictionaryOfVariableBindings(_scrollView);
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_scrollView]|" options:0 metrics:nil views:views]];
@@ -216,19 +216,19 @@ static NSUInteger const MSRGBAColorComponentsSize = 4;
     return @[@(rgb.red), @(rgb.green), @(rgb.blue), @(rgb.alpha)];
 }
 
-- (void)_reloadColorComponentViews:(RGB)colorComponents
+- (void)ms_reloadColorComponentViews:(RGB)colorComponents
 {
     NSArray* components = [self _colorComponentsWithRGB:colorComponents];
     [_colorComponentViews enumerateObjectsUsingBlock:^(MSColorComponentView* colorComponentView, NSUInteger idx, BOOL *stop) {
         MSSliderView* slider = colorComponentView.slider;
         if (idx < MSRGBAColorComponentsSize - 1) {
-            [self _updateSlider:slider withColorComponents:components];
+            [self ms_updateSlider:slider withColorComponents:components];
         }
         colorComponentView.value = [components[idx] floatValue] * colorComponentView.maximumValue;
     }];
 }
 
-- (void)_updateSlider:(MSSliderView*)slider withColorComponents:(NSArray*)colorComponents
+- (void)ms_updateSlider:(MSSliderView*)slider withColorComponents:(NSArray*)colorComponents
 {
     NSUInteger colorIndex = slider.tag;
     CGFloat currentColorValue = [colorComponents[colorIndex] floatValue];
