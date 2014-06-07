@@ -26,6 +26,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class MSColorSelectionViewController;
 
 /**
@@ -51,10 +53,12 @@
 /**
  *  The controller's delegate. Controller notifies a delegate on color change.
  */
-@property (nonatomic, weak) id<MSColorSelectionViewControllerDelegate> delegate;
+@property (nonatomic, weak, nullable) id<MSColorSelectionViewControllerDelegate> delegate;
 /**
  *  The current color value.
  */
 @property (nonatomic, strong) UIColor *color;
 
 @end
+
+NS_ASSUME_NONNULL_END
