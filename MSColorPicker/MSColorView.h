@@ -29,7 +29,7 @@
 @protocol MSColorViewDelegate;
 
 /**
- @abstract The `MSColorView` protocol declares a view's interface for displaying and editing color value.
+ @abstract The \c MSColorView protocol declares a view's interface for displaying and editing color value.
  */
 @protocol MSColorView <NSObject>
 

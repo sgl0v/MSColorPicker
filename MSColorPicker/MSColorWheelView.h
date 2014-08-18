@@ -27,9 +27,15 @@
 #import <UIKit/UIKit.h>
 #import <CoreGraphics/CoreGraphics.h>
 
+/**
+ @abstract A color wheel view.
+ */
 @interface MSColorWheelView : UIControl
 
+//! @abstract The hue value.
 @property(nonatomic, assign) CGFloat hue;
+
+//! @abstract The saturation value.
 @property(nonatomic, assign) CGFloat saturation;
 
 @end

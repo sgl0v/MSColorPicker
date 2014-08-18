@@ -17,7 +17,7 @@
 		5E642DB5191AE3BA0054742A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E642D94191AE3BA0054742A /* Foundation.framework */; };
 		5E642DB6191AE3BA0054742A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E642D98191AE3BA0054742A /* UIKit.framework */; };
 		5E642DBE191AE3BA0054742A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5E642DBC191AE3BA0054742A /* InfoPlist.strings */; };
-		5E642DC0191AE3BA0054742A /* MSColorPickerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DBF191AE3BA0054742A /* MSColorPickerDemoTests.m */; };
+		5E642DC0191AE3BA0054742A /* MSColorUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DBF191AE3BA0054742A /* MSColorUtilsTests.m */; };
 		5E642DCE191AEC990054742A /* MSSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DCC191AEC990054742A /* MSSliderView.m */; };
 		5E642DCF191AEC990054742A /* MSSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DCC191AEC990054742A /* MSSliderView.m */; };
 		5E642DD2191AEEC80054742A /* MSColorWheelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DD1191AEEC80054742A /* MSColorWheelView.m */; };
@@ -60,7 +60,7 @@
 		5E642DB3191AE3BA0054742A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		5E642DBB191AE3BA0054742A /* MSColorPickerDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MSColorPickerDemoTests-Info.plist"; sourceTree = "<group>"; };
 		5E642DBD191AE3BA0054742A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		5E642DBF191AE3BA0054742A /* MSColorPickerDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSColorPickerDemoTests.m; sourceTree = "<group>"; };
+		5E642DBF191AE3BA0054742A /* MSColorUtilsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MSColorUtilsTests.m; sourceTree = "<group>"; };
 		5E642DCC191AEC990054742A /* MSSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSSliderView.m; path = ../../MSColorPicker/MSSliderView.m; sourceTree = "<group>"; };
 		5E642DCD191AEC990054742A /* MSSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSSliderView.h; path = ../../MSColorPicker/MSSliderView.h; sourceTree = "<group>"; };
 		5E642DD0191AEEC80054742A /* MSColorWheelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MSColorWheelView.h; path = ../../MSColorPicker/MSColorWheelView.h; sourceTree = "<group>"; };
@@ -152,7 +152,7 @@
 		5E642DB9191AE3BA0054742A /* MSColorPickerDemoTests */ = {
 			isa = PBXGroup;
 			children = (
-				5E642DBF191AE3BA0054742A /* MSColorPickerDemoTests.m */,
+				5E642DBF191AE3BA0054742A /* MSColorUtilsTests.m */,
 				5E642DBA191AE3BA0054742A /* Supporting Files */,
 			);
 			path = MSColorPickerDemoTests;
@@ -340,7 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E642DE0191AF59F0054742A /* MSRGBView.m in Sources */,
-				5E642DC0191AE3BA0054742A /* MSColorPickerDemoTests.m in Sources */,
+				5E642DC0191AE3BA0054742A /* MSColorUtilsTests.m in Sources */,
 				5E642DE9191C2B490054742A /* MSKeyboardManager.m in Sources */,
 				5E642DD3191AEEC80054742A /* MSColorWheelView.m in Sources */,
 				5E642DDC191AF2C80054742A /* MSColorUtils.m in Sources */,
@@ -458,7 +458,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MSColorPickerDemo/Supporting Files/MSColorPickerDemo-Prefix.pch";
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/MSColorPickerDemo/Supporting Files/MSColorPickerDemo-Prefix.pch";
 				INFOPLIST_FILE = "MSColorPickerDemo/Supporting Files/MSColorPickerDemo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = (
@@ -476,7 +476,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MSColorPickerDemo/Supporting Files/MSColorPickerDemo-Prefix.pch";
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/MSColorPickerDemo/Supporting Files/MSColorPickerDemo-Prefix.pch";
 				INFOPLIST_FILE = "MSColorPickerDemo/Supporting Files/MSColorPickerDemo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WARNING_CFLAGS = (
@@ -499,7 +499,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MSColorPickerDemo/MSColorPickerDemo-Prefix.pch";
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/MSColorPickerDemo/Supporting Files/MSColorPickerDemo-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -522,7 +522,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MSColorPickerDemo/MSColorPickerDemo-Prefix.pch";
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/MSColorPickerDemo/Supporting Files/MSColorPickerDemo-Prefix.pch";
 				INFOPLIST_FILE = "MSColorPickerDemoTests/MSColorPickerDemoTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
