@@ -41,9 +41,6 @@
 //! @abstract The object that acts as the delegate of the receiving color selection view.
 @property(nonatomic, weak) id<MSColorViewDelegate> delegate;
 
-//! @abstract The the scroll view.
-@property(nonatomic, strong, readonly) UIScrollView* scrollView;
-
 /**
  *  Reloads the content of the receiver.
  */

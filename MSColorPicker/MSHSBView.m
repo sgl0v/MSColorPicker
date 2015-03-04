@@ -49,8 +49,6 @@ static CGFloat const MSColorWheelHeight = 200.0f;
     MSColorComponentView* _brightnessView;
     MSColorComponentView* _alphaView;
     UIView* _colorSample;
-    UIScrollView* _scrollView;
-    UIView* _contentView;
     UIView* _hsView;
     UILabel* _hueLabel;
     UITextField* _hueTextField;
@@ -66,7 +64,7 @@ static CGFloat const MSColorWheelHeight = 200.0f;
 
 @implementation MSHSBView
 
-@synthesize delegate = _delegate, scrollView = _scrollView;
+@synthesize delegate = _delegate;
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -148,28 +146,19 @@ static CGFloat const MSColorWheelHeight = 200.0f;
 
 - (void)ms_baseInit
 {
-    _scrollView = [[UIScrollView alloc] init];
-    _scrollView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self addSubview:_scrollView];
-
-    _contentView = [[UIView alloc] init];
-    _contentView.translatesAutoresizingMaskIntoConstraints = NO;
-    [_scrollView addSubview:_contentView];
-
-
     _colorSample = [[UIView alloc] init];
     _colorSample.layer.borderColor = [UIColor blackColor].CGColor;
     _colorSample.layer.borderWidth = .5f;
     _colorSample.translatesAutoresizingMaskIntoConstraints = NO;
-    [_contentView addSubview:_colorSample];
+    [self addSubview:_colorSample];
 
     _colorWheel = [[MSColorWheelView alloc] init];
     _colorWheel.translatesAutoresizingMaskIntoConstraints = NO;
-    [_contentView addSubview:_colorWheel];
+    [self addSubview:_colorWheel];
 
     _hsView = [[UIView alloc] init];
     _hsView.translatesAutoresizingMaskIntoConstraints = NO;
-    [_contentView addSubview:_hsView];
+    [self addSubview:_hsView];
 
     _hueLabel = [[UILabel alloc] init];
     _hueLabel.translatesAutoresizingMaskIntoConstraints = NO;
@@ -201,14 +190,14 @@ static CGFloat const MSColorWheelHeight = 200.0f;
     _brightnessView.maximumValue = MSHSBColorComponentMaxValue;
     _brightnessView.format = @"%.2f";
     _brightnessView.translatesAutoresizingMaskIntoConstraints = NO;
-    [_contentView addSubview:_brightnessView];
+    [self addSubview:_brightnessView];
 
 
     _alphaView = [[MSColorComponentView alloc] init];
     _alphaView.title = @"Alpha";
     _alphaView.translatesAutoresizingMaskIntoConstraints = NO;
     _alphaView.maximumValue = MSAlphaComponentMaxValue;
-    [_contentView addSubview:_alphaView];
+    [self addSubview:_alphaView];
 
     [_colorWheel addTarget:self action:@selector(ms_colorDidChangeValue:) forControlEvents:UIControlEventValueChanged];
     [_brightnessView addTarget:self action:@selector(ms_brightnessDidChangeValue:) forControlEvents:UIControlEventValueChanged];
@@ -219,26 +208,6 @@ static CGFloat const MSColorWheelHeight = 200.0f;
 
 - (void)ms_setupConstraints
 {
-    NSDictionary *views = NSDictionaryOfVariableBindings(_scrollView);
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_scrollView]|" options:0 metrics:nil views:views]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_scrollView]|" options:0 metrics:nil views:views]];
-    views = NSDictionaryOfVariableBindings(_contentView);
-    [_scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_contentView]|" options:0 metrics:nil views:views]];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:_contentView
-                                                     attribute:NSLayoutAttributeLeading
-                                                     relatedBy:0
-                                                        toItem:self
-                                                     attribute:NSLayoutAttributeLeft
-                                                    multiplier:1.0
-                                                      constant:0]];
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:_contentView
-                                                     attribute:NSLayoutAttributeTrailing
-                                                     relatedBy:0
-                                                        toItem:self
-                                                     attribute:NSLayoutAttributeRight
-                                                    multiplier:1.0
-                                                      constant:0]];
-
     NSDictionary* metrics = @{ @"spacing" : @(MSViewSpacing),
                                @"height" : @(MSColorSampleViewHeight),
                                @"margin" : @(MSViewMargin),
@@ -246,11 +215,11 @@ static CGFloat const MSColorWheelHeight = 200.0f;
                                @"color_wheel_height" : @(MSColorWheelHeight),
                                @"small_spacing" : @(MSLabelSpacing)};
 
-    views = NSDictionaryOfVariableBindings(_colorSample, _colorWheel);
-    [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[_colorSample]-margin-|" options:0 metrics:metrics views:views]];
-    [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[_colorWheel(color_wheel_height)]" options:0 metrics:metrics views:views]];
-    [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-spacing-[_colorSample(height)]-spacing-[_colorWheel]" options:0 metrics:metrics views:views]];
-    [_contentView addConstraint:[NSLayoutConstraint
+    NSDictionary* views = NSDictionaryOfVariableBindings(_colorSample, _colorWheel);
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[_colorSample]-margin-|" options:0 metrics:metrics views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[_colorWheel(color_wheel_height)]" options:0 metrics:metrics views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-spacing-[_colorSample(height)]-spacing-[_colorWheel]" options:0 metrics:metrics views:views]];
+    [self addConstraint:[NSLayoutConstraint
                                  constraintWithItem:_colorWheel
                                  attribute:NSLayoutAttributeWidth
                                  relatedBy:NSLayoutRelationEqual
@@ -264,14 +233,14 @@ static CGFloat const MSColorWheelHeight = 200.0f;
     [_hsView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_saturationLabel]-small_spacing-[_saturationTextField(text_field_width)]|" options:0 metrics:metrics views:views]];
     [_hsView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_hueLabel]-margin-[_saturationLabel]|" options:0 metrics:metrics views:views]];
     [_hsView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_hueTextField]-margin-[_saturationTextField]|" options:0 metrics:metrics views:views]];
-    [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_colorWheel]-margin-[_hsView]" options:NSLayoutFormatAlignAllCenterY metrics:metrics views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:[_colorWheel]-margin-[_hsView]" options:NSLayoutFormatAlignAllCenterY metrics:metrics views:views]];
 
     views = NSDictionaryOfVariableBindings(_colorWheel, _brightnessView, _alphaView);
-    [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[_brightnessView]-margin-|" options:0 metrics:metrics views:views]];
-    [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_colorWheel]-spacing-[_brightnessView]" options:0 metrics:metrics views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[_brightnessView]-margin-|" options:0 metrics:metrics views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_colorWheel]-spacing-[_brightnessView]" options:0 metrics:metrics views:views]];
 
-    [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[_alphaView]-margin-|" options:0 metrics:metrics views:views]];
-    [_contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_brightnessView]-spacing-[_alphaView]-|" options:0 metrics:metrics views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[_alphaView]-margin-|" options:0 metrics:metrics views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[_brightnessView]-spacing-[_alphaView]-|" options:0 metrics:metrics views:views]];
 }
 
 - (void)ms_reloadViewsWithColorComponents:(HSB)colorComponents
