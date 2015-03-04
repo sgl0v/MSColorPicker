@@ -29,97 +29,77 @@
 #import "MSRGBView.h"
 #import "MSHSBView.h"
 
-@interface MSViewController () <MSColorViewDelegate>
+typedef NS_ENUM(NSUInteger, MSSelectedColorView)
 {
-    UIView<MSColorView>* _currentView;
-    NSArray* _colorSelectionViews;
-    UIColor* _currentColorValue;
-}
+    MSSelectedColorViewRGB,
+    MSSelectedColorViewHSB
+};
+
+@interface MSViewController () <MSColorViewDelegate>
+
+@property(nonatomic, strong) UIView<MSColorView>* currentColorView;
+@property(nonatomic, strong) UIView<MSColorView>* rgbColorView;
+@property(nonatomic, strong) UIView<MSColorView>* hsbColorView;
+@property(nonatomic, weak) IBOutlet UISegmentedControl* segmentedControl;
+@property(nonatomic, weak) IBOutlet UIScrollView* scrollView;
+@property(nonatomic, strong) UIColor* selectedColor;
 
 @end
 
 @implementation MSViewController
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        self.automaticallyAdjustsScrollViewInsets = NO;
-    }
-    return self;
-}
-
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        self.automaticallyAdjustsScrollViewInsets = NO;
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-    _currentColorValue = [UIColor whiteColor];
-    UISegmentedControl* segmentedControl = [self _createSegmentedControl];
-    self.navigationItem.titleView = segmentedControl;
-    segmentedControl.selectedSegmentIndex = 0;
-    [self _segmentControlDidChangeValue:segmentedControl];
+    self.selectedColor = [UIColor whiteColor];
+    [self ms_updateContentWithSelectedView:self.segmentedControl.selectedSegmentIndex];
+}
+
+- (IBAction)segmentControlDidChangeValue:(UISegmentedControl*)sender
+{
+    [self ms_updateContentWithSelectedView:self.segmentedControl.selectedSegmentIndex];
+}
+
+- (UIView<MSColorView>*)rgbColorView
+{
+    if (!_rgbColorView) {
+        _rgbColorView = [[MSRGBView alloc] init];
+    }
+    return _rgbColorView;
+}
+
+- (UIView<MSColorView>*)hsbColorView
+{
+    if (!_hsbColorView) {
+        _hsbColorView = [[MSHSBView alloc] init];
+    }
+    return _hsbColorView;
 }
 
 #pragma mark - FBColorViewDelegate methods
 
 - (void)colorView:(id<MSColorView>)colorView didChangeValue:(UIColor*)colorValue
 {
-    _currentColorValue = colorValue;
+    self.selectedColor = colorValue;
 }
 
 #pragma mark - Private methods
 
-- (UIView<MSColorView>*)_colorSelectionViewAtIndex:(NSUInteger)idx
+- (void) ms_updateContentWithSelectedView:(MSSelectedColorView)selectedView
 {
-    if (!_colorSelectionViews) {
-        UIView* rgbView = [[MSRGBView alloc] initWithFrame:self.view.bounds];
-        UIView* hsbView = [[MSHSBView alloc] initWithFrame:self.view.bounds];
-        _colorSelectionViews = @[rgbView, hsbView];
-    }
-    return idx < [_colorSelectionViews count] ? _colorSelectionViews[idx] : nil;
-}
+    self.currentColorView.delegate = nil;
+    [self.currentColorView removeFromSuperview];
+    self.currentColorView = selectedView == MSSelectedColorViewRGB ? self.rgbColorView : self.hsbColorView;
+    self.currentColorView.delegate = self;
+    [self.scrollView addSubview:self.currentColorView];
 
-- (IBAction)_segmentControlDidChangeValue:(UISegmentedControl*)sender
-{
-    _currentView.delegate = nil;
-    [_currentView removeFromSuperview];
-    _currentView = [self _colorSelectionViewAtIndex:sender.selectedSegmentIndex];
-    _currentView.value = _currentColorValue;
-    _currentView.delegate = self;
-    [self _applyNavBarInsetsForView:_currentView];
-    [self.view addSubview:_currentView];
-    _currentView.translatesAutoresizingMaskIntoConstraints = NO;
-    NSDictionary *views = NSDictionaryOfVariableBindings(_currentView);
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_currentView]|" options:0 metrics:nil views:views]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_currentView]|" options:0 metrics:nil views:views]];
-}
+    self.currentColorView.translatesAutoresizingMaskIntoConstraints = NO;
+    NSDictionary *views = NSDictionaryOfVariableBindings(_currentColorView);
+    [self.scrollView addConstraint:[NSLayoutConstraint constraintWithItem:self.scrollView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.currentColorView attribute:NSLayoutAttributeWidth multiplier:1.0f constant:0.0f]];
+    [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_currentColorView]|" options:0 metrics:nil views:views]];
+    [self.scrollView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[_currentColorView]|" options:0 metrics:nil views:views]];
 
-- (UISegmentedControl*)_createSegmentedControl
-{
-    UISegmentedControl* segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"RGB", @"HSB"]];
-    [segmentedControl addTarget:self action:@selector(_segmentControlDidChangeValue:) forControlEvents:UIControlEventValueChanged];
-    [segmentedControl sizeToFit];
-    return segmentedControl;
-}
-
-- (void)_applyNavBarInsetsForView:(UIView<MSColorView>*)view
-{
-    // For insetting with a navigation bar
-    CGFloat topInset = CGRectGetHeight(self.navigationController.navigationBar.frame) + CGRectGetHeight([UIApplication sharedApplication].statusBarFrame);
-    if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
-        topInset = CGRectGetHeight(self.navigationController.navigationBar.frame) + CGRectGetWidth([UIApplication sharedApplication].statusBarFrame);
-    }
-    UIEdgeInsets insets = UIEdgeInsetsMake(topInset, 0, 0, 0);
-    view.scrollView.contentInset = insets;
-    view.scrollView.scrollIndicatorInsets = insets;
+    self.currentColorView.value = self.selectedColor;
 }
 
 @end

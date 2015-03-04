@@ -21,10 +21,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[MSViewController alloc] init]];
-    self.window.rootViewController = navigationController;
-    [self.window makeKeyAndVisible];
     _keyboardManager = [[MSKeyboardManager alloc] init];
     return YES;
 }

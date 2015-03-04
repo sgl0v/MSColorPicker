@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="gT7-Zx-asX">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="YmW-os-HK0">
+            <objects>
+                <navigationController id="gT7-Zx-asX" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="TA8-BQ-1It">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="jLa-Fz-JX5" kind="relationship" relationship="rootViewController" id="xFV-Fg-Bgt"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pHZ-9k-Jkh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-465" y="419"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="D2I-TS-ivw">
+            <objects>
+                <viewController id="jLa-Fz-JX5" customClass="MSViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gYd-S8-C8G"/>
+                        <viewControllerLayoutGuide type="bottom" id="skW-sD-yVn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZJI-Lj-efY">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Qj-nn-XIN">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7Qj-nn-XIN" firstAttribute="height" secondItem="ZJI-Lj-efY" secondAttribute="height" id="1xh-H3-IUc"/>
+                            <constraint firstAttribute="centerY" secondItem="7Qj-nn-XIN" secondAttribute="centerY" id="94F-02-Utv"/>
+                            <constraint firstItem="7Qj-nn-XIN" firstAttribute="top" secondItem="gYd-S8-C8G" secondAttribute="bottom" id="B0i-Gr-i6L"/>
+                            <constraint firstItem="skW-sD-yVn" firstAttribute="top" secondItem="7Qj-nn-XIN" secondAttribute="bottom" id="Plx-cQ-7Lt"/>
+                            <constraint firstItem="7Qj-nn-XIN" firstAttribute="width" secondItem="ZJI-Lj-efY" secondAttribute="width" id="QRX-oH-KM2"/>
+                            <constraint firstItem="7Qj-nn-XIN" firstAttribute="top" secondItem="gYd-S8-C8G" secondAttribute="bottom" id="QY5-qV-CwD"/>
+                            <constraint firstItem="7Qj-nn-XIN" firstAttribute="leading" secondItem="ZJI-Lj-efY" secondAttribute="leadingMargin" id="QhF-2g-Ecd"/>
+                            <constraint firstItem="7Qj-nn-XIN" firstAttribute="leading" secondItem="ZJI-Lj-efY" secondAttribute="leadingMargin" id="VEc-IR-muG"/>
+                            <constraint firstItem="7Qj-nn-XIN" firstAttribute="width" secondItem="ZJI-Lj-efY" secondAttribute="width" id="aU2-uM-6wT"/>
+                            <constraint firstAttribute="centerX" secondItem="7Qj-nn-XIN" secondAttribute="centerX" id="eCh-4h-YXL"/>
+                            <constraint firstItem="skW-sD-yVn" firstAttribute="top" secondItem="7Qj-nn-XIN" secondAttribute="bottom" id="euL-4v-CK8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7Qj-nn-XIN" secondAttribute="trailing" id="jbn-eB-w0x"/>
+                            <constraint firstItem="7Qj-nn-XIN" firstAttribute="height" secondItem="ZJI-Lj-efY" secondAttribute="height" id="swd-b0-fPp"/>
+                            <constraint firstItem="7Qj-nn-XIN" firstAttribute="trailing" secondItem="ZJI-Lj-efY" secondAttribute="trailingMargin" id="wb3-AB-G0M"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="B0i-Gr-i6L"/>
+                                <exclude reference="QRX-oH-KM2"/>
+                                <exclude reference="QY5-qV-CwD"/>
+                                <exclude reference="QhF-2g-Ecd"/>
+                                <exclude reference="VEc-IR-muG"/>
+                                <exclude reference="jbn-eB-w0x"/>
+                                <exclude reference="swd-b0-fPp"/>
+                                <exclude reference="wb3-AB-G0M"/>
+                                <exclude reference="Plx-cQ-7Lt"/>
+                                <exclude reference="euL-4v-CK8"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="6rC-XK-vSv">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="7Xc-5j-wNV">
+                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="RGB"/>
+                                <segment title="HSB"/>
+                            </segments>
+                            <connections>
+                                <action selector="segmentControlDidChangeValue:" destination="jLa-Fz-JX5" eventType="valueChanged" id="5He-nt-NWd"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="scrollView" destination="7Qj-nn-XIN" id="KQa-Nz-aTv"/>
+                        <outlet property="segmentedControl" destination="7Xc-5j-wNV" id="qds-mH-FCx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="91l-AC-gYs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="208" y="419"/>
+        </scene>
+    </scenes>
+</document>
