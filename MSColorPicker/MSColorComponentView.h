@@ -48,7 +48,12 @@
 //! @abstract The format string to use apply for textfield value. \c %.f by default. 
 @property(nonatomic, copy) NSString* format;
 
-//! @abstract The color slider to edit color component.
-@property(nonatomic, strong, readonly) MSSliderView* slider;
+/**
+ *  Sets the array of CGColorRef objects defining the color of each gradient stop on a slider's track.
+ *  The location of each gradient stop is evaluated with formula: i * width_of_the_track / number_of_colors.
+ *
+ *  @param colors An array of CGColorRef objects.
+ */
+- (void)setColors:(NSArray*)colors __attribute__((nonnull(1)));
 
 @end

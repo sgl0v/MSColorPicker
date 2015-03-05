@@ -177,17 +177,15 @@ static NSUInteger const MSRGBAColorComponentsSize = 4;
 {
     NSArray* components = [self _colorComponentsWithRGB:colorComponents];
     [_colorComponentViews enumerateObjectsUsingBlock:^(MSColorComponentView* colorComponentView, NSUInteger idx, BOOL *stop) {
-        MSSliderView* slider = colorComponentView.slider;
         if (idx < MSRGBAColorComponentsSize - 1) {
-            [self ms_updateSlider:slider withColorComponents:components];
+            [colorComponentView setColors:[self ms_colorsWithColorComponents:components currentColorIndex:colorComponentView.tag]];
         }
         colorComponentView.value = [components[idx] floatValue] * colorComponentView.maximumValue;
     }];
 }
 
-- (void)ms_updateSlider:(MSSliderView*)slider withColorComponents:(NSArray*)colorComponents
+- (NSArray*)ms_colorsWithColorComponents:(NSArray*)colorComponents currentColorIndex:(NSUInteger)colorIndex
 {
-    NSUInteger colorIndex = slider.tag;
     CGFloat currentColorValue = [colorComponents[colorIndex] floatValue];
     CGFloat colors[12];
     for (NSUInteger i = 0; i < MSRGBAColorComponentsSize; i++)
@@ -202,7 +200,7 @@ static NSUInteger const MSRGBAColorComponentsSize = 4;
     UIColor* start = [UIColor colorWithRed:colors[0] green:colors[1] blue:colors[2] alpha:1.0f];
     UIColor* middle = [UIColor colorWithRed:colors[4] green:colors[5] blue:colors[6] alpha:1.0f];
     UIColor* end = [UIColor colorWithRed:colors[8] green:colors[9] blue:colors[10] alpha:1.0f];
-    [slider setColors:@[(id)start.CGColor, (id)middle.CGColor, (id)end.CGColor]];
+    return @[(id)start.CGColor, (id)middle.CGColor, (id)end.CGColor];
 }
 
 @end

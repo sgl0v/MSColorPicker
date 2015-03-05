@@ -97,6 +97,7 @@ static const CGFloat MSSliderViewTrackHeight = 3.0f;
 
 - (void)setColors:(NSArray*)colors
 {
+    NSParameterAssert(colors);
     _trackLayer.colors = colors;
     [self ms_updateLocations];
 }

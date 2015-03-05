@@ -55,8 +55,6 @@ static CGFloat const MSColorWheelHeight = 200.0f;
     UILabel* _saturationLabel;
     UITextField* _saturationTextField;
 
-    BOOL _didSetupConstraints;
-
     HSB _colorComponents;
 }
 
@@ -82,15 +80,6 @@ static CGFloat const MSColorWheelHeight = 200.0f;
         [self ms_baseInit];
     }
     return self;
-}
-
-- (void)updateConstraints
-{
-    if (_didSetupConstraints == NO){
-        [self ms_setupConstraints];
-        _didSetupConstraints = YES;
-    }
-    [super updateConstraints];
 }
 
 - (void)reloadData
@@ -204,9 +193,11 @@ static CGFloat const MSColorWheelHeight = 200.0f;
     [_alphaView addTarget:self action:@selector(ms_alphaDidChangeValue:) forControlEvents:UIControlEventValueChanged];
     _hueTextField.delegate = self;
     _saturationTextField.delegate = self;
+
+    [self ms_installConstraints];
 }
 
-- (void)ms_setupConstraints
+- (void)ms_installConstraints
 {
     NSDictionary* metrics = @{ @"spacing" : @(MSViewSpacing),
                                @"height" : @(MSColorSampleViewHeight),
@@ -256,7 +247,7 @@ static CGFloat const MSColorWheelHeight = 200.0f;
     [_alphaView setValue:colorComponents.alpha * MSAlphaComponentMaxValue];
     [_brightnessView setValue:colorComponents.brightness];
     UIColor* tmp = [UIColor colorWithHue:colorComponents.hue saturation:colorComponents.saturation brightness:1.0f alpha:1.0f];
-    [_brightnessView.slider setColors:@[(id)[UIColor blackColor].CGColor, (id)tmp.CGColor]];
+    [_brightnessView setColors:@[(id)[UIColor blackColor].CGColor, (id)tmp.CGColor]];
 }
 
 - (void)ms_updateTextFieldsWithColorComponents:(HSB)colorComponents

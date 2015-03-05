@@ -37,12 +37,10 @@ static CGFloat const MSColorComponentTextFieldWidth = 50.0f;
 
 @private
 
-    BOOL _didSetupConstraints;
+    UILabel* _label;
+    MSSliderView* _slider; //! @abstract The color slider to edit color component.
+    UITextField* _textField;
 }
-
-@property(nonatomic, strong, readwrite) UILabel* label;
-@property(nonatomic, strong, readwrite) MSSliderView* slider;
-@property(nonatomic, strong, readwrite) UITextField* textField;
 
 @end
 
@@ -69,13 +67,6 @@ static CGFloat const MSColorComponentTextFieldWidth = 50.0f;
         [self ms_baseInit];
     }
     return self;
-}
-
-- (void)setTag:(NSInteger)tag
-{
-    [super setTag:tag];
-    _textField.tag = tag;
-    _slider.tag = tag;
 }
 
 - (void)setTitle:(NSString *)title
@@ -119,15 +110,6 @@ static CGFloat const MSColorComponentTextFieldWidth = 50.0f;
     return _slider.value;
 }
 
-- (void)updateConstraints
-{
-    if (_didSetupConstraints == NO){
-        [self ms_setupConstraints];
-        _didSetupConstraints = YES;
-    }
-    [super updateConstraints];
-}
-
 #pragma mark - UITextFieldDelegate methods
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
@@ -155,6 +137,12 @@ static CGFloat const MSColorComponentTextFieldWidth = 50.0f;
     return [newString floatValue] <= _slider.maximumValue;
 }
 
+- (void)setColors:(NSArray*)colors
+{
+    NSParameterAssert(colors);
+    [_slider setColors:colors];
+}
+
 #pragma mark - Private methods
 
 - (void)ms_baseInit
@@ -180,6 +168,8 @@ static CGFloat const MSColorComponentTextFieldWidth = 50.0f;
     [self setValue:0.0f];
     [_slider addTarget:self action:@selector(ms_didChangeSliderValue:) forControlEvents:UIControlEventValueChanged];
     [_textField setDelegate:self];
+
+    [self ms_installConstraints];
 }
 
 - (void)ms_didChangeSliderValue:(MSSliderView*)sender
@@ -188,7 +178,7 @@ static CGFloat const MSColorComponentTextFieldWidth = 50.0f;
     [self sendActionsForControlEvents:UIControlEventValueChanged];
 }
 
-- (void)ms_setupConstraints
+- (void)ms_installConstraints
 {
     NSDictionary *views = @{ @"label" : _label, @"slider" : _slider, @"textField" : _textField };
     NSDictionary* metrics = @{ @"spacing" : @(MSColorComponentViewSpacing),

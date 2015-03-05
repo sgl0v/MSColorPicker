@@ -43,6 +43,6 @@
  *  
  *  @param colors An array of CGColorRef objects.
  */
-- (void)setColors:(NSArray*)colors;
+- (void)setColors:(NSArray*)colors __attribute__((nonnull(1)));
 
 @end
