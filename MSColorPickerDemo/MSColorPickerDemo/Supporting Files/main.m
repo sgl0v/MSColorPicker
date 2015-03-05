@@ -28,9 +28,9 @@
 
 #import "MSAppDelegate.h"
 
-int main(int argc, char * argv[])
+int main(int argc, char *argv[])
 {
-  @autoreleasepool {
-      return UIApplicationMain(argc, argv, nil, NSStringFromClass([MSAppDelegate class]));
-  }
+    @autoreleasepool {
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([MSAppDelegate class]));
+    }
 }

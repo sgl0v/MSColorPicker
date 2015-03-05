@@ -32,15 +32,16 @@ CGFloat const MSHSBColorComponentMaxValue = 1.0f;
 
 extern HSB MSRGB2HSB(RGB rgb)
 {
-    HSB hsb = {0.0f, 0.0f, 0.0f, 0.0f};
-    double rd = (double) rgb.red;
-    double gd = (double) rgb.green;
-    double bd = (double) rgb.blue;
+    HSB hsb = { 0.0f, 0.0f, 0.0f, 0.0f };
+    double rd = (double)rgb.red;
+    double gd = (double)rgb.green;
+    double bd = (double)rgb.blue;
     double max = fmax(rd, fmax(gd, bd));
     double min = fmin(rd, fmin(gd, bd));
     double h = 0, s, b = max;
 
     double d = max - min;
+
     s = max == 0 ? 0 : d / max;
 
     if (max == min) {
@@ -53,6 +54,7 @@ extern HSB MSRGB2HSB(RGB rgb)
         } else if (max == bd) {
             h = (rd - gd) / d + 4;
         }
+
         h /= 6;
     }
 
@@ -65,7 +67,7 @@ extern HSB MSRGB2HSB(RGB rgb)
 
 extern RGB MSHSB2RGB(HSB hsb)
 {
-    RGB rgb = {0.0f, 0.0f, 0.0f, 0.0f};
+    RGB rgb = { 0.0f, 0.0f, 0.0f, 0.0f };
     double r, g, b;
 
     int i = hsb.hue * 6;
@@ -74,12 +76,17 @@ extern RGB MSHSB2RGB(HSB hsb)
     double q = hsb.brightness * (1 - f * hsb.saturation);
     double t = hsb.brightness * (1 - (1 - f) * hsb.saturation);
 
-    switch(i % 6){
+    switch (i % 6) {
         case 0: r = hsb.brightness, g = t, b = p; break;
+
         case 1: r = q, g = hsb.brightness, b = p; break;
+
         case 2: r = p, g = hsb.brightness, b = t; break;
+
         case 3: r = p, g = q, b = hsb.brightness; break;
+
         case 4: r = t, g = p, b = hsb.brightness; break;
+
         case 5: r = hsb.brightness, g = p, b = q; break;
     }
 
@@ -90,14 +97,17 @@ extern RGB MSHSB2RGB(HSB hsb)
     return rgb;
 }
 
-extern RGB MSRGBColorComponents(UIColor* color)
+extern RGB MSRGBColorComponents(UIColor *color)
 {
     RGB result;
     CGColorSpaceModel colorSpaceModel = CGColorSpaceGetModel(CGColorGetColorSpace(color.CGColor));
+
     if (colorSpaceModel != kCGColorSpaceModelRGB && colorSpaceModel != kCGColorSpaceModelMonochrome) {
         return result;
     }
+
     const CGFloat *components = CGColorGetComponents(color.CGColor);
+
     if (colorSpaceModel == kCGColorSpaceModelMonochrome) {
         result.red = result.green = result.blue = components[0];
         result.alpha = components[1];
@@ -107,17 +117,21 @@ extern RGB MSRGBColorComponents(UIColor* color)
         result.blue = components[2];
         result.alpha = components[3];
     }
+
     return result;
 }
 
-extern NSString* MSHexStringFromColor(UIColor* color)
+extern NSString * MSHexStringFromColor(UIColor *color)
 {
     CGColorSpaceModel colorSpaceModel = CGColorSpaceGetModel(CGColorGetColorSpace(color.CGColor));
+
     if (colorSpaceModel != kCGColorSpaceModelRGB && colorSpaceModel != kCGColorSpaceModelMonochrome) {
         return nil;
     }
+
     const CGFloat *components = CGColorGetComponents(color.CGColor);
     CGFloat red, green, blue, alpha;
+
     if (colorSpaceModel == kCGColorSpaceModelMonochrome) {
         red = green = blue = components[0];
         alpha = components[1];
@@ -127,6 +141,7 @@ extern NSString* MSHexStringFromColor(UIColor* color)
         blue = components[2];
         alpha = components[3];
     }
+
     NSString *hexColorString = [NSString stringWithFormat:@"#%02lX%02lX%02lX%02lX",
                                 (unsigned long)(red * MSRGBColorComponentMaxValue),
                                 (unsigned long)(green * MSRGBColorComponentMaxValue),
@@ -135,7 +150,7 @@ extern NSString* MSHexStringFromColor(UIColor* color)
     return hexColorString;
 }
 
-extern UIColor* MSColorFromHexString(NSString* hexColor)
+extern UIColor * MSColorFromHexString(NSString *hexColor)
 {
     if (![hexColor hasPrefix:@"#"]) {
         return nil;
@@ -145,13 +160,14 @@ extern UIColor* MSColorFromHexString(NSString* hexColor)
     [scanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@"#"]];
 
     unsigned hexNum;
-    if (![scanner scanHexInt: &hexNum]) return nil;
+
+    if (![scanner scanHexInt:&hexNum]) return nil;
 
     int r = (hexNum >> 24) & 0xFF;
     int g = (hexNum >> 16) & 0xFF;
     int b = (hexNum >> 8) & 0xFF;
     int a = (hexNum) & 0xFF;
-    
+
     return [UIColor colorWithRed:r / MSRGBColorComponentMaxValue
                            green:g / MSRGBColorComponentMaxValue
                             blue:b / MSRGBColorComponentMaxValue

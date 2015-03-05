@@ -29,24 +29,24 @@
 @class MSSliderView;
 
 /**
- @abstract A view to edit a color component.
+   @abstract A view to edit a color component.
  */
 @interface MSColorComponentView : UIControl
 
 //! @abstract The title.
-@property(nonatomic, copy) NSString* title;
+@property (nonatomic, copy) NSString *title;
 
 //! @abstract The current value. The default value is 0.0.
-@property(nonatomic, assign) CGFloat value;
+@property (nonatomic, assign) CGFloat value;
 
 //! @abstract The minimum value. The default value is 0.0.
-@property(nonatomic, assign) CGFloat minimumValue;
+@property (nonatomic, assign) CGFloat minimumValue;
 
 //! @abstract The maximum value. The default value is 255.0.
-@property(nonatomic, assign) CGFloat maximumValue;
+@property (nonatomic, assign) CGFloat maximumValue;
 
-//! @abstract The format string to use apply for textfield value. \c %.f by default. 
-@property(nonatomic, copy) NSString* format;
+//! @abstract The format string to use apply for textfield value. \c %.f by default.
+@property (nonatomic, copy) NSString *format;
 
 /**
  *  Sets the array of CGColorRef objects defining the color of each gradient stop on a slider's track.
@@ -54,6 +54,6 @@
  *
  *  @param colors An array of CGColorRef objects.
  */
-- (void)setColors:(NSArray*)colors __attribute__((nonnull(1)));
+- (void)setColors:(NSArray *)colors __attribute__((nonnull(1)));
 
 @end

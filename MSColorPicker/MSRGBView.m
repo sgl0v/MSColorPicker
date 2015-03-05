@@ -39,11 +39,10 @@ static NSUInteger const MSRGBAColorComponentsSize = 4;
 
 @interface MSRGBView ()
 {
+    @private
 
-@private
-
-    UIView* _colorSample;
-    NSArray* _colorComponentViews;
+    UIView *_colorSample;
+    NSArray *_colorComponentViews;
     RGB _colorComponents;
 }
 
@@ -56,18 +55,22 @@ static NSUInteger const MSRGBAColorComponentsSize = 4;
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
+
     if (self) {
         [self ms_baseInit];
     }
+
     return self;
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
+
     if (self) {
         [self ms_baseInit];
     }
+
     return self;
 }
 
@@ -83,7 +86,7 @@ static NSUInteger const MSRGBAColorComponentsSize = 4;
     [self reloadData];
 }
 
-- (UIColor*)value
+- (UIColor *)value
 {
     return [UIColor colorWithRed:_colorComponents.red green:_colorComponents.green blue:_colorComponents.blue alpha:_colorComponents.alpha];
 }
@@ -98,21 +101,23 @@ static NSUInteger const MSRGBAColorComponentsSize = 4;
     _colorSample.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:_colorSample];
 
-    NSMutableArray* tmp = [NSMutableArray array];
-    NSArray* titles = @[@"Red", @"Green", @"Blue", @"Alpha"];
-    NSArray* maxValues = @[@(MSRGBColorComponentMaxValue), @(MSRGBColorComponentMaxValue), @(MSRGBColorComponentMaxValue),
+    NSMutableArray *tmp = [NSMutableArray array];
+    NSArray *titles = @[@"Red", @"Green", @"Blue", @"Alpha"];
+    NSArray *maxValues = @[@(MSRGBColorComponentMaxValue), @(MSRGBColorComponentMaxValue), @(MSRGBColorComponentMaxValue),
                            @(MSAlphaComponentMaxValue)];
-    for(NSUInteger i = 0; i < MSRGBAColorComponentsSize; ++i) {
-        UIControl* colorComponentView = [self ms_colorComponentViewWithTitle:titles[i] tag:i maxValue:[maxValues[i] floatValue]];
+
+    for (NSUInteger i = 0; i < MSRGBAColorComponentsSize; ++i) {
+        UIControl *colorComponentView = [self ms_colorComponentViewWithTitle:titles[i] tag:i maxValue:[maxValues[i] floatValue]];
         [self addSubview:colorComponentView];
         [colorComponentView addTarget:self action:@selector(ms_colorComponentDidChangeValue:) forControlEvents:UIControlEventValueChanged];
         [tmp addObject:colorComponentView];
     }
+
     _colorComponentViews = [tmp copy];
     [self ms_installConstraints];
 }
 
-- (IBAction)ms_colorComponentDidChangeValue:(MSColorComponentView*)sender
+- (IBAction)ms_colorComponentDidChangeValue:(MSColorComponentView *)sender
 {
     [self ms_setColorComponentValue:sender.value / sender.maximumValue atIndex:sender.tag];
     [self.delegate colorView:self didChangeValue:[self value]];
@@ -125,21 +130,25 @@ static NSUInteger const MSRGBAColorComponentsSize = 4;
         case 0:
             _colorComponents.red = value;
             break;
+
         case 1:
             _colorComponents.green = value;
             break;
+
         case 2:
             _colorComponents.blue = value;
             break;
+
         default:
             _colorComponents.alpha = value;
             break;
     }
 }
 
-- (UIControl*)ms_colorComponentViewWithTitle:(NSString*)title tag:(NSUInteger)tag maxValue:(CGFloat)maxValue
+- (UIControl *)ms_colorComponentViewWithTitle:(NSString *)title tag:(NSUInteger)tag maxValue:(CGFloat)maxValue
 {
-    MSColorComponentView* colorComponentView = [[MSColorComponentView alloc] init];
+    MSColorComponentView *colorComponentView = [[MSColorComponentView alloc] init];
+
     colorComponentView.title = title;
     colorComponentView.translatesAutoresizingMaskIntoConstraints = NO;
     colorComponentView.tag  = tag;
@@ -149,57 +158,68 @@ static NSUInteger const MSRGBAColorComponentsSize = 4;
 
 - (void)ms_installConstraints
 {
-    NSDictionary* metrics = @{ @"spacing" : @(MSViewSpacing),
-                               @"margin" : @(MSContentViewMargin),
-                               @"height" : @(MSColorSampleViewHeight) };
+    NSDictionary *metrics = @{ @"spacing": @(MSViewSpacing),
+                               @"margin": @(MSContentViewMargin),
+                               @"height": @(MSColorSampleViewHeight) };
 
-    __block NSDictionary* views = NSDictionaryOfVariableBindings(_colorSample);
+    __block NSDictionary *views = NSDictionaryOfVariableBindings(_colorSample);
+
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[_colorSample]-margin-|" options:0 metrics:metrics views:views]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-spacing-[_colorSample(height)]" options:0 metrics:metrics views:views]];
 
-    __block UIView* previousView = _colorSample;
-    [_colorComponentViews enumerateObjectsUsingBlock:^(UIView* colorComponentView, NSUInteger idx, BOOL *stop) {
-        views = NSDictionaryOfVariableBindings(previousView, colorComponentView);
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[colorComponentView]-margin-|" options:0 metrics:metrics views:views]];
-        [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[previousView]-spacing-[colorComponentView]" options:0 metrics:metrics views:views]];
-        previousView = colorComponentView;
-    }];
+    __block UIView *previousView = _colorSample;
+    [_colorComponentViews enumerateObjectsUsingBlock:^(UIView *colorComponentView, NSUInteger idx, BOOL *stop) {
+         views = NSDictionaryOfVariableBindings(previousView, colorComponentView);
+         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[colorComponentView]-margin-|"
+                                                                      options:0
+                                                                      metrics:metrics
+                                                                        views:views]];
+         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[previousView]-spacing-[colorComponentView]"
+                                                                      options:0
+                                                                      metrics:metrics
+                                                                        views:views]];
+         previousView = colorComponentView;
+     }];
     views = NSDictionaryOfVariableBindings(previousView);
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[previousView]-spacing-|" options:0 metrics:metrics views:views]];
 }
 
-- (NSArray*)_colorComponentsWithRGB:(RGB)rgb
+- (NSArray *)_colorComponentsWithRGB:(RGB)rgb
 {
     return @[@(rgb.red), @(rgb.green), @(rgb.blue), @(rgb.alpha)];
 }
 
 - (void)ms_reloadColorComponentViews:(RGB)colorComponents
 {
-    NSArray* components = [self _colorComponentsWithRGB:colorComponents];
-    [_colorComponentViews enumerateObjectsUsingBlock:^(MSColorComponentView* colorComponentView, NSUInteger idx, BOOL *stop) {
-        if (idx < MSRGBAColorComponentsSize - 1) {
-            [colorComponentView setColors:[self ms_colorsWithColorComponents:components currentColorIndex:colorComponentView.tag]];
-        }
-        colorComponentView.value = [components[idx] floatValue] * colorComponentView.maximumValue;
-    }];
+    NSArray *components = [self _colorComponentsWithRGB:colorComponents];
+
+    [_colorComponentViews enumerateObjectsUsingBlock:^(MSColorComponentView *colorComponentView, NSUInteger idx, BOOL *stop) {
+         if (idx < MSRGBAColorComponentsSize - 1) {
+             [colorComponentView setColors:[self ms_colorsWithColorComponents:components
+                                                            currentColorIndex:colorComponentView.tag]];
+         }
+
+         colorComponentView.value = [components[idx] floatValue] * colorComponentView.maximumValue;
+     }];
 }
 
-- (NSArray*)ms_colorsWithColorComponents:(NSArray*)colorComponents currentColorIndex:(NSUInteger)colorIndex
+- (NSArray *)ms_colorsWithColorComponents:(NSArray *)colorComponents currentColorIndex:(NSUInteger)colorIndex
 {
     CGFloat currentColorValue = [colorComponents[colorIndex] floatValue];
     CGFloat colors[12];
-    for (NSUInteger i = 0; i < MSRGBAColorComponentsSize; i++)
-    {
+
+    for (NSUInteger i = 0; i < MSRGBAColorComponentsSize; i++) {
         colors[i] = [colorComponents[i] floatValue];
         colors[i + 4] = [colorComponents[i] floatValue];
         colors[i + 8] = [colorComponents[i] floatValue];
     }
+
     colors[colorIndex] = 0;
     colors[colorIndex + 4] = currentColorValue;
     colors[colorIndex + 8] = 1.0;
-    UIColor* start = [UIColor colorWithRed:colors[0] green:colors[1] blue:colors[2] alpha:1.0f];
-    UIColor* middle = [UIColor colorWithRed:colors[4] green:colors[5] blue:colors[6] alpha:1.0f];
-    UIColor* end = [UIColor colorWithRed:colors[8] green:colors[9] blue:colors[10] alpha:1.0f];
+    UIColor *start = [UIColor colorWithRed:colors[0] green:colors[1] blue:colors[2] alpha:1.0f];
+    UIColor *middle = [UIColor colorWithRed:colors[4] green:colors[5] blue:colors[6] alpha:1.0f];
+    UIColor *end = [UIColor colorWithRed:colors[8] green:colors[9] blue:colors[10] alpha:1.0f];
     return @[(id)start.CGColor, (id)middle.CGColor, (id)end.CGColor];
 }
 

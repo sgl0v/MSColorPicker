@@ -26,8 +26,8 @@
 
 #import <UIKit/UIKit.h>
 
-typedef struct { CGFloat red, green, blue, alpha; } RGB;
-typedef struct { CGFloat hue, saturation, brightness, alpha; } HSB;
+typedef struct { CGFloat red, green, blue, alpha; }              RGB;
+typedef struct { CGFloat hue, saturation, brightness, alpha; }   HSB;
 
 extern CGFloat const MSRGBColorComponentMaxValue;
 extern CGFloat const MSAlphaComponentMaxValue;
@@ -60,7 +60,7 @@ extern RGB MSHSB2RGB(HSB hsb);
  *
  *  @return The values of the color components (including alpha).
  */
-extern RGB MSRGBColorComponents(UIColor* color);
+extern RGB MSRGBColorComponents(UIColor *color);
 
 /**
  *  Converts hex string to the UIColor representation.
@@ -69,7 +69,7 @@ extern RGB MSRGBColorComponents(UIColor* color);
  *
  *  @return The hex string color value.
  */
-extern NSString* MSHexStringFromColor(UIColor* color);
+extern NSString * MSHexStringFromColor(UIColor *color);
 
 /**
  *  Converts UIColor value to the hex string.
@@ -78,4 +78,4 @@ extern NSString* MSHexStringFromColor(UIColor* color);
  *
  *  @return The color value.
  */
-extern UIColor* MSColorFromHexString(NSString* hexString);
+extern UIColor * MSColorFromHexString(NSString *hexString);

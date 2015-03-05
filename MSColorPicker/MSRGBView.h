@@ -30,7 +30,7 @@
 #import "MSColorView.h"
 
 /**
- @abstract A view to edit RGBA color components.
+   @abstract A view to edit RGBA color components.
  */
 @interface MSRGBView : UIView <MSColorView>
 

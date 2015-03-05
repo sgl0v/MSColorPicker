@@ -12,7 +12,7 @@
 
 @interface MSAppDelegate ()
 {
-    MSKeyboardManager* _keyboardManager;
+    MSKeyboardManager *_keyboardManager;
 }
 
 @end

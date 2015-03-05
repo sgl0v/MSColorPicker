@@ -42,18 +42,17 @@ static CGFloat const MSColorWheelHeight = 200.0f;
 
 @interface MSHSBView () <UITextFieldDelegate>
 {
+    @private
 
-@private
-
-    MSColorWheelView* _colorWheel;
-    MSColorComponentView* _brightnessView;
-    MSColorComponentView* _alphaView;
-    UIView* _colorSample;
-    UIView* _hsView;
-    UILabel* _hueLabel;
-    UITextField* _hueTextField;
-    UILabel* _saturationLabel;
-    UITextField* _saturationTextField;
+    MSColorWheelView *_colorWheel;
+    MSColorComponentView *_brightnessView;
+    MSColorComponentView *_alphaView;
+    UIView *_colorSample;
+    UIView *_hsView;
+    UILabel *_hueLabel;
+    UITextField *_hueTextField;
+    UILabel *_saturationLabel;
+    UITextField *_saturationTextField;
 
     HSB _colorComponents;
 }
@@ -67,18 +66,22 @@ static CGFloat const MSColorWheelHeight = 200.0f;
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
+
     if (self) {
         [self ms_baseInit];
     }
+
     return self;
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
+
     if (self) {
         [self ms_baseInit];
     }
+
     return self;
 }
 
@@ -94,9 +97,9 @@ static CGFloat const MSColorWheelHeight = 200.0f;
     [self reloadData];
 }
 
-- (UIColor*)value
+- (UIColor *)value
 {
-    return[UIColor colorWithHue:_colorComponents.hue saturation:_colorComponents.saturation brightness:_colorComponents.brightness alpha:_colorComponents.alpha];
+    return [UIColor colorWithHue:_colorComponents.hue saturation:_colorComponents.saturation brightness:_colorComponents.brightness alpha:_colorComponents.alpha];
 }
 
 #pragma mark - UITextFieldDelegate methods
@@ -108,6 +111,7 @@ static CGFloat const MSColorWheelHeight = 200.0f;
     } else if (textField == _saturationTextField) {
         _colorComponents.saturation = [textField.text floatValue];
     }
+
     [self.delegate colorView:self didChangeValue:[self value]];
     [self reloadData];
 }
@@ -124,6 +128,7 @@ static CGFloat const MSColorWheelHeight = 200.0f;
 
     //first, check if the new string is numeric only. If not, return NO;
     NSCharacterSet *characterSet = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789,."] invertedSet];
+
     if ([newString rangeOfCharacterFromSet:characterSet].location != NSNotFound) {
         return NO;
     }
@@ -199,25 +204,26 @@ static CGFloat const MSColorWheelHeight = 200.0f;
 
 - (void)ms_installConstraints
 {
-    NSDictionary* metrics = @{ @"spacing" : @(MSViewSpacing),
-                               @"height" : @(MSColorSampleViewHeight),
-                               @"margin" : @(MSViewMargin),
-                               @"text_field_width" : @(MSTextFieldWidth),
-                               @"color_wheel_height" : @(MSColorWheelHeight),
-                               @"small_spacing" : @(MSLabelSpacing)};
+    NSDictionary *metrics = @{ @"spacing": @(MSViewSpacing),
+                               @"height": @(MSColorSampleViewHeight),
+                               @"margin": @(MSViewMargin),
+                               @"text_field_width": @(MSTextFieldWidth),
+                               @"color_wheel_height": @(MSColorWheelHeight),
+                               @"small_spacing": @(MSLabelSpacing) };
 
-    NSDictionary* views = NSDictionaryOfVariableBindings(_colorSample, _colorWheel);
+    NSDictionary *views = NSDictionaryOfVariableBindings(_colorSample, _colorWheel);
+
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[_colorSample]-margin-|" options:0 metrics:metrics views:views]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[_colorWheel(color_wheel_height)]" options:0 metrics:metrics views:views]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-spacing-[_colorSample(height)]-spacing-[_colorWheel]" options:0 metrics:metrics views:views]];
     [self addConstraint:[NSLayoutConstraint
-                                 constraintWithItem:_colorWheel
-                                 attribute:NSLayoutAttributeWidth
-                                 relatedBy:NSLayoutRelationEqual
-                                 toItem:_colorWheel
-                                 attribute:NSLayoutAttributeHeight
+                         constraintWithItem:_colorWheel
+                                  attribute:NSLayoutAttributeWidth
+                                  relatedBy:NSLayoutRelationEqual
+                                     toItem:_colorWheel
+                                  attribute:NSLayoutAttributeHeight
                                  multiplier:1.0f
-                                 constant:0]];
+                                   constant:0]];
 
     views = NSDictionaryOfVariableBindings(_colorSample, _colorWheel, _hsView, _hueLabel, _hueTextField, _saturationLabel, _saturationTextField);
     [_hsView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_hueLabel]-small_spacing-[_hueTextField(text_field_width)]|" options:0 metrics:metrics views:views]];
@@ -246,7 +252,7 @@ static CGFloat const MSColorWheelHeight = 200.0f;
 {
     [_alphaView setValue:colorComponents.alpha * MSAlphaComponentMaxValue];
     [_brightnessView setValue:colorComponents.brightness];
-    UIColor* tmp = [UIColor colorWithHue:colorComponents.hue saturation:colorComponents.saturation brightness:1.0f alpha:1.0f];
+    UIColor *tmp = [UIColor colorWithHue:colorComponents.hue saturation:colorComponents.saturation brightness:1.0f alpha:1.0f];
     [_brightnessView setColors:@[(id)[UIColor blackColor].CGColor, (id)tmp.CGColor]];
 }
 
@@ -256,7 +262,7 @@ static CGFloat const MSColorWheelHeight = 200.0f;
     _saturationTextField.text = [NSString stringWithFormat:@"%.2f", colorComponents.saturation];
 }
 
-- (void)ms_colorDidChangeValue:(MSColorWheelView*)sender
+- (void)ms_colorDidChangeValue:(MSColorWheelView *)sender
 {
     _colorComponents.hue = sender.hue;
     _colorComponents.saturation = sender.saturation;
@@ -264,14 +270,14 @@ static CGFloat const MSColorWheelHeight = 200.0f;
     [self reloadData];
 }
 
-- (void)ms_brightnessDidChangeValue:(MSColorComponentView*)sender
+- (void)ms_brightnessDidChangeValue:(MSColorComponentView *)sender
 {
     _colorComponents.brightness = sender.value;
     [self.delegate colorView:self didChangeValue:[self value]];
     [self reloadData];
 }
 
-- (void)ms_alphaDidChangeValue:(MSColorComponentView*)sender
+- (void)ms_alphaDidChangeValue:(MSColorComponentView *)sender
 {
     _colorComponents.alpha = sender.value / MSAlphaComponentMaxValue;
     [self.delegate colorView:self didChangeValue:[self value]];

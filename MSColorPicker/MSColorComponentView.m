@@ -34,12 +34,11 @@ static CGFloat const MSColorComponentTextFieldWidth = 50.0f;
 
 @interface MSColorComponentView () <UITextFieldDelegate>
 {
+    @private
 
-@private
-
-    UILabel* _label;
-    MSSliderView* _slider; //! @abstract The color slider to edit color component.
-    UITextField* _textField;
+    UILabel *_label;
+    MSSliderView *_slider; //! @abstract The color slider to edit color component.
+    UITextField *_textField;
 }
 
 @end
@@ -54,18 +53,22 @@ static CGFloat const MSColorComponentTextFieldWidth = 50.0f;
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
+
     if (self) {
         [self ms_baseInit];
     }
+
     return self;
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
+
     if (self) {
         [self ms_baseInit];
     }
+
     return self;
 }
 
@@ -90,7 +93,7 @@ static CGFloat const MSColorComponentTextFieldWidth = 50.0f;
     _textField.text = [NSString stringWithFormat:_format, value];
 }
 
-- (NSString*)title
+- (NSString *)title
 {
     return _label.text;
 }
@@ -130,6 +133,7 @@ static CGFloat const MSColorComponentTextFieldWidth = 50.0f;
 
     //first, check if the new string is numeric only. If not, return NO;
     NSCharacterSet *characterSet = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789,."] invertedSet];
+
     if ([newString rangeOfCharacterFromSet:characterSet].location != NSNotFound) {
         return NO;
     }
@@ -137,7 +141,7 @@ static CGFloat const MSColorComponentTextFieldWidth = 50.0f;
     return [newString floatValue] <= _slider.maximumValue;
 }
 
-- (void)setColors:(NSArray*)colors
+- (void)setColors:(NSArray *)colors
 {
     NSParameterAssert(colors);
     [_slider setColors:colors];
@@ -172,7 +176,7 @@ static CGFloat const MSColorComponentTextFieldWidth = 50.0f;
     [self ms_installConstraints];
 }
 
-- (void)ms_didChangeSliderValue:(MSSliderView*)sender
+- (void)ms_didChangeSliderValue:(MSSliderView *)sender
 {
     [self setValue:sender.value];
     [self sendActionsForControlEvents:UIControlEventValueChanged];
@@ -180,12 +184,15 @@ static CGFloat const MSColorComponentTextFieldWidth = 50.0f;
 
 - (void)ms_installConstraints
 {
-    NSDictionary *views = @{ @"label" : _label, @"slider" : _slider, @"textField" : _textField };
-    NSDictionary* metrics = @{ @"spacing" : @(MSColorComponentViewSpacing),
-                               @"label_width" : @(MSColorComponentLabelWidth),
-                               @"textfield_width" : @(MSColorComponentTextFieldWidth) };
+    NSDictionary *views = @{ @"label": _label, @"slider": _slider, @"textField": _textField };
+    NSDictionary *metrics = @{ @"spacing": @(MSColorComponentViewSpacing),
+                               @"label_width": @(MSColorComponentLabelWidth),
+                               @"textfield_width": @(MSColorComponentTextFieldWidth) };
+
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[label(label_width)]-spacing-[slider]-spacing-[textField(textfield_width)]|"
-                                                                 options:NSLayoutFormatAlignAllCenterY metrics:metrics views:views]];
+                                                                 options:NSLayoutFormatAlignAllCenterY
+                                                                 metrics:metrics
+                                                                   views:views]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[label]|" options:0 metrics:nil views:views]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[textField]|" options:0 metrics:nil views:views]];
 }

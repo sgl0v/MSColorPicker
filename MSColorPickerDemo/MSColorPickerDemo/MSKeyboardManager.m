@@ -60,6 +60,7 @@ static CGFloat const MSDistanceBetweenKeyboardAndTextfield = 10.0f;
 
         for (UIView *v in subviews) {
             UIView *retVal = [v firstSubviewOfClass:className depthLevel:count];
+
             if (retVal) {
                 return retVal;
             }
@@ -73,7 +74,7 @@ static CGFloat const MSDistanceBetweenKeyboardAndTextfield = 10.0f;
 
 @interface MSKeyboardManager ()
 {
-    UIView* _activeTextField;
+    UIView *_activeTextField;
 }
 
 @end
@@ -83,20 +84,22 @@ static CGFloat const MSDistanceBetweenKeyboardAndTextfield = 10.0f;
 - (instancetype)init
 {
     self = [super init];
+
     if (self) {
         [self enable];
     }
+
     return self;
 }
 
 - (void)enable
 {
     // register for keyboard notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_keyboardFrameChanged:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ms_keyboardFrameChanged:) name:UIKeyboardWillChangeFrameNotification object:nil];
 
     // register for testfield notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_textFieldDidBeginEditing:) name:UITextFieldTextDidBeginEditingNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_textFieldDidEndEditing:) name:UITextFieldTextDidEndEditingNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ms_textFieldDidBeginEditing:) name:UITextFieldTextDidBeginEditingNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(ms_textFieldDidEndEditing:) name:UITextFieldTextDidEndEditingNotification object:nil];
 }
 
 - (void)disable
@@ -111,36 +114,40 @@ static CGFloat const MSDistanceBetweenKeyboardAndTextfield = 10.0f;
 
 #pragma mark - Private methods
 
-- (UIViewController*)_topViewController
+- (UIViewController *)ms_topViewController
 {
     UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
 
     while (topController.presentedViewController) {
         topController = topController.presentedViewController;
     }
+
     if ([topController isKindOfClass:UINavigationController.class]) {
-        topController = [(UINavigationController*)topController topViewController];
+        topController = [(UINavigationController *)topController topViewController];
     }
 
     return topController;
 }
 
--(void)_setRootViewFrame:(CGRect)frame withDuration:(CGFloat)duration options:(UIViewAnimationOptions)options
+- (void)ms_setRootViewFrame:(CGRect)frame withDuration:(CGFloat)duration options:(UIViewAnimationOptions)options
 {
-    UIViewController *controller = [self _topViewController];
+    UIViewController *controller = [self ms_topViewController];
+
     [UIView animateWithDuration:duration delay:0 options:options animations:^{
-        [controller.view setFrame:frame];
-    } completion:nil];
+         [controller.view setFrame:frame];
+     } completion:nil];
 }
 
-- (void)_keyboardFrameChanged:(NSNotification *)notification
+- (void)ms_keyboardFrameChanged:(NSNotification *)notification
 {
-    UIView* view = [self _topViewController].view;
-    UIScrollView* scrollView = [view firstSubviewOfClass:[UIScrollView class]];
+    UIView *view = [self ms_topViewController].view;
+    UIScrollView *scrollView = [view firstSubviewOfClass:[UIScrollView class]];
+
     if (scrollView == nil) {
         return;
     }
-    NSDictionary* userInfo = [notification userInfo];
+
+    NSDictionary *userInfo = [notification userInfo];
     CGRect endFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
     NSTimeInterval duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     UIViewAnimationCurve curve = [userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
@@ -153,12 +160,14 @@ static CGFloat const MSDistanceBetweenKeyboardAndTextfield = 10.0f;
     CGRect activeTextFieldRect = [_activeTextField.superview convertRect:_activeTextField.frame toView:scrollView];
     CGRect rootViewRect = scrollView.frame;
     CGFloat kbHeight = kbSize.height;
-    if (UIInterfaceOrientationIsLandscape([self _topViewController].interfaceOrientation)) {
+
+    if (UIInterfaceOrientationIsLandscape([self ms_topViewController].interfaceOrientation)) {
         kbHeight = kbSize.width;
     }
+
     CGFloat move = CGRectGetMaxY(activeTextFieldRect) - (CGRectGetHeight(rootViewRect) - kbHeight - MSDistanceBetweenKeyboardAndTextfield);
 
-    void (^animations)() = ^{
+    void (^ animations)() = ^{
         scrollView.contentOffset = CGPointMake(0, move);
         CGFloat height = CGRectGetHeight(view.bounds);
         UIEdgeInsets contentInset = scrollView.contentInset;
@@ -175,12 +184,12 @@ static CGFloat const MSDistanceBetweenKeyboardAndTextfield = 10.0f;
     [UIView animateWithDuration:duration delay:0 options:options animations:animations completion:NULL];
 }
 
--(void)_textFieldDidBeginEditing:(NSNotification*)notification
+- (void)ms_textFieldDidBeginEditing:(NSNotification *)notification
 {
     _activeTextField = notification.object;
 }
 
--(void)_textFieldDidEndEditing:(NSNotification*)notification
+- (void)ms_textFieldDidEndEditing:(NSNotification *)notification
 {
     _activeTextField = nil;
 }

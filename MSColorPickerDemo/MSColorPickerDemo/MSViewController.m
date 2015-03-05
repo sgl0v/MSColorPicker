@@ -29,20 +29,19 @@
 #import "MSRGBView.h"
 #import "MSHSBView.h"
 
-typedef NS_ENUM(NSUInteger, MSSelectedColorView)
-{
+typedef NS_ENUM (NSUInteger, MSSelectedColorView) {
     MSSelectedColorViewRGB,
     MSSelectedColorViewHSB
 };
 
 @interface MSViewController () <MSColorViewDelegate>
 
-@property(nonatomic, strong) UIView<MSColorView>* currentColorView;
-@property(nonatomic, strong) UIView<MSColorView>* rgbColorView;
-@property(nonatomic, strong) UIView<MSColorView>* hsbColorView;
-@property(nonatomic, weak) IBOutlet UISegmentedControl* segmentedControl;
-@property(nonatomic, weak) IBOutlet UIScrollView* scrollView;
-@property(nonatomic, strong) UIColor* selectedColor;
+@property (nonatomic, strong) UIView<MSColorView> *currentColorView;
+@property (nonatomic, strong) UIView<MSColorView> *rgbColorView;
+@property (nonatomic, strong) UIView<MSColorView> *hsbColorView;
+@property (nonatomic, weak) IBOutlet UISegmentedControl *segmentedControl;
+@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, strong) UIColor *selectedColor;
 
 @end
 
@@ -55,37 +54,39 @@ typedef NS_ENUM(NSUInteger, MSSelectedColorView)
     [self ms_updateContentWithSelectedView:self.segmentedControl.selectedSegmentIndex];
 }
 
-- (IBAction)segmentControlDidChangeValue:(UISegmentedControl*)sender
+- (IBAction)segmentControlDidChangeValue:(UISegmentedControl *)sender
 {
     [self ms_updateContentWithSelectedView:self.segmentedControl.selectedSegmentIndex];
 }
 
-- (UIView<MSColorView>*)rgbColorView
+- (UIView<MSColorView> *)rgbColorView
 {
     if (!_rgbColorView) {
         _rgbColorView = [[MSRGBView alloc] init];
     }
+
     return _rgbColorView;
 }
 
-- (UIView<MSColorView>*)hsbColorView
+- (UIView<MSColorView> *)hsbColorView
 {
     if (!_hsbColorView) {
         _hsbColorView = [[MSHSBView alloc] init];
     }
+
     return _hsbColorView;
 }
 
 #pragma mark - FBColorViewDelegate methods
 
-- (void)colorView:(id<MSColorView>)colorView didChangeValue:(UIColor*)colorValue
+- (void)colorView:(id<MSColorView>)colorView didChangeValue:(UIColor *)colorValue
 {
     self.selectedColor = colorValue;
 }
 
 #pragma mark - Private methods
 
-- (void) ms_updateContentWithSelectedView:(MSSelectedColorView)selectedView
+- (void)ms_updateContentWithSelectedView:(MSSelectedColorView)selectedView
 {
     self.currentColorView.delegate = nil;
     [self.currentColorView removeFromSuperview];
