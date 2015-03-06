@@ -184,14 +184,14 @@ static NSUInteger const MSRGBAColorComponentsSize = 4;
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[previousView]-spacing-|" options:0 metrics:metrics views:views]];
 }
 
-- (NSArray *)_colorComponentsWithRGB:(RGB)rgb
+- (NSArray *)ms_colorComponentsWithRGB:(RGB)rgb
 {
     return @[@(rgb.red), @(rgb.green), @(rgb.blue), @(rgb.alpha)];
 }
 
 - (void)ms_reloadColorComponentViews:(RGB)colorComponents
 {
-    NSArray *components = [self _colorComponentsWithRGB:colorComponents];
+    NSArray *components = [self ms_colorComponentsWithRGB:colorComponents];
 
     [_colorComponentViews enumerateObjectsUsingBlock:^(MSColorComponentView *colorComponentView, NSUInteger idx, BOOL *stop) {
          if (idx < MSRGBAColorComponentsSize - 1) {

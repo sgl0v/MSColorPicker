@@ -25,9 +25,7 @@
 // THE SOFTWARE.
 
 #import "MSViewController.h"
-#import "MSColorView.h"
-#import "MSRGBView.h"
-#import "MSHSBView.h"
+#import <MSColorPicker/MSColorPicker.h>
 
 typedef NS_ENUM (NSUInteger, MSSelectedColorView) {
     MSSelectedColorViewRGB,
