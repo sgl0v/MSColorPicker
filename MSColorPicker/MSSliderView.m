@@ -26,6 +26,7 @@
 #import "MSSliderView.h"
 
 static const CGFloat MSSliderViewHeight = 28.0f;
+static const CGFloat MSSliderViewMinWidth = 150.0f;
 static const CGFloat MSSliderViewThumbDimension = 28.0f;
 static const CGFloat MSSliderViewTrackHeight = 3.0f;
 
@@ -80,7 +81,7 @@ static const CGFloat MSSliderViewTrackHeight = 3.0f;
 
 - (CGSize)intrinsicContentSize
 {
-    return CGSizeMake(UIViewNoIntrinsicMetric, MSSliderViewHeight);
+    return CGSizeMake(MSSliderViewMinWidth, MSSliderViewHeight);
 }
 
 - (void)setValue:(CGFloat)value
