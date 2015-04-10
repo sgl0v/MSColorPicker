@@ -54,6 +54,13 @@
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:nil views:views]];
 }
 
+- (void)updateConstraints
+{
+    [self.rgbColorView setNeedsUpdateConstraints];
+    [self.hsbColorView setNeedsUpdateConstraints];
+    [super updateConstraints];
+}
+
 #pragma mark - FBColorViewDelegate methods
 
 - (void)colorView:(id<MSColorView>)colorView didChangeValue:(UIColor *)colorValue

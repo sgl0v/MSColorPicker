@@ -45,6 +45,7 @@ static CGFloat const MSColorWheelDimension = 200.0f;
     UIView *_colorSample;
 
     HSB _colorComponents;
+    NSArray* _layoutConstraints;
 }
 
 @end
@@ -92,6 +93,12 @@ static CGFloat const MSColorWheelDimension = 200.0f;
     return [UIColor colorWithHue:_colorComponents.hue saturation:_colorComponents.saturation brightness:_colorComponents.brightness alpha:_colorComponents.alpha];
 }
 
+- (void)updateConstraints
+{
+    [self ms_updateConstraints];
+    [super updateConstraints];
+}
+
 #pragma mark - Private methods
 
 - (void)ms_baseInit
@@ -107,7 +114,7 @@ static CGFloat const MSColorWheelDimension = 200.0f;
     [self addSubview:_colorWheel];
 
     _brightnessView = [[MSColorComponentView alloc] init];
-    _brightnessView.title = @"Brightness";
+    _brightnessView.title = NSLocalizedString(@"Brightness",);
     _brightnessView.maximumValue = MSHSBColorComponentMaxValue;
     _brightnessView.format = @"%.2f";
     _brightnessView.translatesAutoresizingMaskIntoConstraints = NO;
@@ -116,29 +123,71 @@ static CGFloat const MSColorWheelDimension = 200.0f;
     [_colorWheel addTarget:self action:@selector(ms_colorDidChangeValue:) forControlEvents:UIControlEventValueChanged];
     [_brightnessView addTarget:self action:@selector(ms_brightnessDidChangeValue:) forControlEvents:UIControlEventValueChanged];
 
-    [self ms_installConstraints];
+    [self setNeedsUpdateConstraints];
 }
 
-- (void)ms_installConstraints
+- (void)ms_updateConstraints
+{
+    // remove all constraints first
+    if (_layoutConstraints != nil) {
+        [self removeConstraints:_layoutConstraints];
+    }
+
+    _layoutConstraints = self.traitCollection.verticalSizeClass == UIUserInterfaceSizeClassCompact ? [self ms_constraintsForCompactVerticalSizeClass] : [self ms_constraintsForRegularVerticalSizeClass];
+    [self addConstraints:_layoutConstraints];
+}
+
+- (NSArray*)ms_constraintsForRegularVerticalSizeClass
 {
     NSDictionary *metrics = @{ @"margin": @(MSViewMargin),
                                @"height": @(MSColorSampleViewHeight),
                                @"color_wheel_dimension": @(MSColorWheelDimension)};
 
     NSDictionary *views = NSDictionaryOfVariableBindings(_colorSample, _colorWheel, _brightnessView);
+    NSMutableArray* layoutConstraints = [NSMutableArray array];
+    [layoutConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[_colorSample]-margin-|" options:0 metrics:metrics views:views]];
+    [layoutConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[_colorWheel(>=color_wheel_dimension)]-margin-|" options:0 metrics:metrics views:views]];
+    [layoutConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[_brightnessView]-margin-|" options:0 metrics:metrics views:views]];
+    [layoutConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-margin-[_colorSample(height)]-margin-[_colorWheel]-margin-[_brightnessView]-(>=margin)-|" options:0 metrics:metrics views:views]];
+    [layoutConstraints addObject:[NSLayoutConstraint
+                                   constraintWithItem:_colorWheel
+                                   attribute:NSLayoutAttributeWidth
+                                   relatedBy:NSLayoutRelationEqual
+                                   toItem:_colorWheel
+                                   attribute:NSLayoutAttributeHeight
+                                   multiplier:1.0f
+                                   constant:0]];
+    return layoutConstraints;
+}
 
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[_colorSample]-margin-|" options:0 metrics:metrics views:views]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[_colorWheel(>=color_wheel_dimension)]-margin-|" options:0 metrics:metrics views:views]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[_brightnessView]-margin-|" options:0 metrics:metrics views:views]];
-    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-margin-[_colorSample(height)]-margin-[_colorWheel]-margin-[_brightnessView]-(>=margin)-|" options:0 metrics:metrics views:views]];
-    [self addConstraint:[NSLayoutConstraint
-                         constraintWithItem:_colorWheel
-                         attribute:NSLayoutAttributeWidth
-                         relatedBy:NSLayoutRelationEqual
-                         toItem:_colorWheel
-                         attribute:NSLayoutAttributeHeight
-                         multiplier:1.0f
-                         constant:0]];
+- (NSArray*)ms_constraintsForCompactVerticalSizeClass
+{
+    NSDictionary *metrics = @{ @"margin": @(MSViewMargin),
+                               @"height": @(MSColorSampleViewHeight),
+                               @"color_wheel_dimension": @(MSColorWheelDimension)};
+
+    NSDictionary *views = NSDictionaryOfVariableBindings(_colorSample, _colorWheel, _brightnessView);
+    NSMutableArray* layoutConstraints = [NSMutableArray array];
+    [layoutConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[_colorSample]-margin-|" options:0 metrics:metrics views:views]];
+    [layoutConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-margin-[_colorWheel(>=color_wheel_dimension)]-margin-[_brightnessView]-margin-|" options:0 metrics:metrics views:views]];
+    [layoutConstraints addObjectsFromArray:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-margin-[_colorSample(height)]-margin-[_colorWheel]-margin-|" options:0 metrics:metrics views:views]];
+    [layoutConstraints addObject:[NSLayoutConstraint
+                                  constraintWithItem:_colorWheel
+                                  attribute:NSLayoutAttributeWidth
+                                  relatedBy:NSLayoutRelationEqual
+                                  toItem:_colorWheel
+                                  attribute:NSLayoutAttributeHeight
+                                  multiplier:1.0f
+                                  constant:0]];
+    [layoutConstraints addObject:[NSLayoutConstraint
+                                  constraintWithItem:_brightnessView
+                                  attribute:NSLayoutAttributeCenterY
+                                  relatedBy:NSLayoutRelationEqual
+                                  toItem:self
+                                  attribute:NSLayoutAttributeCenterY
+                                  multiplier:1.0f
+                                  constant:0]];
+    return layoutConstraints;
 }
 
 - (void)ms_reloadViewsWithColorComponents:(HSB)colorComponents

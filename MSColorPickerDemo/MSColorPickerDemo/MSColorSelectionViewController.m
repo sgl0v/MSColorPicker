@@ -56,4 +56,11 @@
     [self.colorSelectionView setSelectedIndex:self.segmentedControl.selectedSegmentIndex animated:YES];
 }
 
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [self.colorSelectionView setNeedsUpdateConstraints];
+    [self.colorSelectionView updateConstraintsIfNeeded];
+    [self.colorSelectionView layoutIfNeeded];
+}
+
 @end
