@@ -99,7 +99,7 @@ static NSUInteger const MSRGBColorComponentsSize = 3;
     [self addSubview:_colorSample];
 
     NSMutableArray *tmp = [NSMutableArray array];
-    NSArray *titles = @[@"Red", @"Green", @"Blue"];
+    NSArray *titles = @[NSLocalizedString(@"Red",), NSLocalizedString(@"Green",), NSLocalizedString(@"Blue",)];
     NSArray *maxValues = @[@(MSRGBColorComponentMaxValue), @(MSRGBColorComponentMaxValue), @(MSRGBColorComponentMaxValue)];
 
     for (NSUInteger i = 0; i < MSRGBColorComponentsSize; ++i) {
@@ -189,11 +189,8 @@ static NSUInteger const MSRGBColorComponentsSize = 3;
     NSArray *components = [self ms_colorComponentsWithRGB:colorComponents];
 
     [_colorComponentViews enumerateObjectsUsingBlock:^(MSColorComponentView *colorComponentView, NSUInteger idx, BOOL *stop) {
-         if (idx < MSRGBColorComponentsSize - 1) {
-             [colorComponentView setColors:[self ms_colorsWithColorComponents:components
-                                                            currentColorIndex:colorComponentView.tag]];
-         }
-
+         [colorComponentView setColors:[self ms_colorsWithColorComponents:components
+                                                        currentColorIndex:colorComponentView.tag]];
          colorComponentView.value = [components[idx] floatValue] * colorComponentView.maximumValue;
      }];
 }
