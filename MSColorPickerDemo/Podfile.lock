@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  MSColorPicker: f82fdb6ce419d8d8d297bb702e042d6b37ca3646
+  MSColorPicker: f0e8df79248a1aaac0cbdea3440d85ab26ffeef3
 
-COCOAPODS: 0.36.3
+COCOAPODS: 0.35.0
