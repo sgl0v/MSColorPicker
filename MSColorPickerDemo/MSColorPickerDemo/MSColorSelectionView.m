@@ -11,15 +11,21 @@
 
 @interface MSColorSelectionView () <MSColorViewDelegate>
 
+@property (nonatomic, strong) UIView <MSColorView> *rgbColorView;
+@property (nonatomic, strong) UIView <MSColorView> *hsbColorView;
+@property (nonatomic, assign) MSSelectedColorView selectedIndex;
+@property (nonatomic, strong) UIColor* color;
+
 @end
 
 @implementation MSColorSelectionView
+
+@synthesize delegate;
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self != nil) {
-        _selectedColor = [UIColor whiteColor];
         _rgbColorView = [[MSRGBView alloc] init];
         _hsbColorView = [[MSHSBView alloc] init];
         [self addColorView:_rgbColorView];
@@ -29,10 +35,16 @@
     return self;
 }
 
+- (void)setColor:(UIColor *)color
+{
+    _color = color;
+    [[self selectedView] setColor:color];
+}
+
 - (void)setSelectedIndex:(MSSelectedColorView)index animated:(BOOL)animated
 {
     self.selectedIndex = index;
-    self.selectedView.value = self.selectedColor;
+    self.selectedView.color = self.color;
     [UIView animateWithDuration:animated ? .5 : 0.0 animations:^{
         self.rgbColorView.alpha = index == 0 ? 1.0 : 0.0;
         self.hsbColorView.alpha = index == 1 ? 1.0 : 0.0;
@@ -65,7 +77,8 @@
 
 - (void)colorView:(id<MSColorView>)colorView didChangeValue:(UIColor *)colorValue
 {
-    self.selectedColor = colorValue;
+    self.color = colorValue;
+    [self.delegate colorView:self didChangeValue:self.color];
 }
 
 @end

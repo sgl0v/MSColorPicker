@@ -78,17 +78,17 @@ static CGFloat const MSColorWheelDimension = 200.0f;
 
 - (void)reloadData
 {
-    [_colorSample setBackgroundColor:self.value];
+    [_colorSample setBackgroundColor:self.color];
     [self ms_reloadViewsWithColorComponents:_colorComponents];
 }
 
-- (void)setValue:(UIColor *)value
+- (void)setColor:(UIColor *)color
 {
-    _colorComponents = MSRGB2HSB(MSRGBColorComponents(value));
+    _colorComponents = MSRGB2HSB(MSRGBColorComponents(color));
     [self reloadData];
 }
 
-- (UIColor *)value
+- (UIColor *)color
 {
     return [UIColor colorWithHue:_colorComponents.hue saturation:_colorComponents.saturation brightness:_colorComponents.brightness alpha:_colorComponents.alpha];
 }
@@ -208,14 +208,14 @@ static CGFloat const MSColorWheelDimension = 200.0f;
 {
     _colorComponents.hue = sender.hue;
     _colorComponents.saturation = sender.saturation;
-    [self.delegate colorView:self didChangeValue:[self value]];
+    [self.delegate colorView:self didChangeValue:self.color];
     [self reloadData];
 }
 
 - (void)ms_brightnessDidChangeValue:(MSColorComponentView *)sender
 {
     _colorComponents.brightness = sender.value;
-    [self.delegate colorView:self didChangeValue:[self value]];
+    [self.delegate colorView:self didChangeValue:self.color];
     [self reloadData];
 }
 

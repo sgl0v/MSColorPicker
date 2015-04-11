@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol MSColorView;
+#import "MSColorView.h"
 
 typedef NS_ENUM (NSUInteger, MSSelectedColorView) {
 	MSSelectedColorViewRGB,
@@ -18,15 +18,10 @@ typedef NS_ENUM (NSUInteger, MSSelectedColorView) {
 /**
  *  The MSColorSelectionView aggregates views that should be used to edit color components.
  */
-@interface MSColorSelectionView : UIView
+@interface MSColorSelectionView : UIView <MSColorView>
 
-@property (nonatomic, assign) MSSelectedColorView selectedIndex;
-//! @abstract This view represents rgb color components
-@property (nonatomic, strong) UIView <MSColorView> *rgbColorView;
-//! @abstract This view represents hsb color components
-@property (nonatomic, strong) UIView <MSColorView> *hsbColorView;
-//! @abstract The selected color
-@property (nonatomic, strong) UIColor *selectedColor;
+//! @abstract The selected view's index
+@property (nonatomic, assign, readonly) MSSelectedColorView selectedIndex;
 
 /**
  *  Makes a color component view (rgb or hsb) visible according to the index.

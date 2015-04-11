@@ -73,17 +73,17 @@ static NSUInteger const MSRGBColorComponentsSize = 3;
 
 - (void)reloadData
 {
-    [_colorSample setBackgroundColor:self.value];
+    [_colorSample setBackgroundColor:self.color];
     [self ms_reloadColorComponentViews:_colorComponents];
 }
 
-- (void)setValue:(UIColor *)value
+- (void)setColor:(UIColor *)color
 {
-    _colorComponents = MSRGBColorComponents(value);
+    _colorComponents = MSRGBColorComponents(color);
     [self reloadData];
 }
 
-- (UIColor *)value
+- (UIColor *)color
 {
     return [UIColor colorWithRed:_colorComponents.red green:_colorComponents.green blue:_colorComponents.blue alpha:_colorComponents.alpha];
 }
@@ -116,7 +116,7 @@ static NSUInteger const MSRGBColorComponentsSize = 3;
 - (IBAction)ms_colorComponentDidChangeValue:(MSColorComponentView *)sender
 {
     [self ms_setColorComponentValue:sender.value / sender.maximumValue atIndex:sender.tag];
-    [self.delegate colorView:self didChangeValue:[self value]];
+    [self.delegate colorView:self didChangeValue:self.color];
     [self reloadData];
 }
 

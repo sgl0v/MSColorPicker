@@ -34,16 +34,12 @@
 
 @required
 
-//! @abstract The current color value.
-@property (nonatomic, strong) UIColor *value;
-
 //! @abstract The object that acts as the delegate of the receiving color selection view.
 @property (nonatomic, weak) id<MSColorViewDelegate> delegate;
 
-/**
- *  Reloads the content of the receiver.
- */
-- (void)reloadData;
+//! @abstract The current color's value setter and getter.
+- (void)setColor:(UIColor*)color;
+- (UIColor*)color;
 
 @end
 
