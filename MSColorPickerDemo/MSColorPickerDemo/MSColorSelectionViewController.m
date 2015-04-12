@@ -66,11 +66,10 @@
     self.colorSelectionView.color = color;
 }
 
-- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+- (void)viewWillLayoutSubviews
 {
     [self.colorSelectionView setNeedsUpdateConstraints];
     [self.colorSelectionView updateConstraintsIfNeeded];
-    [self.colorSelectionView layoutIfNeeded];
 }
 
 @end
