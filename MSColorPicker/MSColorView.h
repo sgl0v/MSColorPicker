@@ -55,9 +55,8 @@
  *  Tells the data source to return the color components.
  *
  *  @param colorView The color view.
- *  @param colorValue The new color value.
- *  @return The color components.
+ *  @param color The new color value.
  */
-- (void)colorView:(id<MSColorView>)colorView didChangeValue:(UIColor *)colorValue;
+- (void)colorView:(id<MSColorView>)colorView didChangeColor:(UIColor *)color;
 
 @end

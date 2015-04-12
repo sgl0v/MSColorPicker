@@ -7,10 +7,8 @@
 //
 
 #import "MSViewController.h"
-#import "MSColorView.h"
-#import "MSColorSelectionViewController.h"
 
-@interface MSViewController () <UIPopoverPresentationControllerDelegate, MSColorViewDelegate>
+@interface MSViewController () <UIPopoverPresentationControllerDelegate, MSColorSelectionViewControllerDelegate>
 
 @end
 
@@ -44,9 +42,9 @@
 
 #pragma mark - MSColorViewDelegate
 
-- (void)colorView:(id<MSColorView>)colorView didChangeValue:(UIColor *)colorValue
+- (void)colorViewController:(MSColorSelectionViewController *)colorViewCntroller didChangeColor:(UIColor *)color
 {
-    self.view.backgroundColor = colorValue;
+    self.view.backgroundColor = color;
 }
 
 #pragma mark - UIAdaptivePresentationControllerDelegate methods

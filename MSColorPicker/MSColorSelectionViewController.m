@@ -28,7 +28,7 @@
 
 #import <MSColorPicker/MSColorPicker.h>
 
-@interface MSColorSelectionViewController ()
+@interface MSColorSelectionViewController () <MSColorViewDelegate>
 
 @property (nonatomic, strong) MSColorSelectionView* colorSelectionView;
 @property (nonatomic, weak) IBOutlet UISegmentedControl *segmentedControl;
@@ -49,6 +49,7 @@
 
 
     [self.colorSelectionView setSelectedIndex:self.segmentedControl.selectedSegmentIndex animated:NO];
+    self.colorSelectionView.delegate = self;
 }
 
 - (IBAction)segmentControlDidChangeValue:(UISegmentedControl *)sender
@@ -56,20 +57,27 @@
     [self.colorSelectionView setSelectedIndex:self.segmentedControl.selectedSegmentIndex animated:YES];
 }
 
-- (void) setDelegate:(id<MSColorViewDelegate>)delegate
-{
-    self.colorSelectionView.delegate = delegate;
-}
-
 - (void) setColor:(UIColor*)color
 {
     self.colorSelectionView.color = color;
+}
+
+- (UIColor*) color
+{
+    return self.colorSelectionView.color;
 }
 
 - (void)viewWillLayoutSubviews
 {
     [self.colorSelectionView setNeedsUpdateConstraints];
     [self.colorSelectionView updateConstraintsIfNeeded];
+}
+
+#pragma mark - MSColorViewDelegate
+
+- (void)colorView:(id<MSColorView>)colorView didChangeColor:(UIColor *)color
+{
+    [self.delegate colorViewController:self didChangeColor:color];
 }
 
 @end

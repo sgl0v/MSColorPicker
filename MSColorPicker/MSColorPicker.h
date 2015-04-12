@@ -23,7 +23,4 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <MSColorPicker/MSColorView.h>
-#import <MSColorPicker/MSHSBView.h>
-#import <MSColorPicker/MSRGBView.h>
-#import <MSColorPicker/MSColorUtils.h>
+#import <MSColorPicker/MSColorSelectionViewController.h>

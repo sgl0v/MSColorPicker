@@ -24,7 +24,6 @@
 // THE SOFTWARE.
 
 #import "MSAppDelegate.h"
-#import "MSColorSelectionViewController.h"
 #import "MSKeyboardManager.h"
 
 @interface MSAppDelegate ()

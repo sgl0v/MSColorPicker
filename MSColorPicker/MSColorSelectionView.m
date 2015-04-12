@@ -7,7 +7,8 @@
 //
 
 #import "MSColorSelectionView.h"
-#import <MSColorPicker/MSColorPicker.h>
+#import "MSRGBView.h"
+#import "MSHSBView.h"
 
 @interface MSColorSelectionView () <MSColorViewDelegate>
 
@@ -75,10 +76,10 @@
 
 #pragma mark - FBColorViewDelegate methods
 
-- (void)colorView:(id<MSColorView>)colorView didChangeValue:(UIColor *)colorValue
+- (void)colorView:(id<MSColorView>)colorView didChangeColor:(UIColor *)color
 {
-    self.color = colorValue;
-    [self.delegate colorView:self didChangeValue:self.color];
+    self.color = color;
+    [self.delegate colorView:self didChangeColor:self.color];
 }
 
 @end

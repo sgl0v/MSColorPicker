@@ -208,14 +208,14 @@ static CGFloat const MSColorWheelDimension = 200.0f;
 {
     _colorComponents.hue = sender.hue;
     _colorComponents.saturation = sender.saturation;
-    [self.delegate colorView:self didChangeValue:self.color];
+    [self.delegate colorView:self didChangeColor:self.color];
     [self reloadData];
 }
 
 - (void)ms_brightnessDidChangeValue:(MSColorComponentView *)sender
 {
     _colorComponents.brightness = sender.value;
-    [self.delegate colorView:self didChangeValue:self.color];
+    [self.delegate colorView:self didChangeColor:self.color];
     [self reloadData];
 }
 

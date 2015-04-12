@@ -116,7 +116,7 @@ static NSUInteger const MSRGBColorComponentsSize = 3;
 - (IBAction)ms_colorComponentDidChangeValue:(MSColorComponentView *)sender
 {
     [self ms_setColorComponentValue:sender.value / sender.maximumValue atIndex:sender.tag];
-    [self.delegate colorView:self didChangeValue:self.color];
+    [self.delegate colorView:self didChangeColor:self.color];
     [self reloadData];
 }
 
