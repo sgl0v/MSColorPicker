@@ -7,8 +7,10 @@
 //
 
 #import "MSViewController.h"
+#import "MSColorView.h"
+#import "MSColorSelectionViewController.h"
 
-@interface MSViewController () <UIPopoverPresentationControllerDelegate>
+@interface MSViewController () <UIPopoverPresentationControllerDelegate, MSColorViewDelegate>
 
 @end
 
@@ -30,11 +32,21 @@
         UINavigationController *destNav = segue.destinationViewController;
         destNav.preferredContentSize = [[destNav visibleViewController].view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
         destNav.popoverPresentationController.delegate = self;
+        MSColorSelectionViewController* colorSelectionController = (MSColorSelectionViewController*)destNav.visibleViewController;
+        colorSelectionController.delegate = self;
+        colorSelectionController.color = self.view.backgroundColor;
         if (self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassCompact) { // Add done button for the compact size
             UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(dismissViewController:)];
-            destNav.visibleViewController.navigationItem.rightBarButtonItem = doneBtn;
+            colorSelectionController.navigationItem.rightBarButtonItem = doneBtn;
         }
     }
+}
+
+#pragma mark - MSColorViewDelegate
+
+- (void)colorView:(id<MSColorView>)colorView didChangeValue:(UIColor *)colorValue
+{
+    self.view.backgroundColor = colorValue;
 }
 
 #pragma mark - UIAdaptivePresentationControllerDelegate methods

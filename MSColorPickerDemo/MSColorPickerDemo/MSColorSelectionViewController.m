@@ -56,6 +56,16 @@
     [self.colorSelectionView setSelectedIndex:self.segmentedControl.selectedSegmentIndex animated:YES];
 }
 
+- (void) setDelegate:(id<MSColorViewDelegate>)delegate
+{
+    self.colorSelectionView.delegate = delegate;
+}
+
+- (void) setColor:(UIColor*)color
+{
+    self.colorSelectionView.color = color;
+}
+
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
     [self.colorSelectionView setNeedsUpdateConstraints];

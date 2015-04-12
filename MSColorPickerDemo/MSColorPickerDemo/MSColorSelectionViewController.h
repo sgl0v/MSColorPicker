@@ -25,6 +25,11 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol MSColorViewDelegate;
+
 @interface MSColorSelectionViewController : UIViewController
+
+- (void) setDelegate:(id<MSColorViewDelegate>)delegate;
+- (void) setColor:(UIColor*)color;
 
 @end
