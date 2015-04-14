@@ -161,9 +161,14 @@ static CGFloat const MSDistanceBetweenKeyboardAndTextfield = 10.0f;
     CGRect rootViewRect = scrollView.frame;
     CGFloat kbHeight = kbSize.height;
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+
     if (UIInterfaceOrientationIsLandscape([self ms_topViewController].interfaceOrientation)) {
         kbHeight = kbSize.width;
     }
+
+#pragma GCC diagnostic pop
 
     CGFloat move = CGRectGetMaxY(activeTextFieldRect) - (CGRectGetHeight(rootViewRect) - kbHeight - MSDistanceBetweenKeyboardAndTextfield);
 
