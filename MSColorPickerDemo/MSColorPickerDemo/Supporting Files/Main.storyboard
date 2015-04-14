@@ -36,21 +36,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="6rC-XK-vSv">
                         <nil key="title"/>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="7Xc-5j-wNV">
-                            <rect key="frame" x="180" y="7" width="240" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="RGB"/>
-                                <segment title="HSB"/>
-                            </segments>
-                            <connections>
-                                <action selector="segmentControlDidChangeValue:" destination="jLa-Fz-JX5" eventType="valueChanged" id="5He-nt-NWd"/>
-                            </connections>
-                        </segmentedControl>
                     </navigationItem>
-                    <connections>
-                        <outlet property="segmentedControl" destination="7Xc-5j-wNV" id="qds-mH-FCx"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="91l-AC-gYs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -69,13 +55,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fu7-6C-shv">
-                                <rect key="frame" x="261" y="182" width="79" height="36"/>
+                                <rect key="frame" x="182" y="182" width="237" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Set color">
+                                <state key="normal" title="Set color programmatically">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="jAy-D3-l1K" kind="popoverPresentation" identifier="showPopover" popoverAnchorView="fu7-6C-shv" id="ael-kN-e3Z">
+                                    <action selector="onButtonTap:" destination="rod-PP-XNf" eventType="touchUpInside" id="H3A-Z0-iVY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nAD-iv-M0Z">
+                                <rect key="frame" x="195" y="268" width="210" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Set color via storyboard">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="jAy-D3-l1K" kind="popoverPresentation" identifier="showPopover" popoverAnchorView="nAD-iv-M0Z" id="Dzc-dE-5Ld">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                     </segue>
                                 </connections>
@@ -83,8 +79,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="nAD-iv-M0Z" firstAttribute="centerX" secondItem="fu7-6C-shv" secondAttribute="centerX" id="4vr-qt-Pzk"/>
                             <constraint firstAttribute="centerX" secondItem="fu7-6C-shv" secondAttribute="centerX" id="COy-mx-auW"/>
                             <constraint firstAttribute="centerY" secondItem="fu7-6C-shv" secondAttribute="centerY" constant="100" id="hN4-pM-0SW"/>
+                            <constraint firstItem="nAD-iv-M0Z" firstAttribute="top" secondItem="fu7-6C-shv" secondAttribute="bottom" constant="50" id="xks-aS-WMY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="BYd-HE-9fZ"/>

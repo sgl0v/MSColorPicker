@@ -46,11 +46,18 @@
     self = [super initWithFrame:frame];
 
     if (self != nil) {
-        _rgbColorView = [[MSRGBView alloc] init];
-        _hsbColorView = [[MSHSBView alloc] init];
-        [self addColorView:_rgbColorView];
-        [self addColorView:_hsbColorView];
-        [self setSelectedIndex:0 animated:NO];
+        [self ms_init];
+    }
+
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+
+    if (self != nil) {
+        [self ms_init];
     }
 
     return self;
@@ -100,6 +107,18 @@
 {
     self.color = color;
     [self.delegate colorView:self didChangeColor:self.color];
+}
+
+#pragma mark - Private
+
+- (void)ms_init
+{
+    self.backgroundColor = [UIColor whiteColor];
+    self.rgbColorView = [[MSRGBView alloc] init];
+    self.hsbColorView = [[MSHSBView alloc] init];
+    [self addColorView:self.rgbColorView];
+    [self addColorView:self.hsbColorView];
+    [self setSelectedIndex:0 animated:NO];
 }
 
 @end

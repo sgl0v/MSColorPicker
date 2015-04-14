@@ -32,21 +32,8 @@
 
 @implementation MSViewController
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Assuming you've hooked this all up in a Storyboard with a popover presentation style
     if ([segue.identifier isEqualToString:@"showPopover"]) {
         UINavigationController *destNav = segue.destinationViewController;
         destNav.preferredContentSize = [[destNav visibleViewController].view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
@@ -55,11 +42,33 @@
         colorSelectionController.delegate = self;
         colorSelectionController.color = self.view.backgroundColor;
 
-        if (self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassCompact) { // Add done button for the compact size
-            UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(dismissViewController:)];
+        if (self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassCompact) {
+            UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", ) style:UIBarButtonItemStyleDone target:self action:@selector(ms_dismissViewController:)];
             colorSelectionController.navigationItem.rightBarButtonItem = doneBtn;
         }
     }
+}
+
+- (IBAction)onButtonTap:(UIButton *)button
+{
+    MSColorSelectionViewController *colorSelectionController = [[MSColorSelectionViewController alloc] init];
+    UINavigationController *navCtrl = [[UINavigationController alloc] initWithRootViewController:colorSelectionController];
+
+    navCtrl.modalPresentationStyle = UIModalPresentationPopover;
+    navCtrl.popoverPresentationController.delegate = self;
+    navCtrl.popoverPresentationController.sourceView = button;
+    navCtrl.popoverPresentationController.sourceRect = button.bounds;
+    navCtrl.preferredContentSize = [colorSelectionController.view systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+
+    colorSelectionController.delegate = self;
+    colorSelectionController.color = self.view.backgroundColor;
+
+    if (self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassCompact) {
+        UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Done", ) style:UIBarButtonItemStyleDone target:self action:@selector(ms_dismissViewController:)];
+        colorSelectionController.navigationItem.rightBarButtonItem = doneBtn;
+    }
+
+    [self presentViewController:navCtrl animated:YES completion:nil];
 }
 
 #pragma mark - MSColorViewDelegate
@@ -69,16 +78,16 @@
     self.view.backgroundColor = color;
 }
 
-#pragma mark - UIAdaptivePresentationControllerDelegate methods
-
-- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller
-{
-    return UIModalPresentationFullScreen;
-}
+//#pragma mark - UIAdaptivePresentationControllerDelegate methods
+//
+//- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller
+//{
+//    return UIModalPresentationFullScreen;
+//}
 
 #pragma mark - Private
 
-- (void)dismissViewController:(id)sender
+- (void)ms_dismissViewController:(id)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
