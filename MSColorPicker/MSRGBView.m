@@ -33,6 +33,7 @@ extern CGFloat const MSRGBColorComponentMaxValue;
 
 static CGFloat const MSColorSampleViewHeight = 30.0f;
 static CGFloat const MSViewMargin = 20.0f;
+static CGFloat const MSSliderViewMargin = 30.0f;
 static NSUInteger const MSRGBColorComponentsSize = 3;
 
 @interface MSRGBView ()
@@ -156,7 +157,8 @@ static NSUInteger const MSRGBColorComponentsSize = 3;
 - (void)ms_installConstraints
 {
     NSDictionary *metrics = @{ @"margin": @(MSViewMargin),
-                               @"height": @(MSColorSampleViewHeight) };
+                               @"height": @(MSColorSampleViewHeight),
+                               @"slider_margin": @(MSSliderViewMargin) };
 
     __block NSDictionary *views = NSDictionaryOfVariableBindings(_colorSample);
 
@@ -170,7 +172,7 @@ static NSUInteger const MSRGBColorComponentsSize = 3;
                                                                       options:0
                                                                       metrics:metrics
                                                                         views:views]];
-         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[previousView]-margin-[colorComponentView]"
+         [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[previousView]-slider_margin-[colorComponentView]"
                                                                       options:0
                                                                       metrics:metrics
                                                                         views:views]];

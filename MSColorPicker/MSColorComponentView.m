@@ -27,10 +27,13 @@
 #import "MSColorComponentView.h"
 #import "MSSliderView.h"
 
+// Temporary disabled the color component editing via text field
+//#define COLOR_TEXT_FIELD_ENABLED
+
 extern CGFloat const MSRGBColorComponentMaxValue;
 static CGFloat const MSColorComponentViewSpacing = 5.0f;
 static CGFloat const MSColorComponentLabelWidth = 60.0f;
-static CGFloat const MSColorComponentTextFieldWidth = 50.0f;
+//static CGFloat const MSColorComponentTextFieldWidth = 50.0f;
 
 @interface MSColorComponentView () <UITextFieldDelegate>
 {
@@ -163,11 +166,13 @@ static CGFloat const MSColorComponentTextFieldWidth = 50.0f;
     _slider.translatesAutoresizingMaskIntoConstraints = NO;
     [self addSubview:_slider];
 
+#ifdef COLOR_TEXT_FIELD_ENABLED
     _textField = [[UITextField alloc] init];
     _textField.borderStyle = UITextBorderStyleRoundedRect;
     _textField.translatesAutoresizingMaskIntoConstraints = NO;
     [_textField setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
     [self addSubview:_textField];
+#endif
 
     [self setValue:0.0f];
     [_slider addTarget:self action:@selector(ms_didChangeSliderValue:) forControlEvents:UIControlEventValueChanged];
@@ -184,17 +189,28 @@ static CGFloat const MSColorComponentTextFieldWidth = 50.0f;
 
 - (void)ms_installConstraints
 {
+#ifdef COLOR_TEXT_FIELD_ENABLED
     NSDictionary *views = @{ @"label": _label, @"slider": _slider, @"textField": _textField };
     NSDictionary *metrics = @{ @"spacing": @(MSColorComponentViewSpacing),
                                @"label_width": @(MSColorComponentLabelWidth),
                                @"textfield_width": @(MSColorComponentTextFieldWidth) };
-
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[label(label_width)]-spacing-[slider]-spacing-[textField(textfield_width)]|"
                                                                  options:NSLayoutFormatAlignAllCenterY
                                                                  metrics:metrics
                                                                    views:views]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[label]|" options:0 metrics:nil views:views]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[textField]|" options:0 metrics:nil views:views]];
+#else
+    NSDictionary *views = @{ @"label": _label, @"slider": _slider };
+    NSDictionary *metrics = @{ @"spacing": @(MSColorComponentViewSpacing),
+                               @"label_width": @(MSColorComponentLabelWidth) };
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[label(label_width)]-spacing-[slider]-spacing-|"
+                                                                 options:NSLayoutFormatAlignAllCenterY
+                                                                 metrics:metrics
+                                                                   views:views]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[label]|" options:0 metrics:nil views:views]];
+
+#endif
 }
 
 @end
