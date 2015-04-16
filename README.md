@@ -1,6 +1,10 @@
 MSColorPicker
 ===============
+[![Build Status](https://travis-ci.org/sgl0v/MSColorPicker.svg?branch=master)](https://travis-ci.org/sgl0v/MSColorPicker)
+
 [[Overview](#overview) &bull; [Demo](#demo) &bull; [Requirements](#requirements) &bull; [Licence](#licence)] 
+
+<br>
 
 ![Alt text](https://raw.githubusercontent.com/sgl0v/MSColorPicker/master/screenshots/sample_iphone.gif)
 ![Alt text](https://raw.githubusercontent.com/sgl0v/MSColorPicker/master/screenshots/sample_ipad.gif)
