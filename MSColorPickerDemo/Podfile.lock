@@ -1,5 +1,5 @@
 PODS:
-  - MSColorPicker (0.1.0)
+  - MSColorPicker (0.2.0)
 
 DEPENDENCIES:
   - MSColorPicker (from `../`)
@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  MSColorPicker: f82fdb6ce419d8d8d297bb702e042d6b37ca3646
+  MSColorPicker: 97a3848660fbb608b71e79c58353a5b9de5fb637
 
 COCOAPODS: 0.36.3
