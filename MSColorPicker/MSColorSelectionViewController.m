@@ -31,8 +31,6 @@
 
 @interface MSColorSelectionViewController () <MSColorViewDelegate>
 
-@property (nonatomic, strong) MSColorSelectionView *colorSelectionView;
-
 @end
 
 @implementation MSColorSelectionViewController
@@ -41,7 +39,6 @@
 {
     MSColorSelectionView *colorSelectionView = [[MSColorSelectionView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    self.colorSelectionView = colorSelectionView;
     self.view = colorSelectionView;
 }
 
@@ -78,6 +75,11 @@
 {
     [self.colorSelectionView setNeedsUpdateConstraints];
     [self.colorSelectionView updateConstraintsIfNeeded];
+}
+
+- (MSColorSelectionView *)colorSelectionView
+{
+    return (MSColorSelectionView *)self.view;
 }
 
 #pragma mark - MSColorViewDelegate
