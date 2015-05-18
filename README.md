@@ -1,8 +1,11 @@
 MSColorPicker
 ===============
-[![Build Status](https://travis-ci.org/sgl0v/MSColorPicker.svg?branch=master)](https://travis-ci.org/sgl0v/MSColorPicker)
+[![Build Status](https://travis-ci.org/sgl0v/MSColorPicker.svg?branch=master)](https://travis-ci.org/TomThorpe/MSColorPicker) 
+[![Version](https://img.shields.io/cocoapods/v/MSColorPicker.svg?style=flat)](http://cocoadocs.org/docsets/MSColorPicker)
+[![License](https://img.shields.io/cocoapods/l/MSColorPicker.svg?style=flat)](http://cocoadocs.org/docsets/MSColorPicker)
+[![Platform](https://img.shields.io/cocoapods/p/MSColorPicker.svg?style=flat)](http://cocoadocs.org/docsets/MSColorPicker)
 
-[[Overview](#overview) &bull; [Demo](#demo) &bull; [Requirements](#requirements) &bull; [Licence](#licence)] 
+[[Overview](#overview) &bull; [Installation](#installation) &bull; [Demo](#demo) &bull; [Requirements](#requirements) &bull; [Licence](#licence)] 
 
 <br>
 
@@ -12,6 +15,15 @@ MSColorPicker
 ##<a name="overview"></a>Overview
 
 Color picker component for iOS. It allows the user to select a color with color components. Supports RGB and HSB color models. Compatible with iOS 8.0 (iPhone &amp; iPad) and higher.
+
+## Installation
+
+MSColorPicker is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod "MSColorPicker"
+```
 
 ## Demo
 
