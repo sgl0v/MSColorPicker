@@ -23,6 +23,7 @@
 		5E642DF0191C2EBA0054742A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5E642DEB191C2EBA0054742A /* InfoPlist.strings */; };
 		5E642DF1191C2EBA0054742A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DED191C2EBA0054742A /* main.m */; };
 		5E8806591AA660D80053A252 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E8806581AA660D80053A252 /* Main.storyboard */; };
+		5EEA23451C1214CF00C55943 /* MSColorPickerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEA23441C1214CF00C55943 /* MSColorPickerTests.m */; };
 		A271E95629466197D95F0370 /* libPods-MSColorPickerDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 520C23BDE25F33B704C1CCEA /* libPods-MSColorPickerDemoTests.a */; };
 		A3B603DB5790A455A28C7E0A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7870C9DB5FD1C2F2FBD0740E /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -62,6 +63,7 @@
 		5E642DEE191C2EBA0054742A /* MSColorPickerDemo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "MSColorPickerDemo-Info.plist"; sourceTree = "<group>"; };
 		5E642DEF191C2EBA0054742A /* MSColorPickerDemo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSColorPickerDemo-Prefix.pch"; sourceTree = "<group>"; };
 		5E8806581AA660D80053A252 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		5EEA23441C1214CF00C55943 /* MSColorPickerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSColorPickerTests.m; sourceTree = "<group>"; };
 		7870C9DB5FD1C2F2FBD0740E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		828E1DEFD379083CAD2DC931 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B748C128E45495FF4B7A4F00 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			children = (
 				5E642DBF191AE3BA0054742A /* MSColorUtilsTests.m */,
 				5E642DBA191AE3BA0054742A /* Supporting Files */,
+				5EEA23441C1214CF00C55943 /* MSColorPickerTests.m */,
 			);
 			path = MSColorPickerDemoTests;
 			sourceTree = "<group>";
@@ -239,7 +242,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = MS;
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Maksym Shcheglov";
 				TargetAttributes = {
 					5E642DB1191AE3BA0054742A = {
@@ -366,6 +369,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EEA23451C1214CF00C55943 /* MSColorPickerTests.m in Sources */,
 				5E2C6F6D1ADDA4B10018C93D /* MSKeyboardManager.m in Sources */,
 				5E642DC0191AE3BA0054742A /* MSColorUtilsTests.m in Sources */,
 			);
@@ -419,6 +423,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -495,6 +500,7 @@
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/MSColorPickerDemo/Supporting Files/MSColorPickerDemo-Prefix.pch";
 				INFOPLIST_FILE = "MSColorPickerDemo/Supporting Files/MSColorPickerDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mshcheglov.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = (
@@ -516,6 +522,7 @@
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/MSColorPickerDemo/Supporting Files/MSColorPickerDemo-Prefix.pch";
 				INFOPLIST_FILE = "MSColorPickerDemo/Supporting Files/MSColorPickerDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mshcheglov.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WARNING_CFLAGS = (
@@ -532,11 +539,6 @@
 			baseConfigurationReference = 1858AB2373AE5B42ED8F48CD /* Pods-MSColorPickerDemoTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MSColorPickerDemo.app/MSColorPickerDemo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/MSColorPickerDemo/Supporting Files/MSColorPickerDemo-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -544,6 +546,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "MSColorPickerDemoTests/MSColorPickerDemoTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mshcheglov.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -556,14 +559,10 @@
 			baseConfigurationReference = 083B284EFAD10D4EF1C71A96 /* Pods-MSColorPickerDemoTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MSColorPickerDemo.app/MSColorPickerDemo";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/MSColorPickerDemo/Supporting Files/MSColorPickerDemo-Prefix.pch";
 				INFOPLIST_FILE = "MSColorPickerDemoTests/MSColorPickerDemoTests-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mshcheglov.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUNDLE_LOADER)";
