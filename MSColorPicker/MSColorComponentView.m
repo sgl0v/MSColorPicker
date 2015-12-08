@@ -154,6 +154,8 @@ static CGFloat const MSColorComponentLabelWidth = 60.0f;
 
 - (void)ms_baseInit
 {
+    self.accessibilityLabel = @"color_component_view";
+
     _format = @"%.f";
 
     _label = [[UILabel alloc] init];

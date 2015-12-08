@@ -52,6 +52,8 @@ static const CGFloat MSSliderViewTrackHeight = 3.0f;
     self = [super initWithFrame:frame];
 
     if (self) {
+        self.accessibilityLabel = @"color_slider";
+
         _minimumValue = 0.0f;
         _maximumValue = 1.0f;
         _value = 0.0f;

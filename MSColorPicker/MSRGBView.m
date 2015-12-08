@@ -94,6 +94,8 @@ static NSUInteger const MSRGBColorComponentsSize = 3;
 
 - (void)ms_baseInit
 {
+    self.accessibilityLabel = @"rgb_view";
+
     _colorSample = [[UIView alloc] init];
     _colorSample.layer.borderColor = [UIColor blackColor].CGColor;
     _colorSample.layer.borderWidth = .5f;

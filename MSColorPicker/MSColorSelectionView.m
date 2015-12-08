@@ -113,6 +113,8 @@
 
 - (void)ms_init
 {
+    self.accessibilityLabel = @"color_selection_view";
+
     self.backgroundColor = [UIColor whiteColor];
     self.rgbColorView = [[MSRGBView alloc] init];
     self.hsbColorView = [[MSHSBView alloc] init];

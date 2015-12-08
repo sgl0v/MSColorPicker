@@ -53,6 +53,8 @@
         _hue = 0.0f;
         _saturation = 0.0f;
 
+        self.accessibilityLabel = @"color_wheel_view";
+
         self.layer.delegate = self;
         [self.layer addSublayer:[self indicatorLayer]];
 
