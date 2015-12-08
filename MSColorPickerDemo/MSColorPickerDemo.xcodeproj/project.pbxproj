@@ -24,12 +24,20 @@
 		5E642DF1191C2EBA0054742A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DED191C2EBA0054742A /* main.m */; };
 		5E8806591AA660D80053A252 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E8806581AA660D80053A252 /* Main.storyboard */; };
 		5EBEBDA91C124DD800E8CA02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EBEBDA81C124DD800E8CA02 /* LaunchScreen.storyboard */; };
+		5EEA23541C12198600C55943 /* MSColorPickerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEA23441C1214CF00C55943 /* MSColorPickerUITests.m */; };
 		A271E95629466197D95F0370 /* libPods-MSColorPickerDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 520C23BDE25F33B704C1CCEA /* libPods-MSColorPickerDemoTests.a */; };
 		A3B603DB5790A455A28C7E0A /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7870C9DB5FD1C2F2FBD0740E /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		5E642DB7191AE3BA0054742A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5E642D89191AE3BA0054742A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5E642D90191AE3BA0054742A;
+			remoteInfo = MSColorPickerDemo;
+		};
+		5EEA234F1C12198000C55943 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5E642D89191AE3BA0054742A /* Project object */;
 			proxyType = 1;
@@ -64,6 +72,9 @@
 		5E642DEF191C2EBA0054742A /* MSColorPickerDemo-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MSColorPickerDemo-Prefix.pch"; sourceTree = "<group>"; };
 		5E8806581AA660D80053A252 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		5EBEBDA81C124DD800E8CA02 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5EEA23441C1214CF00C55943 /* MSColorPickerUITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MSColorPickerUITests.m; path = ../MSColorPickerDemoTests/MSColorPickerUITests.m; sourceTree = "<group>"; };
+		5EEA234A1C12198000C55943 /* MSColorPickerDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MSColorPickerDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5EEA234E1C12198000C55943 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7870C9DB5FD1C2F2FBD0740E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		828E1DEFD379083CAD2DC931 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B748C128E45495FF4B7A4F00 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -92,6 +103,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5EEA23471C12198000C55943 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -111,6 +129,7 @@
 			children = (
 				5E642D9A191AE3BA0054742A /* MSColorPickerDemo */,
 				5E642DB9191AE3BA0054742A /* MSColorPickerDemoTests */,
+				5EEA234B1C12198000C55943 /* MSColorPickerDemoUITests */,
 				5E642D93191AE3BA0054742A /* Frameworks */,
 				5E642D92191AE3BA0054742A /* Products */,
 				001C2AFEC4537369B93752AB /* Pods */,
@@ -122,6 +141,7 @@
 			children = (
 				5E642D91191AE3BA0054742A /* MSColorPickerDemo.app */,
 				5E642DB2191AE3BA0054742A /* MSColorPickerDemoTests.xctest */,
+				5EEA234A1C12198000C55943 /* MSColorPickerDemoUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -193,6 +213,15 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		5EEA234B1C12198000C55943 /* MSColorPickerDemoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				5EEA23441C1214CF00C55943 /* MSColorPickerUITests.m */,
+				5EEA234E1C12198000C55943 /* Info.plist */,
+			);
+			path = MSColorPickerDemoUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -235,6 +264,24 @@
 			productReference = 5E642DB2191AE3BA0054742A /* MSColorPickerDemoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		5EEA23491C12198000C55943 /* MSColorPickerDemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5EEA23511C12198000C55943 /* Build configuration list for PBXNativeTarget "MSColorPickerDemoUITests" */;
+			buildPhases = (
+				5EEA23461C12198000C55943 /* Sources */,
+				5EEA23471C12198000C55943 /* Frameworks */,
+				5EEA23481C12198000C55943 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5EEA23501C12198000C55943 /* PBXTargetDependency */,
+			);
+			name = MSColorPickerDemoUITests;
+			productName = MSColorPickerDemoUITests;
+			productReference = 5EEA234A1C12198000C55943 /* MSColorPickerDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -246,6 +293,10 @@
 				ORGANIZATIONNAME = "Maksym Shcheglov";
 				TargetAttributes = {
 					5E642DB1191AE3BA0054742A = {
+						TestTargetID = 5E642D90191AE3BA0054742A;
+					};
+					5EEA23491C12198000C55943 = {
+						CreatedOnToolsVersion = 7.1.1;
 						TestTargetID = 5E642D90191AE3BA0054742A;
 					};
 				};
@@ -265,6 +316,7 @@
 			targets = (
 				5E642D90191AE3BA0054742A /* MSColorPickerDemo */,
 				5E642DB1191AE3BA0054742A /* MSColorPickerDemoTests */,
+				5EEA23491C12198000C55943 /* MSColorPickerDemoUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -286,6 +338,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E642DBE191AE3BA0054742A /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5EEA23481C12198000C55943 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,6 +434,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5EEA23461C12198000C55943 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5EEA23541C12198600C55943 /* MSColorPickerUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -382,6 +449,11 @@
 			isa = PBXTargetDependency;
 			target = 5E642D90191AE3BA0054742A /* MSColorPickerDemo */;
 			targetProxy = 5E642DB7191AE3BA0054742A /* PBXContainerItemProxy */;
+		};
+		5EEA23501C12198000C55943 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5E642D90191AE3BA0054742A /* MSColorPickerDemo */;
+			targetProxy = 5EEA234F1C12198000C55943 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -570,6 +642,45 @@
 			};
 			name = Release;
 		};
+		5EEA23521C12198000C55943 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = MSColorPickerDemoUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mshcheglov.MSColorPickerDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = MSColorPickerDemo;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		5EEA23531C12198000C55943 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = MSColorPickerDemoUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mshcheglov.MSColorPickerDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = MSColorPickerDemo;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -599,6 +710,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		5EEA23511C12198000C55943 /* Build configuration list for PBXNativeTarget "MSColorPickerDemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5EEA23521C12198000C55943 /* Debug */,
+				5EEA23531C12198000C55943 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

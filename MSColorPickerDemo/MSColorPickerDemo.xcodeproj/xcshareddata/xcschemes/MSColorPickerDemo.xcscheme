@@ -38,6 +38,16 @@
                ReferencedContainer = "container:MSColorPickerDemo.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5EEA23491C12198000C55943"
+               BuildableName = "MSColorPickerDemoUITests.xctest"
+               BlueprintName = "MSColorPickerDemoUITests"
+               ReferencedContainer = "container:MSColorPickerDemo.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
