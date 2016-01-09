@@ -105,7 +105,7 @@ static CGFloat const MSColorWheelDimension = 200.0f;
 - (void)ms_baseInit
 {
     self.accessibilityLabel = @"hsb_view";
-    
+
     _colorSample = [[UIView alloc] init];
     _colorSample.accessibilityLabel = @"color_sample";
     _colorSample.layer.borderColor = [UIColor blackColor].CGColor;
