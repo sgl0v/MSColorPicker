@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		5E2C6F6D1ADDA4B10018C93D /* MSKeyboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DE7191C2B480054742A /* MSKeyboardManager.m */; };
 		5E2C6F6E1ADDA4B10018C93D /* MSKeyboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DE7191C2B480054742A /* MSKeyboardManager.m */; };
+		5E5BE87C1C55241000BCD8E5 /* XCUIApplication+ColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BE87B1C55241000BCD8E5 /* XCUIApplication+ColorPicker.m */; };
+		5E5BE87E1C55247700BCD8E5 /* MSColorPickerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BE87D1C55247700BCD8E5 /* MSColorPickerUITests.m */; };
+		5E5BE8811C55248C00BCD8E5 /* XCUIElement+RGBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BE8801C55248C00BCD8E5 /* XCUIElement+RGBView.m */; };
+		5E5BE8841C55249A00BCD8E5 /* XCUIElement+HSBView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BE8831C55249A00BCD8E5 /* XCUIElement+HSBView.m */; };
 		5E626C021ACF0E2100797E41 /* MSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E626C011ACF0E2100797E41 /* MSViewController.m */; };
 		5E642D95191AE3BA0054742A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E642D94191AE3BA0054742A /* Foundation.framework */; };
 		5E642D97191AE3BA0054742A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E642D96191AE3BA0054742A /* CoreGraphics.framework */; };
@@ -50,6 +54,13 @@
 		083B284EFAD10D4EF1C71A96 /* Pods-MSColorPickerDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MSColorPickerDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MSColorPickerDemoTests/Pods-MSColorPickerDemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		1858AB2373AE5B42ED8F48CD /* Pods-MSColorPickerDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MSColorPickerDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MSColorPickerDemoTests/Pods-MSColorPickerDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		520C23BDE25F33B704C1CCEA /* libPods-MSColorPickerDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MSColorPickerDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E5BE87A1C55241000BCD8E5 /* XCUIApplication+ColorPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCUIApplication+ColorPicker.h"; sourceTree = "<group>"; };
+		5E5BE87B1C55241000BCD8E5 /* XCUIApplication+ColorPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCUIApplication+ColorPicker.m"; sourceTree = "<group>"; };
+		5E5BE87D1C55247700BCD8E5 /* MSColorPickerUITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSColorPickerUITests.m; sourceTree = "<group>"; };
+		5E5BE87F1C55248C00BCD8E5 /* XCUIElement+RGBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCUIElement+RGBView.h"; sourceTree = "<group>"; };
+		5E5BE8801C55248C00BCD8E5 /* XCUIElement+RGBView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCUIElement+RGBView.m"; sourceTree = "<group>"; };
+		5E5BE8821C55249A00BCD8E5 /* XCUIElement+HSBView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCUIElement+HSBView.h"; sourceTree = "<group>"; };
+		5E5BE8831C55249A00BCD8E5 /* XCUIElement+HSBView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCUIElement+HSBView.m"; sourceTree = "<group>"; };
 		5E626C001ACF0E2100797E41 /* MSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSViewController.h; sourceTree = "<group>"; };
 		5E626C011ACF0E2100797E41 /* MSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSViewController.m; sourceTree = "<group>"; };
 		5E642D91191AE3BA0054742A /* MSColorPickerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MSColorPickerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -216,8 +227,14 @@
 		5EEA234B1C12198000C55943 /* MSColorPickerDemoUITests */ = {
 			isa = PBXGroup;
 			children = (
-				5EEA23441C1214CF00C55943 /* MSColorPickerUITests.m */,
 				5EEA234E1C12198000C55943 /* Info.plist */,
+				5E5BE87D1C55247700BCD8E5 /* MSColorPickerUITests.m */,
+				5E5BE87A1C55241000BCD8E5 /* XCUIApplication+ColorPicker.h */,
+				5E5BE87B1C55241000BCD8E5 /* XCUIApplication+ColorPicker.m */,
+				5E5BE87F1C55248C00BCD8E5 /* XCUIElement+RGBView.h */,
+				5E5BE8801C55248C00BCD8E5 /* XCUIElement+RGBView.m */,
+				5E5BE8821C55249A00BCD8E5 /* XCUIElement+HSBView.h */,
+				5E5BE8831C55249A00BCD8E5 /* XCUIElement+HSBView.m */,
 			);
 			path = MSColorPickerDemoUITests;
 			sourceTree = "<group>";
@@ -438,7 +455,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EEA23541C12198600C55943 /* MSColorPickerUITests.m in Sources */,
+				5E5BE87C1C55241000BCD8E5 /* XCUIApplication+ColorPicker.m in Sources */,
+				5E5BE87E1C55247700BCD8E5 /* MSColorPickerUITests.m in Sources */,
+				5E5BE8841C55249A00BCD8E5 /* XCUIElement+HSBView.m in Sources */,
+				5E5BE8811C55248C00BCD8E5 /* XCUIElement+RGBView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -718,6 +738,7 @@
 				5EEA23531C12198000C55943 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
