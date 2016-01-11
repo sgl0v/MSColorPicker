@@ -76,6 +76,7 @@ static NSUInteger const MSRGBColorComponentsSize = 3;
 - (void)reloadData
 {
     [_colorSample setBackgroundColor:self.color];
+    [_colorSample setAccessibilityValue:MSHexStringFromColor(self.color)];
     [self ms_reloadColorComponentViews:_colorComponents];
 }
 

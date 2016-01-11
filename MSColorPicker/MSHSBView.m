@@ -80,6 +80,7 @@ static CGFloat const MSColorWheelDimension = 200.0f;
 - (void)reloadData
 {
     [_colorSample setBackgroundColor:self.color];
+    [_colorSample setAccessibilityValue:MSHexStringFromColor(self.color)];
     [self ms_reloadViewsWithColorComponents:_colorComponents];
 }
 
