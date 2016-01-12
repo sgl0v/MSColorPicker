@@ -15,5 +15,6 @@
 
 - (XCUIElement *)rgbButton;
 - (XCUIElement *)hsbButton;
+- (XCUIElement *)doneButton;
 
 @end

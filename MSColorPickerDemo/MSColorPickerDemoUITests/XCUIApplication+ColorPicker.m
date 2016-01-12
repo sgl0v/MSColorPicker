@@ -38,4 +38,11 @@
     return navigationBar.buttons[@"HSB"];
 }
 
+- (XCUIElement *)doneButton
+{
+    XCUIElement *navigationBar = self.navigationBars[@"MSColorSelectionView"];
+
+    return navigationBar.buttons[@"Done"];
+}
+
 @end
