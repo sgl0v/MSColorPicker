@@ -27,7 +27,7 @@
 #import <Foundation/Foundation.h>
 
 /**
-   @abstract Keyboard TextField manager. Adjust the content so that the target object remains visible.
+ *  Keyboard TextField manager. Adjust the content so that the target object remains visible.
  */
 @interface MSKeyboardManager : NSObject
 

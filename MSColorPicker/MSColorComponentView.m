@@ -40,7 +40,7 @@ static CGFloat const MSColorComponentLabelWidth = 60.0f;
     @private
 
     UILabel *_label;
-    MSSliderView *_slider; //! @abstract The color slider to edit color component.
+    MSSliderView *_slider; // The color slider to edit color component.
     UITextField *_textField;
 }
 

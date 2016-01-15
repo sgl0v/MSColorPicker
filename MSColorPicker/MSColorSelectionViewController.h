@@ -48,9 +48,13 @@
 
 @interface MSColorSelectionViewController : UIViewController
 
-//! @abstract The controller's delegate. Controller notifies a delegate on color change.
+/**
+ *  The controller's delegate. Controller notifies a delegate on color change.
+ */
 @property (nonatomic, weak) id<MSColorSelectionViewControllerDelegate> delegate;
-//! @abstract The current color value.
+/**
+ *  The current color value.
+ */
 @property (nonatomic, strong) UIColor *color;
 
 @end

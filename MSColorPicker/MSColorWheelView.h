@@ -28,14 +28,18 @@
 #import <CoreGraphics/CoreGraphics.h>
 
 /**
-   @abstract A color wheel view.
+ *  The color wheel view.
  */
 @interface MSColorWheelView : UIControl
 
-//! @abstract The hue value.
+/**
+ *  The hue value.
+ */
 @property (nonatomic, assign) CGFloat hue;
 
-//! @abstract The saturation value.
+/**
+ *  The saturation value.
+ */
 @property (nonatomic, assign) CGFloat saturation;
 
 @end

@@ -29,18 +29,20 @@
 @protocol MSColorViewDelegate;
 
 /**
-   @abstract The \c MSColorView protocol declares a view's interface for displaying and editing color value.
+ *  The \c MSColorView protocol declares a view's interface for displaying and editing color value.
  */
 @protocol MSColorView <NSObject>
 
 @required
 
-//! @abstract The object that acts as the delegate of the receiving color selection view.
+/**
+ *  The object that acts as the delegate of the receiving color selection view.
+ */
 @property (nonatomic, weak) id<MSColorViewDelegate> delegate;
-
-//! @abstract The current color's value setter and getter.
-- (void)setColor:(UIColor *)color;
-- (UIColor *)color;
+/**
+ *  The current color.
+ */
+@property (nonatomic, strong) UIColor* color;
 
 @end
 

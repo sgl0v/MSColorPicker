@@ -33,12 +33,12 @@
 @property (nonatomic, strong) UIView <MSColorView> *rgbColorView;
 @property (nonatomic, strong) UIView <MSColorView> *hsbColorView;
 @property (nonatomic, assign) MSSelectedColorView selectedIndex;
-@property (nonatomic, strong) UIColor *color;
 
 @end
 
 @implementation MSColorSelectionView
 
+@synthesize color = _color;
 @synthesize delegate;
 
 - (instancetype)initWithFrame:(CGRect)frame
