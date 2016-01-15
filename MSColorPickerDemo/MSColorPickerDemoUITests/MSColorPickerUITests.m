@@ -93,4 +93,43 @@ static const CGFloat MSSliderViewThumbRadius = 14.0f;
     }
 }
 
+- (void)testColorSelectionFlow
+{
+    XCUIElement *rgbView = self.app.rgbView;
+    NSString *value1 = rgbView.rgbColorSample.value;
+
+    // 1. Change the red value
+    XCUIElement *redSlider = rgbView.rgbSliders[0];
+    CGPoint start = (CGPoint) {CGRectGetWidth(redSlider.frame) - MSSliderViewThumbRadius, CGRectGetHeight(redSlider.frame) / 2 };
+    CGPoint finish = (CGPoint) {CGRectGetWidth(redSlider.frame) / 2, CGRectGetHeight(redSlider.frame) / 2 };
+
+    [redSlider tapAtPoint:start andDragTo:finish];
+    NSString *value2 = rgbView.rgbColorSample.value;
+
+    // 2. Check that it is not equal to the prev one
+    XCTAssertNotEqualObjects(value1, value2);
+
+    // 3. Go to the hsb view
+    [self.app.hsbButton tap];
+
+    // 4. Change the color view color wheel
+    XCUIElement *hsbView = self.app.hsbView;
+    XCUIElement *colorWheel = hsbView.hsbColorWheel;
+    [[colorWheel coordinateWithNormalizedOffset:CGVectorMake(0.9, 0.5)] tap];
+    NSString *value3 = hsbView.rgbColorSample.value;
+
+    // 5. Check that it is not equal to the prev one
+    XCTAssertNotEqualObjects(value2, value3);
+
+    // 6. Go the to RGB view
+    [self.app.rgbButton tap];
+    NSString *value4 = rgbView.rgbColorSample.value;
+
+    // 7. Check that HSB and RGB colors are equal
+    XCTAssertEqualObjects(value3, value4);
+
+    // 8. End
+    [self.app.doneButton tap];
+}
+
 @end
