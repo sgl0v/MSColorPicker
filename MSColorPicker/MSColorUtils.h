@@ -26,11 +26,26 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ *  The structure to represent a color in the Red-Green-Blue-Alpha color space.
+ */
 typedef struct { CGFloat red, green, blue, alpha; }              RGB;
+/**
+ *  The structure to represent a color in the hue-saturation-brightness color space.
+ */
 typedef struct { CGFloat hue, saturation, brightness, alpha; }   HSB;
 
+/**
+ *  The maximum value of the RGB color components.
+ */
 extern CGFloat const MSRGBColorComponentMaxValue;
+/**
+ *  The maximum value of the alpha component.
+ */
 extern CGFloat const MSAlphaComponentMaxValue;
+/**
+ *  The maximum value of the HSB color components.
+ */
 extern CGFloat const MSHSBColorComponentMaxValue;
 
 /**
