@@ -28,8 +28,17 @@
 
 #import "MSColorView.h"
 
-typedef NS_ENUM (NSUInteger, MSSelectedColorView) {
+/**
+ *  The enum to define the MSColorView's types.
+ */
+typedef NS_ENUM(NSUInteger, MSSelectedColorView) {
+    /**
+     *  The RGB color view type.
+     */
     MSSelectedColorViewRGB,
+    /**
+     *  The HSB color view type.
+     */
     MSSelectedColorViewHSB
 };
 
@@ -38,7 +47,7 @@ typedef NS_ENUM (NSUInteger, MSSelectedColorView) {
  */
 @interface MSColorSelectionView : UIView <MSColorView>
 
-//! @abstract The selected view's index
+//! @abstract The selected color view
 @property (nonatomic, assign, readonly) MSSelectedColorView selectedIndex;
 
 /**

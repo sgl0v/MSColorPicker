@@ -38,8 +38,9 @@
 //! @abstract The object that acts as the delegate of the receiving color selection view.
 @property (nonatomic, weak) id<MSColorViewDelegate> delegate;
 
-//! @abstract The current color's value setter and getter.
+//! @abstract The current color's value setter.
 - (void)setColor:(UIColor *)color;
+//! @abstract The current color's value getter.
 - (UIColor *)color;
 
 @end
