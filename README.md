@@ -14,7 +14,13 @@ MSColorPicker
 
 ##<a name="overview"></a>Overview
 
-Color picker component for iOS. It allows the user to select a color with color components. Supports RGB and HSB color models. Compatible with iOS 8.0 (iPhone &amp; iPad) and higher.
+Color picker component for iOS. It allows the user to select a color with color components. Key features:
+
+- iPhone & iPad support,
+- Adaptive User Interface,
+- Supports RGB and HSB color models,
+- Well-documented,
+- Compatible with iOS 8.0 (iPhone &amp; iPad) and higher.
 
 ## Installation
 
@@ -27,7 +33,7 @@ pod "MSColorPicker"
 
 ## Demo
 
-Build and run the <i>MSColorPickerDemo</i> project in Xcode. The demo demonstrates how to use and integrate the MSColorPicker into your project.
+Build and run the <i>MSColorPickerDemo</i> project in Xcode. The demo shows how to use and integrate the MSColorPicker into your project.
 
 ##<a name="overview"></a>Requirements
 
