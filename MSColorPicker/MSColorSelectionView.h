@@ -47,7 +47,9 @@ typedef NS_ENUM(NSUInteger, MSSelectedColorView) {
  */
 @interface MSColorSelectionView : UIView <MSColorView>
 
-//! @abstract The selected color view
+/**
+ *  The selected color view
+ */
 @property (nonatomic, assign, readonly) MSSelectedColorView selectedIndex;
 
 /**

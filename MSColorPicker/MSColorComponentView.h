@@ -29,23 +29,33 @@
 @class MSSliderView;
 
 /**
-   @abstract A view to edit a color component.
+ *  The view to edit a color component.
  */
 @interface MSColorComponentView : UIControl
 
-//! @abstract The title.
+/**
+ *  The title.
+ */
 @property (nonatomic, copy) NSString *title;
 
-//! @abstract The current value. The default value is 0.0.
+/**
+ *  The current value. The default value is 0.0.
+ */
 @property (nonatomic, assign) CGFloat value;
 
-//! @abstract The minimum value. The default value is 0.0.
+/**
+ *  The minimum value. The default value is 0.0.
+ */
 @property (nonatomic, assign) CGFloat minimumValue;
 
-//! @abstract The maximum value. The default value is 255.0.
+/**
+ *  The maximum value. The default value is 255.0.
+ */
 @property (nonatomic, assign) CGFloat maximumValue;
 
-//! @abstract The format string to use apply for textfield value. \c %.f by default.
+/**
+ *  The format string to use apply for textfield value. \c %.f by default.
+ */
 @property (nonatomic, copy) NSString *format;
 
 /**

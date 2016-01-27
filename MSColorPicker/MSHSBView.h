@@ -29,7 +29,7 @@
 #import "MSColorView.h"
 
 /**
-   @abstract A view to edit HSB color components.
+ *  The view to edit HSB color components.
  */
 @interface MSHSBView : UIView <MSColorView>
 
