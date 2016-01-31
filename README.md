@@ -1,6 +1,6 @@
 MSColorPicker
 ===============
-[![Build Status](https://travis-ci.org/sgl0v/MSColorPicker.svg?branch=master)](https://travis-ci.org/TomThorpe/MSColorPicker) 
+[![Build Status](https://travis-ci.org/sgl0v/MSColorPicker.svg?branch=master)](https://travis-ci.org/sgl0v/MSColorPicker) 
 [![Version](https://img.shields.io/cocoapods/v/MSColorPicker.svg?style=flat)](http://cocoadocs.org/docsets/MSColorPicker)
 [![License](https://img.shields.io/cocoapods/l/MSColorPicker.svg?style=flat)](http://cocoadocs.org/docsets/MSColorPicker)
 [![Platform](https://img.shields.io/cocoapods/p/MSColorPicker.svg?style=flat)](http://cocoadocs.org/docsets/MSColorPicker)
