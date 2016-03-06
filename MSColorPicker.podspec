@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "MSColorPicker"
-  s.version          = "0.2.1"
+  s.version          = "1.0.0"
   s.summary          = "Color picker component for iOS."
   s.homepage         = "https://github.com/sgl0v/MSColorPicker"
   s.license          = 'MIT'
