@@ -30,9 +30,8 @@
 
 static const CGFloat MSSliderViewHeight = 28.0f;
 static const CGFloat MSSliderViewMinWidth = 150.0f;
-static const CGFloat MSSliderViewThumbDimension = 28.0f;
 static const CGFloat MSSliderViewTrackHeight = 3.0f;
-static const CGFloat MSThumbViewEdgeInset = -7.5f;
+static const CGFloat MSThumbViewEdgeInset = -10.0f;
 
 @interface MSSliderView () {
     @private
@@ -114,14 +113,16 @@ static const CGFloat MSThumbViewEdgeInset = -7.5f;
 
 #pragma mark - UIControl touch tracking events
 
-- (void)ms_didPanToThumbView:(UIPanGestureRecognizer *)gestureRecognizer
+- (void)ms_didPanThumbView:(UIPanGestureRecognizer *)gestureRecognizer
 {
     if (gestureRecognizer.state != UIGestureRecognizerStateBegan && gestureRecognizer.state != UIGestureRecognizerStateChanged) {
         return;
     }
 
-    CGPoint location = [gestureRecognizer locationInView:self];
-    [self ms_setValueWithPosition:location.x];
+    CGPoint translation = [gestureRecognizer translationInView:self];
+    [gestureRecognizer setTranslation:CGPointZero inView:self];
+
+    [self ms_setValueWithTranslation:translation.x];
 }
 
 - (void)ms_updateTrackLayer
@@ -139,18 +140,12 @@ static const CGFloat MSThumbViewEdgeInset = -7.5f;
 
 #pragma mark - Private methods
 
-- (void)ms_setValueWithPosition:(CGFloat)position
+- (void)ms_setValueWithTranslation:(CGFloat)translation
 {
-    CGFloat width = CGRectGetWidth(self.bounds);
+    CGFloat width = CGRectGetWidth(self.bounds) - CGRectGetWidth(_thumbView.bounds);
+    CGFloat valueRange = (_maximumValue - _minimumValue);
+    CGFloat value = _value + valueRange * translation / width;
 
-    if (position < 0) {
-        position = 0;
-    } else if (position > width) {
-        position = width;
-    }
-
-    CGFloat percentage = position / width;
-    CGFloat value = _minimumValue + percentage * (_maximumValue - _minimumValue);
     [self setValue:value];
     [self sendActionsForControlEvents:UIControlEventValueChanged];
 }
@@ -177,15 +172,17 @@ static const CGFloat MSThumbViewEdgeInset = -7.5f;
 
 - (void)ms_updateThumbPositionWithValue:(CGFloat)value
 {
-    CGFloat width = CGRectGetWidth(self.bounds);
+    CGFloat thumbWidth = CGRectGetWidth(_thumbView.bounds);
+    CGFloat thumbHeight = CGRectGetHeight(_thumbView.bounds);
+    CGFloat width = CGRectGetWidth(self.bounds) - thumbWidth;
 
     if (width == 0) {
         return;
     }
 
-    CGFloat percentage = (_value - _minimumValue) / (_maximumValue - _minimumValue);
+    CGFloat percentage = (value - _minimumValue) / (_maximumValue - _minimumValue);
     CGFloat position = width * percentage;
-    _thumbView.frame = CGRectMake(position - ((position - width / 2) / (width / 2)) * MSSliderViewThumbDimension / 2, MSSliderViewHeight / 2, MSSliderViewThumbDimension, MSSliderViewThumbDimension);
+    _thumbView.frame = CGRectMake(position, 0, thumbWidth, thumbHeight);
 }
 
 @end
