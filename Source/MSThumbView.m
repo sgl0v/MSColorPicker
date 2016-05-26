@@ -1,7 +1,7 @@
 //
 // MSThumbView.m
 //
-// Created by Maksym Shcheglov on 2016-05-25.
+// Created by Maksym Shcheglov on 2016-05-31.
 // Copyright (c) 2016 Maksym Shcheglov.
 // License: http://opensource.org/licenses/MIT
 //
