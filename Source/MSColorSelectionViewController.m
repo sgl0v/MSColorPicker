@@ -9,7 +9,7 @@
 #import "MSColorSelectionViewController.h"
 #import "MSColorSelectionView.h"
 
-#import <MSColorPicker/MSColorPicker.h>
+#import "MSColorPicker.h"
 
 @interface MSColorSelectionViewController () <MSColorViewDelegate>
 

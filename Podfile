@@ -5,3 +5,7 @@ pod "MSColorPicker", :path => "./"
 target :MSColorPickerDemoTests do
   pod "MSColorPicker", :path => "./"
 end
+
+target :MSColorPicker do
+    pod "MSColorPicker", :path => "./"
+end

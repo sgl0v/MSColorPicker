@@ -6,7 +6,7 @@
 // License: http://opensource.org/licenses/MIT
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface MSThumbView : UIControl
 @property (nonatomic, strong, readonly) UIGestureRecognizer *gestureRecognizer;
