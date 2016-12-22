@@ -6,9 +6,11 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   MSColorPicker:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
   MSColorPicker: 1d11c8f6b74a811ac5a9dace4cc5211ef8002c5c
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: b53932e1b6f56b652fd9b92242b7ba8e9e2673e1
+
+COCOAPODS: 1.1.1
