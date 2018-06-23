@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		407A49F229901F1769675095 /* libPods-EPDemo-MSColorPickerDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E6FDC6F737A19CAF034A81B /* libPods-EPDemo-MSColorPickerDemoTests.a */; };
 		5E2C6F6D1ADDA4B10018C93D /* MSKeyboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DE7191C2B480054742A /* MSKeyboardManager.m */; };
 		5E2C6F6E1ADDA4B10018C93D /* MSKeyboardManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DE7191C2B480054742A /* MSKeyboardManager.m */; };
 		5E5BE87C1C55241000BCD8E5 /* XCUIApplication+ColorPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5BE87B1C55241000BCD8E5 /* XCUIApplication+ColorPicker.m */; };
@@ -30,10 +29,6 @@
 		5E642DF1191C2EBA0054742A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DED191C2EBA0054742A /* main.m */; };
 		5E8806591AA660D80053A252 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E8806581AA660D80053A252 /* Main.storyboard */; };
 		5EBEBDA91C124DD800E8CA02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EBEBDA81C124DD800E8CA02 /* LaunchScreen.storyboard */; };
-		66B33DFE0D42A8544A633BD8 /* libPods-Demo-MSColorPickerDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F934A409D8A4FF5EFE09CEE /* libPods-Demo-MSColorPickerDemoTests.a */; };
-		77874747750C2E4120ED5DE5 /* libPods-MSColorPickerDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19724925991A9DF9BBDE0652 /* libPods-MSColorPickerDemoTests.a */; };
-		8295EDDABAD35D18CF1E9CA3 /* libPods-EPDemo-MSColorPickerDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DDDAFC7AC82F6163B4038AFD /* libPods-EPDemo-MSColorPickerDemo.a */; };
-		EAE00353426D8B5CA71E09E6 /* libPods-Demo-MSColorPickerDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A0F3D3A7BEB6B1BDF2CD3A2 /* libPods-Demo-MSColorPickerDemo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,8 +107,6 @@
 				5E642D97191AE3BA0054742A /* CoreGraphics.framework in Frameworks */,
 				5E642D99191AE3BA0054742A /* UIKit.framework in Frameworks */,
 				5E642D95191AE3BA0054742A /* Foundation.framework in Frameworks */,
-				8295EDDABAD35D18CF1E9CA3 /* libPods-EPDemo-MSColorPickerDemo.a in Frameworks */,
-				EAE00353426D8B5CA71E09E6 /* libPods-Demo-MSColorPickerDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,9 +117,6 @@
 				5E642DB4191AE3BA0054742A /* XCTest.framework in Frameworks */,
 				5E642DB6191AE3BA0054742A /* UIKit.framework in Frameworks */,
 				5E642DB5191AE3BA0054742A /* Foundation.framework in Frameworks */,
-				77874747750C2E4120ED5DE5 /* libPods-MSColorPickerDemoTests.a in Frameworks */,
-				407A49F229901F1769675095 /* libPods-EPDemo-MSColorPickerDemoTests.a in Frameworks */,
-				66B33DFE0D42A8544A633BD8 /* libPods-Demo-MSColorPickerDemoTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,7 +325,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = MS;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Maksym Shcheglov";
 				TargetAttributes = {
 					5E642DB1191AE3BA0054742A = {
@@ -403,13 +393,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Demo-MSColorPickerDemo-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		874D308958EE624B5BF60295 /* [CP] Embed Pods Frameworks */ = {
@@ -478,13 +471,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Demo-MSColorPickerDemoTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -565,14 +561,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -616,14 +620,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

@@ -63,7 +63,6 @@ extern HSB MSRGB2HSB(RGB rgb);
  * Assumes h, s, and b are contained in the set [0, 1] and
  * returns r, g, and b in the set [0, 255].
  *
- *  @param outRGB   The rgb color values
  *  @return The hsb color values
  */
 extern RGB MSHSB2RGB(HSB hsb);

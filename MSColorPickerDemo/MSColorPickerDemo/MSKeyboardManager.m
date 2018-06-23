@@ -172,7 +172,7 @@ static CGFloat const MSDistanceBetweenKeyboardAndTextfield = 10.0f;
 
     CGFloat move = CGRectGetMaxY(activeTextFieldRect) - (CGRectGetHeight(rootViewRect) - kbHeight - MSDistanceBetweenKeyboardAndTextfield);
 
-    void (^ animations)() = ^{
+    void (^ animations)(void) = ^{
         scrollView.contentOffset = CGPointMake(0, move);
         CGFloat height = CGRectGetHeight(view.bounds);
         UIEdgeInsets contentInset = scrollView.contentInset;
