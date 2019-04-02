@@ -29,7 +29,7 @@
 
 @interface MSColorWheelView ()
 {
-    @private
+@private
 
     CALayer *_indicatorLayer;
     CGFloat _hue;
@@ -149,13 +149,16 @@
 - (void)displayLayer:(CALayer *)layer
 {
     CGFloat dimension = MIN(CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
-    CFMutableDataRef bitmapData = CFDataCreateMutable(NULL, 0);
-
-    CFDataSetLength(bitmapData, dimension * dimension * 4);
-    [self ms_colorWheelBitmap:CFDataGetMutableBytePtr(bitmapData) withSize:CGSizeMake(dimension, dimension)];
-    id image = [self ms_imageWithRGBAData:bitmapData width:dimension height:dimension];
-    CFRelease(bitmapData);
-    self.layer.contents = image;
+    NSDictionary* parameters = @{@"inputColorSpace": (__bridge_transfer id)CGColorSpaceCreateDeviceRGB(),
+                            @"inputDither": @0,
+                            @"inputRadius": @(dimension),
+                            @"inputSoftness": @0,
+                            @"inputValue": @1};
+    CIFilter* filter = [CIFilter filterWithName:@"CIHueSaturationValueGradient" withInputParameters:parameters];
+    CIImage *outputImage = [filter outputImage];
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CGImageRef cgimg = [context createCGImage:outputImage fromRect:[outputImage extent]];
+    self.layer.contents = (__bridge_transfer id)cgimg;
 }
 
 - (void)layoutSublayersOfLayer:(CALayer *)layer
@@ -173,45 +176,16 @@
     CGFloat dimension = MIN(CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
     CGFloat radius = _saturation * dimension / 2;
     CGFloat x = dimension / 2 + radius * cosf(_hue * M_PI * 2.0f);
-    CGFloat y = dimension / 2 + radius * sinf(_hue * M_PI * 2.0f);
+    CGFloat y = dimension / 2 - radius * sinf(_hue * M_PI * 2.0f);
 
     return CGPointMake(x, y);
-}
-
-- (void)ms_colorWheelBitmap:(out UInt8 *)bitmap withSize:(CGSize)size
-{
-    for (NSUInteger y = 0; y < size.width; y++) {
-        for (NSUInteger x = 0; x < size.height; x++) {
-            CGFloat hue, saturation, a = 0.0f;
-            [self ms_colorWheelValueWithPosition:CGPointMake(x, y) hue:&hue saturation:&saturation];
-            RGB rgb = { 0.0f, 0.0f, 0.0f, 0.0f };
-
-            if (saturation < 1.0) {
-                // Antialias the edge of the circle.
-                if (saturation > 0.99) {
-                    a = (1.0 - saturation) * 100;
-                } else {
-                    a = 1.0;
-                }
-
-                HSB hsb = { hue, saturation, 1.0f, a };
-                rgb = MSHSB2RGB(hsb);
-            }
-
-            NSInteger i = 4 * (x + y * size.width);
-            bitmap[i] = rgb.red * 0xff;
-            bitmap[i + 1] = rgb.green * 0xff;
-            bitmap[i + 2] = rgb.blue * 0xff;
-            bitmap[i + 3] = rgb.alpha * 0xff;
-        }
-    }
 }
 
 - (void)ms_colorWheelValueWithPosition:(CGPoint)position hue:(out CGFloat *)hue saturation:(out CGFloat *)saturation
 {
     NSInteger c = CGRectGetWidth(self.bounds) / 2;
     CGFloat dx = (float)(position.x - c) / c;
-    CGFloat dy = (float)(position.y - c) / c;
+    CGFloat dy = (float)(c - position.y) / c;
     CGFloat d = sqrtf((float)(dx * dx + dy * dy));
 
     *saturation = d;
@@ -225,17 +199,6 @@
             *hue = 1.0 - *hue;
         }
     }
-}
-
-- (id)ms_imageWithRGBAData:(CFDataRef)data width:(NSUInteger)width height:(NSUInteger)height
-{
-    CGDataProviderRef dataProvider = CGDataProviderCreateWithCFData(data);
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGImageRef imageRef = CGImageCreate(width, height, 8, 32, width * 4, colorSpace, kCGBitmapByteOrderDefault | kCGImageAlphaLast, dataProvider, NULL, 0, kCGRenderingIntentDefault);
-
-    CGDataProviderRelease(dataProvider);
-    CGColorSpaceRelease(colorSpace);
-    return (__bridge_transfer id)imageRef;
 }
 
 @end

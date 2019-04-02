@@ -29,6 +29,8 @@
 		5E642DF1191C2EBA0054742A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E642DED191C2EBA0054742A /* main.m */; };
 		5E8806591AA660D80053A252 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E8806581AA660D80053A252 /* Main.storyboard */; };
 		5EBEBDA91C124DD800E8CA02 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EBEBDA81C124DD800E8CA02 /* LaunchScreen.storyboard */; };
+		6F142793988D3B25E74EDF46 /* libPods-Demo-MSColorPickerDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F934A409D8A4FF5EFE09CEE /* libPods-Demo-MSColorPickerDemoTests.a */; };
+		C852EFED46F61245FF3D3BE0 /* libPods-Demo-MSColorPickerDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A0F3D3A7BEB6B1BDF2CD3A2 /* libPods-Demo-MSColorPickerDemo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +109,7 @@
 				5E642D97191AE3BA0054742A /* CoreGraphics.framework in Frameworks */,
 				5E642D99191AE3BA0054742A /* UIKit.framework in Frameworks */,
 				5E642D95191AE3BA0054742A /* Foundation.framework in Frameworks */,
+				C852EFED46F61245FF3D3BE0 /* libPods-Demo-MSColorPickerDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,6 +120,7 @@
 				5E642DB4191AE3BA0054742A /* XCTest.framework in Frameworks */,
 				5E642DB6191AE3BA0054742A /* UIKit.framework in Frameworks */,
 				5E642DB5191AE3BA0054742A /* Foundation.framework in Frameworks */,
+				6F142793988D3B25E74EDF46 /* libPods-Demo-MSColorPickerDemoTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,8 +271,6 @@
 				5E642D8D191AE3BA0054742A /* Sources */,
 				5E642D8E191AE3BA0054742A /* Frameworks */,
 				5E642D8F191AE3BA0054742A /* Resources */,
-				874D308958EE624B5BF60295 /* [CP] Embed Pods Frameworks */,
-				938062A50F24F3AEF768A9EC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -287,8 +289,6 @@
 				5E642DAE191AE3BA0054742A /* Sources */,
 				5E642DAF191AE3BA0054742A /* Frameworks */,
 				5E642DB0191AE3BA0054742A /* Resources */,
-				9BF82EB6889ED7C1EDC00434 /* [CP] Embed Pods Frameworks */,
-				C087CE96B561BB965E645169 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -403,66 +403,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		874D308958EE624B5BF60295 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Demo-MSColorPickerDemo/Pods-Demo-MSColorPickerDemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		938062A50F24F3AEF768A9EC /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Demo-MSColorPickerDemo/Pods-Demo-MSColorPickerDemo-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9BF82EB6889ED7C1EDC00434 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Demo-MSColorPickerDemoTests/Pods-Demo-MSColorPickerDemoTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C087CE96B561BB965E645169 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Demo-MSColorPickerDemoTests/Pods-Demo-MSColorPickerDemoTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CB18BC9DC4D140BA6B1DEB6D /* [CP] Check Pods Manifest.lock */ = {
