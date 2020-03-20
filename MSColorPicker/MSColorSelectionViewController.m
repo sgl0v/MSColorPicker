@@ -69,9 +69,10 @@
 
 - (void)setColorViewMode:(MSSelectedColorView)selectedColorViewMode
 {
-    if (selectedColorViewMode != self.colorViewMode) {
-        [self.colorSelectionView setSelectedIndex:selectedColorViewMode animated:YES];
-        self.modeSelectionControl.selectedSegmentIndex = selectedColorViewMode;
+    if (selectedColorViewMode != _colorViewMode) {
+        _colorViewMode = selectedColorViewMode;
+        [self.colorSelectionView setSelectedIndex:_colorViewMode animated:YES];
+        self.modeSelectionControl.selectedSegmentIndex = _colorViewMode;
     }
 }
 
