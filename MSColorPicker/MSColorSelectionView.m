@@ -115,7 +115,12 @@
 {
     self.accessibilityLabel = @"color_selection_view";
 
-    self.backgroundColor = [UIColor whiteColor];
+    if (@available(iOS 13.0, *)) {
+        self.backgroundColor = [UIColor systemBackgroundColor];
+    } else {
+        self.backgroundColor = [UIColor whiteColor];
+    }
+
     self.rgbColorView = [[MSRGBView alloc] init];
     self.hsbColorView = [[MSHSBView alloc] init];
     [self addColorView:self.rgbColorView];
