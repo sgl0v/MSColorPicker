@@ -31,6 +31,8 @@
 
 @interface MSColorSelectionViewController () <MSColorViewDelegate>
 
+@property (nonatomic, strong) UISegmentedControl *modeSelectionControl;
+
 @end
 
 @implementation MSColorSelectionViewController
@@ -46,24 +48,41 @@
 {
     [super viewDidLoad];
 
-    UISegmentedControl *segmentControl = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"RGB", ), NSLocalizedString(@"HSB", )]];
-    [segmentControl addTarget:self action:@selector(segmentControlDidChangeValue:) forControlEvents:UIControlEventValueChanged];
-    segmentControl.selectedSegmentIndex = 0;
-    self.navigationItem.titleView = segmentControl;
+    self.navigationItem.titleView = self.modeSelectionControl;
 
-    [self.colorSelectionView setSelectedIndex:0 animated:NO];
+    [self.colorSelectionView setSelectedIndex:self.colorViewMode animated:NO];
     self.colorSelectionView.delegate = self;
     self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
 - (IBAction)segmentControlDidChangeValue:(UISegmentedControl *)segmentedControl
 {
-    [self.colorSelectionView setSelectedIndex:segmentedControl.selectedSegmentIndex animated:YES];
+    if (segmentedControl == self.modeSelectionControl) {
+        self.colorViewMode = segmentedControl.selectedSegmentIndex;
+    }
 }
 
 - (void)setColor:(UIColor *)color
 {
     self.colorSelectionView.color = color;
+}
+
+- (void)setColorViewMode:(MSSelectedColorView)selectedColorViewMode
+{
+    if (selectedColorViewMode != _colorViewMode) {
+        _colorViewMode = selectedColorViewMode;
+        [self.colorSelectionView setSelectedIndex:_colorViewMode animated:YES];
+        self.modeSelectionControl.selectedSegmentIndex = _colorViewMode;
+    }
+}
+
+-(UISegmentedControl *)modeSelectionControl {
+    if (_modeSelectionControl == nil) {
+        _modeSelectionControl = [[UISegmentedControl alloc] initWithItems:@[NSLocalizedString(@"RGB", ), NSLocalizedString(@"HSB", )]];
+        [_modeSelectionControl addTarget:self action:@selector(segmentControlDidChangeValue:) forControlEvents:UIControlEventValueChanged];
+        _modeSelectionControl.selectedSegmentIndex = self.colorViewMode;
+    }
+    return _modeSelectionControl;
 }
 
 - (UIColor *)color

@@ -25,6 +25,7 @@
 // THE SOFTWARE.
 
 #import <UIKit/UIKit.h>
+#import "MSColorSelectionView.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -58,6 +59,11 @@ NS_ASSUME_NONNULL_BEGIN
  *  The current color value.
  */
 @property (nonatomic, strong) UIColor *color;
+
+/**
+*  The current colorView mode:  RGB or HSB
+*/
+@property (nonatomic, assign) MSSelectedColorView colorViewMode;
 
 @end
 
